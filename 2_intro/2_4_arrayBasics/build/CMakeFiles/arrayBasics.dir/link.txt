@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/arrayBasics.dir/main.c.o -o arrayBasics 

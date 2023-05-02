@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/sumNaturalNumbers.dir/main.c.o -o sumNaturalNumbers 

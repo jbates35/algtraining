@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/taylor.dir/main.c.o -o taylor 

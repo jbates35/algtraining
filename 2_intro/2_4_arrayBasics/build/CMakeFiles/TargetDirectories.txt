@@ -1,0 +1,3 @@
+/home/dev/algTraining/2_4_arrayBasics/build/CMakeFiles/arrayBasics.dir
+/home/dev/algTraining/2_4_arrayBasics/build/CMakeFiles/edit_cache.dir
+/home/dev/algTraining/2_4_arrayBasics/build/CMakeFiles/rebuild_cache.dir

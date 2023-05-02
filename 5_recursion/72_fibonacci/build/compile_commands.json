@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/dev/algTraining/5_recursion/72_fibonacci/build",
+  "command": "/usr/bin/gcc -g -o CMakeFiles/fibSequence.dir/main.c.o -c /home/dev/algTraining/5_recursion/72_fibonacci/main.c",
+  "file": "/home/dev/algTraining/5_recursion/72_fibonacci/main.c"
+}
+]

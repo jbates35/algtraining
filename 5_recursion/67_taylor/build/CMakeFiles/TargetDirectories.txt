@@ -1,0 +1,3 @@
+/home/dev/algTraining/5_recursion/67_taylor/build/CMakeFiles/taylor.dir
+/home/dev/algTraining/5_recursion/67_taylor/build/CMakeFiles/edit_cache.dir
+/home/dev/algTraining/5_recursion/67_taylor/build/CMakeFiles/rebuild_cache.dir

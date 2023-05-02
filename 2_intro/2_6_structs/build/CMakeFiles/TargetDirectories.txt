@@ -1,0 +1,3 @@
+/home/dev/algTraining/2_6_structs/build/CMakeFiles/structs.dir
+/home/dev/algTraining/2_6_structs/build/CMakeFiles/edit_cache.dir
+/home/dev/algTraining/2_6_structs/build/CMakeFiles/rebuild_cache.dir
