@@ -69,28 +69,28 @@ include CMakeFiles/taylor2.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/taylor2.dir/flags.make
 
-CMakeFiles/taylor2.dir/loopVersion.c.o: CMakeFiles/taylor2.dir/flags.make
-CMakeFiles/taylor2.dir/loopVersion.c.o: ../loopVersion.c
-CMakeFiles/taylor2.dir/loopVersion.c.o: CMakeFiles/taylor2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dev/algTraining/5_recursion/69_taylor_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/taylor2.dir/loopVersion.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/taylor2.dir/loopVersion.c.o -MF CMakeFiles/taylor2.dir/loopVersion.c.o.d -o CMakeFiles/taylor2.dir/loopVersion.c.o -c /home/dev/algTraining/5_recursion/69_taylor_2/loopVersion.c
+CMakeFiles/taylor2.dir/recursVersion.c.o: CMakeFiles/taylor2.dir/flags.make
+CMakeFiles/taylor2.dir/recursVersion.c.o: ../recursVersion.c
+CMakeFiles/taylor2.dir/recursVersion.c.o: CMakeFiles/taylor2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/dev/algTraining/5_recursion/69_taylor_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/taylor2.dir/recursVersion.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/taylor2.dir/recursVersion.c.o -MF CMakeFiles/taylor2.dir/recursVersion.c.o.d -o CMakeFiles/taylor2.dir/recursVersion.c.o -c /home/dev/algTraining/5_recursion/69_taylor_2/recursVersion.c
 
-CMakeFiles/taylor2.dir/loopVersion.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/taylor2.dir/loopVersion.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dev/algTraining/5_recursion/69_taylor_2/loopVersion.c > CMakeFiles/taylor2.dir/loopVersion.c.i
+CMakeFiles/taylor2.dir/recursVersion.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/taylor2.dir/recursVersion.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/dev/algTraining/5_recursion/69_taylor_2/recursVersion.c > CMakeFiles/taylor2.dir/recursVersion.c.i
 
-CMakeFiles/taylor2.dir/loopVersion.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/taylor2.dir/loopVersion.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dev/algTraining/5_recursion/69_taylor_2/loopVersion.c -o CMakeFiles/taylor2.dir/loopVersion.c.s
+CMakeFiles/taylor2.dir/recursVersion.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/taylor2.dir/recursVersion.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/dev/algTraining/5_recursion/69_taylor_2/recursVersion.c -o CMakeFiles/taylor2.dir/recursVersion.c.s
 
 # Object files for target taylor2
 taylor2_OBJECTS = \
-"CMakeFiles/taylor2.dir/loopVersion.c.o"
+"CMakeFiles/taylor2.dir/recursVersion.c.o"
 
 # External object files for target taylor2
 taylor2_EXTERNAL_OBJECTS =
 
-taylor2: CMakeFiles/taylor2.dir/loopVersion.c.o
+taylor2: CMakeFiles/taylor2.dir/recursVersion.c.o
 taylor2: CMakeFiles/taylor2.dir/build.make
 taylor2: CMakeFiles/taylor2.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/dev/algTraining/5_recursion/69_taylor_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable taylor2"

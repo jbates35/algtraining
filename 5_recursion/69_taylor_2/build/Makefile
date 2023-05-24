@@ -129,29 +129,29 @@ taylor2/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/taylor2.dir/build.make CMakeFiles/taylor2.dir/build
 .PHONY : taylor2/fast
 
-loopVersion.o: loopVersion.c.o
-.PHONY : loopVersion.o
+recursVersion.o: recursVersion.c.o
+.PHONY : recursVersion.o
 
 # target to build an object file
-loopVersion.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/taylor2.dir/build.make CMakeFiles/taylor2.dir/loopVersion.c.o
-.PHONY : loopVersion.c.o
+recursVersion.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taylor2.dir/build.make CMakeFiles/taylor2.dir/recursVersion.c.o
+.PHONY : recursVersion.c.o
 
-loopVersion.i: loopVersion.c.i
-.PHONY : loopVersion.i
+recursVersion.i: recursVersion.c.i
+.PHONY : recursVersion.i
 
 # target to preprocess a source file
-loopVersion.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/taylor2.dir/build.make CMakeFiles/taylor2.dir/loopVersion.c.i
-.PHONY : loopVersion.c.i
+recursVersion.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taylor2.dir/build.make CMakeFiles/taylor2.dir/recursVersion.c.i
+.PHONY : recursVersion.c.i
 
-loopVersion.s: loopVersion.c.s
-.PHONY : loopVersion.s
+recursVersion.s: recursVersion.c.s
+.PHONY : recursVersion.s
 
 # target to generate assembly for a file
-loopVersion.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/taylor2.dir/build.make CMakeFiles/taylor2.dir/loopVersion.c.s
-.PHONY : loopVersion.c.s
+recursVersion.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/taylor2.dir/build.make CMakeFiles/taylor2.dir/recursVersion.c.s
+.PHONY : recursVersion.c.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... taylor2"
-	@echo "... loopVersion.o"
-	@echo "... loopVersion.i"
-	@echo "... loopVersion.s"
+	@echo "... recursVersion.o"
+	@echo "... recursVersion.i"
+	@echo "... recursVersion.s"
 .PHONY : help
 
 

@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/dev/algTraining/5_recursion/69_taylor_2/loopVersion.c" "CMakeFiles/taylor2.dir/loopVersion.c.o" "gcc" "CMakeFiles/taylor2.dir/loopVersion.c.o.d"
+  "/home/dev/algTraining/5_recursion/69_taylor_2/recursVersion.c" "CMakeFiles/taylor2.dir/recursVersion.c.o" "gcc" "CMakeFiles/taylor2.dir/recursVersion.c.o.d"
   )
 
 # Targets to which this target links.
