@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/dev/algTraining/5_recursion/72_fibonacci/build"
+			"value" : "/home/jbates/algtraining/5_recursion/72_fibonacci/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -92,6 +92,22 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "1"
+		},
+		{
+			"name" : "CMAKE_COLOR_MAKEFILE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable/Disable color output during build."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
 		},
 		{
 			"name" : "CMAKE_COMMAND",
@@ -139,10 +155,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "CXX compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "/usr/bin/g++"
 		},
 		{
@@ -267,10 +283,10 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "C compiler"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "STRING",
+			"type" : "FILEPATH",
 			"value" : "/usr/bin/gcc"
 		},
 		{
@@ -498,6 +514,10 @@
 			"properties" : 
 			[
 				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
 					"name" : "HELPSTRING",
 					"value" : "No help, variable specified on the command line."
 				}
@@ -527,7 +547,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "Ninja"
+			"value" : "Unix Makefiles"
 		},
 		{
 			"name" : "CMAKE_GENERATOR_INSTANCE",
@@ -575,7 +595,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/dev/algTraining/5_recursion/72_fibonacci"
+			"value" : "/home/jbates/algtraining/5_recursion/72_fibonacci"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -627,11 +647,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Program used to build from build.ninja files."
+					"value" : "Path to a program."
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "/usr/bin/ninja"
+			"value" : "/usr/bin/gmake"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -1111,7 +1131,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/dev/algTraining/5_recursion/72_fibonacci/build"
+			"value" : "/home/jbates/algtraining/5_recursion/72_fibonacci/build"
 		},
 		{
 			"name" : "fibSequence_IS_TOP_LEVEL",
@@ -1135,7 +1155,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/dev/algTraining/5_recursion/72_fibonacci"
+			"value" : "/home/jbates/algtraining/5_recursion/72_fibonacci"
 		}
 	],
 	"kind" : "cache",

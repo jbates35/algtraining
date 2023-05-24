@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "fibSequence::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-fibSequence-Debug-8ba820e6038aa9881564.json",
+					"jsonFile" : "target-fibSequence-Debug-cdc0c27a73435bfbc81d.json",
 					"name" : "fibSequence",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/dev/algTraining/5_recursion/72_fibonacci/build",
-		"source" : "/home/dev/algTraining/5_recursion/72_fibonacci"
+		"build" : "/home/jbates/algtraining/5_recursion/72_fibonacci/build",
+		"source" : "/home/jbates/algtraining/5_recursion/72_fibonacci"
 	},
 	"version" : 
 	{

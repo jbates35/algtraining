@@ -1,4 +1,4 @@
-# Install script for directory: /home/dev/algTraining/5_recursion/72_fibonacci
+# Install script for directory: /home/jbates/algtraining/5_recursion/72_fibonacci
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/dev/algTraining/5_recursion/72_fibonacci/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jbates/algtraining/5_recursion/72_fibonacci/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

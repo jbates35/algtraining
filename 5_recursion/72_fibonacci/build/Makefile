@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/dev/algTraining/5_recursion/72_fibonacci
+CMAKE_SOURCE_DIR = /home/jbates/algtraining/5_recursion/72_fibonacci
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/dev/algTraining/5_recursion/72_fibonacci/build
+CMAKE_BINARY_DIR = /home/jbates/algtraining/5_recursion/72_fibonacci/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dev/algTraining/5_recursion/72_fibonacci/build/CMakeFiles /home/dev/algTraining/5_recursion/72_fibonacci/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jbates/algtraining/5_recursion/72_fibonacci/build/CMakeFiles /home/jbates/algtraining/5_recursion/72_fibonacci/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/dev/algTraining/5_recursion/72_fibonacci/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jbates/algtraining/5_recursion/72_fibonacci/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,29 +129,29 @@ fibSequence/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/fibSequence.dir/build.make CMakeFiles/fibSequence.dir/build
 .PHONY : fibSequence/fast
 
-main.o: main.c.o
-.PHONY : main.o
+main_memoization.o: main_memoization.c.o
+.PHONY : main_memoization.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/fibSequence.dir/build.make CMakeFiles/fibSequence.dir/main.c.o
-.PHONY : main.c.o
+main_memoization.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fibSequence.dir/build.make CMakeFiles/fibSequence.dir/main_memoization.c.o
+.PHONY : main_memoization.c.o
 
-main.i: main.c.i
-.PHONY : main.i
+main_memoization.i: main_memoization.c.i
+.PHONY : main_memoization.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/fibSequence.dir/build.make CMakeFiles/fibSequence.dir/main.c.i
-.PHONY : main.c.i
+main_memoization.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fibSequence.dir/build.make CMakeFiles/fibSequence.dir/main_memoization.c.i
+.PHONY : main_memoization.c.i
 
-main.s: main.c.s
-.PHONY : main.s
+main_memoization.s: main_memoization.c.s
+.PHONY : main_memoization.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/fibSequence.dir/build.make CMakeFiles/fibSequence.dir/main.c.s
-.PHONY : main.c.s
+main_memoization.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/fibSequence.dir/build.make CMakeFiles/fibSequence.dir/main_memoization.c.s
+.PHONY : main_memoization.c.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... fibSequence"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... main_memoization.o"
+	@echo "... main_memoization.i"
+	@echo "... main_memoization.s"
 .PHONY : help
 
 

@@ -125,8 +125,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/home/dev/algTraining/5_recursion/72_fibonacci/build",
-		"source" : "/home/dev/algTraining/5_recursion/72_fibonacci"
+		"build" : "/home/jbates/algtraining/5_recursion/72_fibonacci/build",
+		"source" : "/home/jbates/algtraining/5_recursion/72_fibonacci"
 	},
 	"version" : 
 	{

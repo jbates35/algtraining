@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/dev/algTraining/5_recursion/72_fibonacci/main.c" "CMakeFiles/fibSequence.dir/main.c.o" "gcc" "CMakeFiles/fibSequence.dir/main.c.o.d"
+  "/home/jbates/algtraining/5_recursion/72_fibonacci/main_memoization.c" "CMakeFiles/fibSequence.dir/main_memoization.c.o" "gcc" "CMakeFiles/fibSequence.dir/main_memoization.c.o.d"
   )
 
 # Targets to which this target links.

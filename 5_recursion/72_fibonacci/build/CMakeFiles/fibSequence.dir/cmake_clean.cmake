@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/fibSequence.dir/main.c.o"
-  "CMakeFiles/fibSequence.dir/main.c.o.d"
+  "CMakeFiles/fibSequence.dir/main_memoization.c.o"
+  "CMakeFiles/fibSequence.dir/main_memoization.c.o.d"
   "fibSequence"
   "fibSequence.pdb"
 )

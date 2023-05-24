@@ -1,1 +1,1 @@
-/usr/bin/cc CMakeFiles/fibSequence.dir/main.c.o -o fibSequence 
+/usr/bin/gcc -g CMakeFiles/fibSequence.dir/main_memoization.c.o -o fibSequence 
