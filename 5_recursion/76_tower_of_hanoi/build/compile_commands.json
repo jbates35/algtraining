@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/jbates/algtraining/5_recursion/76_tower_of_hanoi/build",
+  "command": "/usr/bin/cc   -std=gnu99 -o CMakeFiles/tower_of_hanoi.dir/main.c.o -c /home/jbates/algtraining/5_recursion/76_tower_of_hanoi/main.c",
+  "file": "/home/jbates/algtraining/5_recursion/76_tower_of_hanoi/main.c"
+}
+]
