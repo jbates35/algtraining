@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/dev/algTraining/5_recursion/69_taylor_2/build",
+  "command": "/usr/bin/gcc -g -o CMakeFiles/taylor2.dir/recursVersion.c.o -c /home/dev/algTraining/5_recursion/69_taylor_2/recursVersion.c",
+  "file": "/home/dev/algTraining/5_recursion/69_taylor_2/recursVersion.c"
+}
+]

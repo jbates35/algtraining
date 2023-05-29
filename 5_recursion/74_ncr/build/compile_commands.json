@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/dev/algTraining/5_recursion/74_ncr/build",
+  "command": "/usr/bin/cc   -std=gnu99 -o CMakeFiles/ncr.dir/main.c.o -c /home/dev/algTraining/5_recursion/74_ncr/main.c",
+  "file": "/home/dev/algTraining/5_recursion/74_ncr/main.c"
+}
+]
