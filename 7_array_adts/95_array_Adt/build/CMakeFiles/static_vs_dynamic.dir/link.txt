@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/static_vs_dynamic.dir/main.c.o -o static_vs_dynamic 

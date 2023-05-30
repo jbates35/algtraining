@@ -1,0 +1,3 @@
+/home/dev/algTraining/7_array_adts/95_array_Adt/build/CMakeFiles/static_vs_dynamic.dir
+/home/dev/algTraining/7_array_adts/95_array_Adt/build/CMakeFiles/edit_cache.dir
+/home/dev/algTraining/7_array_adts/95_array_Adt/build/CMakeFiles/rebuild_cache.dir

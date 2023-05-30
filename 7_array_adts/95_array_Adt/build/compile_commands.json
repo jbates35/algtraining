@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/dev/algTraining/7_array_adts/95_array_Adt/build",
+  "command": "/usr/bin/cc   -std=gnu99 -o CMakeFiles/static_vs_dynamic.dir/main.c.o -c /home/dev/algTraining/7_array_adts/95_array_Adt/main.c",
+  "file": "/home/dev/algTraining/7_array_adts/95_array_Adt/main.c"
+}
+]
