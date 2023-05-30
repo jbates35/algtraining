@@ -1,0 +1,3 @@
+/home/dev/algTraining/6_arrays/general_practice/build/CMakeFiles/arraypract.dir
+/home/dev/algTraining/6_arrays/general_practice/build/CMakeFiles/edit_cache.dir
+/home/dev/algTraining/6_arrays/general_practice/build/CMakeFiles/rebuild_cache.dir

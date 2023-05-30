@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/arraypract.dir/main.c.o -o arraypract 

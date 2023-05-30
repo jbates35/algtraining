@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/dev/algTraining/6_arrays/83_staticvsdynamic/build",
+  "command": "/usr/bin/cc   -std=gnu99 -o CMakeFiles/static_vs_dynamic.dir/main.c.o -c /home/dev/algTraining/6_arrays/83_staticvsdynamic/main.c",
+  "file": "/home/dev/algTraining/6_arrays/83_staticvsdynamic/main.c"
+}
+]
