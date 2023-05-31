@@ -1,0 +1,1 @@
+/usr/bin/gcc -g CMakeFiles/arrayGeneral.dir/main.c.o CMakeFiles/arrayGeneral.dir/arrayAdt.c.o -o arrayGeneral 

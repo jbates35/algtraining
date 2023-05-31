@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/jbates/algtraining/7_array_adts/array_adt_script/build",
+  "command": "/usr/bin/gcc   -g -std=gnu99 -o CMakeFiles/arrayGeneral.dir/main.c.o -c /home/jbates/algtraining/7_array_adts/array_adt_script/main.c",
+  "file": "/home/jbates/algtraining/7_array_adts/array_adt_script/main.c"
+},
+{
+  "directory": "/home/jbates/algtraining/7_array_adts/array_adt_script/build",
+  "command": "/usr/bin/gcc   -g -std=gnu99 -o CMakeFiles/arrayGeneral.dir/arrayAdt.c.o -c /home/jbates/algtraining/7_array_adts/array_adt_script/arrayAdt.c",
+  "file": "/home/jbates/algtraining/7_array_adts/array_adt_script/arrayAdt.c"
+}
+]
