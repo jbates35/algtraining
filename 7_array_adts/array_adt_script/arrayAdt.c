@@ -83,3 +83,26 @@ int insert_intArrayAdt(struct ArrayInt *arr, int val, int pos)
 
     return 0;
 }
+
+int delete_intArrayAdt(struct ArrayInt *arr, int pos)
+{
+    //Detect null pointer
+    if(arr == NULL) 
+        return -1;
+
+    //If the position is out of these ranges, it's incompatible
+    if(pos < 0 || pos >= arr->length)
+        return -3;    
+
+    //Can't delete anything if there's nothing in the array
+    if(arr->length == 0)
+        return -4;
+    
+    //Shift array values down, make last one null
+    arr->length--;
+
+    for(int i = pos; i<arr->length; i++)
+        arr->A[i] = arr->A[i+1];
+
+    arr->A[arr->length] = 0;
+}

@@ -37,12 +37,25 @@ int main(int argc, char *argv[])
 
     init_intArrayAdt(&arr, tempA, 20, 5);
 
-    display_intArrayAdt(&arr);
-    append_intArrayAdt(&arr, 8);
-    display_intArrayAdt(&arr);
-    insert_intArrayAdt(&arr, 10, 3);
+    printf("\nInitial array is");
     display_intArrayAdt(&arr);
     
+    printf("\nAppending 8 to end of array");
+    append_intArrayAdt(&arr, 8);
+    display_intArrayAdt(&arr);
+
+    printf("\nInserting 10 into the 7th element of array");
+    insert_intArrayAdt(&arr, 10, 6);
+    display_intArrayAdt(&arr);
+
+    printf("\nInserting 7 into the 7th element of array");
+    insert_intArrayAdt(&arr, 7, 6);
+    display_intArrayAdt(&arr);
+
+    printf("\nDeleting 6th element of array");
+    delete_intArrayAdt(&arr, 5);
+    display_intArrayAdt(&arr);
+
     free_intArrayAdt(&arr);
 
     printf("\nProcess count: %d\n\n", processCount);
