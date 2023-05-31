@@ -105,4 +105,6 @@ int delete_intArrayAdt(struct ArrayInt *arr, int pos)
         arr->A[i] = arr->A[i+1];
 
     arr->A[arr->length] = 0;
+
+    return 0;
 }
