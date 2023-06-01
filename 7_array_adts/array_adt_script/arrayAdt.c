@@ -117,7 +117,7 @@ int delete_intArrayAdt(struct ArrayInt *arr, int pos)
     return 0;
 }
 
-int search_intArrayAdt(struct ArrayInt *arr, int val)
+int linSearch_intArrayAdt(struct ArrayInt *arr, int val)
 {
     //Detect null pointer
     if(arr == NULL) 
@@ -132,4 +132,37 @@ int search_intArrayAdt(struct ArrayInt *arr, int val)
 
     //Unsuccessful
     return -1;
+}
+
+int binSearch_intArrayAdt(struct ArrayInt *arr, int val, int lo, int hi)
+{    
+    //Detect null pointer
+    if(arr == NULL) 
+        return -2;  
+
+    //do housekeeping to return if we found value
+    if(arr->A[lo] == val) 
+        return lo;
+    if(arr->A[hi-1] == val)
+        return hi-1;
+
+    if((hi-lo) <= 2) 
+        return -1;
+
+    //If value hasn't been found, or has been discovered to be non-existent, recurse thy value
+    int mid = (lo + hi)/2;
+    int newHi, newLo;
+
+    if(val >= arr->A[lo] && val < arr->A[mid]) 
+    {
+        newHi = mid;
+        newLo = lo;
+    }
+    else 
+    {
+        newHi = hi;
+        newLo = mid;
+    }
+
+    return binSearch_intArrayAdt(arr, val, newLo, newHi);
 }

@@ -57,8 +57,32 @@ int main(int argc, char *argv[])
     display_intArrayAdt(&arr);
 
     printf("\nSearching for val==6");
-    int key = search_intArrayAdt(&arr, 6);
+    int key = linSearch_intArrayAdt(&arr, 6);
     printf("\nKey==%d\n", key);
+
+    //Make new array
+    printf("\nMaking new array...");
+    int tempB[] = { 
+         4, 8, 10, 15, 18, 21, 24, 27, 29, 33, 34, 37, 39, 41, 43
+    };
+    init_intArrayAdt(&arr, tempB, 20, sizeof(tempB)/sizeof(int));    
+    display_intArrayAdt(&arr);
+
+    printf("\nBinary search for value 18");
+    key = binSearch_intArrayAdt(&arr, 18, 0, arr.length);
+    printf("\nKey for 18 is %d\n", key);
+    
+    printf("\nBinary search for value 43");
+    key = binSearch_intArrayAdt(&arr, 43, 0, arr.length);
+    printf("\nKey for 43 is %d\n", key);
+
+    printf("\nBinary search for value 33");
+    key = binSearch_intArrayAdt(&arr, 33, 0, arr.length);
+    printf("\nKey for 33 is %d\n", key);
+
+    printf("\nBinary search for value 35");
+    key = binSearch_intArrayAdt(&arr, 35, 0, arr.length);
+    printf("\nKey for 35 is %d\n", key);
 
     free_intArrayAdt(&arr);
 
