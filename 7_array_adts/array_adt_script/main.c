@@ -56,6 +56,10 @@ int main(int argc, char *argv[])
     delete_intArrayAdt(&arr, 5);
     display_intArrayAdt(&arr);
 
+    printf("\nSearching for val==6");
+    int key = search_intArrayAdt(&arr, 6);
+    printf("\nKey==%d\n", key);
+
     free_intArrayAdt(&arr);
 
     printf("\nProcess count: %d\n\n", processCount);
