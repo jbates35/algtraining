@@ -123,6 +123,7 @@ int search_intArrayAdt(struct ArrayInt *arr, int val)
     if(arr == NULL) 
         return -2;  
 
+    //Search for place in array that val can be found
     for(int i=0; i<arr->length; i++)
     {
         if(val == arr->A[i])
