@@ -44,20 +44,6 @@ void swap(void *x, void *y, size_t size)
     free(temp);
 }
 
-int swap_intArrayAdt(struct ArrayInt *arr, int ind1, int ind2)
-{
-    // Detect null pointer
-    if (arr == NULL)
-        return -2;
-
-    if(ind1 >= arr->length || ind1 < 0 || ind2 >= arr->length || ind2 < 0)
-        return -4;
-
-    int temp = arr->A[ind1];
-    arr->A[ind1] = arr->A[ind2];
-    arr->A[ind2] = temp;
-}
-
 int display_intArrayAdt(struct ArrayInt *arr)
 {
     // Detect null pointer
@@ -278,7 +264,7 @@ int reverse_intArrayAdt(struct ArrayInt *arr)
     int midval = arr->length / 2;
 
     for (int i = 0, j = arr->length - 1; i < midval; i++, j--)
-        swap_intArrayAdt(arr, i, j);
+        swap(&arr->A[i], &arr->A[j], sizeof(int));
 }
 
 int shift_intArrayAdt(struct ArrayInt *arr, int n, int dir)

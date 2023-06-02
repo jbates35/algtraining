@@ -21,8 +21,6 @@ int free_intArrayAdt(struct ArrayInt *arr);
 
 void swap(void *x, void *y, size_t size);
 
-int swap_intArrayAdt(struct ArrayInt *arr, int ind1, int ind2);
-
 int display_intArrayAdt(struct ArrayInt *arr);
 int append_intArrayAdt(struct ArrayInt *arr, int val);
 int insert_intArrayAdt(struct ArrayInt *arr, int val, int pos);
