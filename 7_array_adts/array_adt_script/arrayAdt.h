@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define RIGHT   1
+#define LEFT    0
+
 struct ArrayInt {
     int* A;
     int length;
@@ -16,12 +19,17 @@ struct ArrayFloat {
 int init_intArrayAdt(struct ArrayInt *arr, int* val, int size, int length);
 int free_intArrayAdt(struct ArrayInt *arr);
 
+void swap(void *x, void *y, size_t size);
+
+int swap_intArrayAdt(struct ArrayInt *arr, int ind1, int ind2);
+
 int display_intArrayAdt(struct ArrayInt *arr);
 int append_intArrayAdt(struct ArrayInt *arr, int val);
 int insert_intArrayAdt(struct ArrayInt *arr, int val, int pos);
 int delete_intArrayAdt(struct ArrayInt *arr, int pos);
 int linSearch_intArrayAdt(struct ArrayInt *arr, int val);
 int binSearch_intArrayAdt(struct ArrayInt *arr, int val, int lo, int hi);
+int dncSort_intArrayAdt(struct ArrayInt *arr, int lo, int hi);
 int get_intArrayAdt(struct ArrayInt *arr, int pos);
 int set_intArrayAdt(struct ArrayInt *arr, int val, int pos);
 int max_intArrayAdt(struct ArrayInt *arr);

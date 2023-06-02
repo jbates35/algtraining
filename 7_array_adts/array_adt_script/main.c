@@ -84,6 +84,69 @@ int main(int argc, char *argv[])
     key = binSearch_intArrayAdt(&arr, 35, 0, arr.length);
     printf("\nKey for 35 is %d\n", key);
 
+    printf("\nMaking new array...");
+    int tempC[] = {
+        5, 29, 3, 206, 495, 10, 106, 4, 693, 40, 20, 5, 105, 106, 604, 602, 105, 6, 50, 55, 1
+    };
+    init_intArrayAdt(&arr, tempC, 40, sizeof(tempC)/sizeof(int));    
+    display_intArrayAdt(&arr);
+
+    printf("\nReversing array");
+    reverse_intArrayAdt(&arr);
+    display_intArrayAdt(&arr);
+
+    printf("\nShifting to the right, 3 spots");
+    shift_intArrayAdt(&arr, 3, RIGHT);  
+    display_intArrayAdt(&arr);
+
+    printf("\nReinitializing array");
+    init_intArrayAdt(&arr, tempC, 40, sizeof(tempC)/sizeof(int));    
+    display_intArrayAdt(&arr);
+
+    printf("\nShifting to the left, 3 spots");
+    shift_intArrayAdt(&arr, 3, LEFT);  
+    display_intArrayAdt(&arr);
+    
+    printf("\nShifting to the left, 1 spot");
+    shift_intArrayAdt(&arr, 1, LEFT);  
+    display_intArrayAdt(&arr);
+    
+    printf("\nShifting to the left, 0 spots");
+    shift_intArrayAdt(&arr, 0, LEFT);  
+    display_intArrayAdt(&arr);
+
+    printf("\nShifting to the left, 30 spots");
+    shift_intArrayAdt(&arr, 30, LEFT);  
+    display_intArrayAdt(&arr);
+
+    printf("\nReinitializing array");
+    init_intArrayAdt(&arr, tempC, 40, sizeof(tempC)/sizeof(int));    
+    display_intArrayAdt(&arr);
+
+    printf("\nRotating to the left, 23 spots (meaning 2 spots)");
+    rotate_intArrayAdt(&arr, 23, LEFT);  
+    display_intArrayAdt(&arr);
+
+    printf("\nRotating to the left, 1 spots");
+    rotate_intArrayAdt(&arr, 1, LEFT);  
+    display_intArrayAdt(&arr);
+
+    printf("\nRotating to the left, 3 spots");
+    rotate_intArrayAdt(&arr, 3, LEFT);  
+    display_intArrayAdt(&arr);
+
+    printf("\nRotating to the right, 3 spots");
+    rotate_intArrayAdt(&arr, 3, RIGHT);  
+    display_intArrayAdt(&arr);
+
+    printf("\nRotating to the right, 1 spots");
+    rotate_intArrayAdt(&arr, 1, RIGHT);  
+    display_intArrayAdt(&arr);
+
+    printf("\nRotating to the right, 23 spots (meaning 2 spots)");
+    rotate_intArrayAdt(&arr, 23, RIGHT);  
+    display_intArrayAdt(&arr);
+
     free_intArrayAdt(&arr);
 
     printf("\nProcess count: %d\n\n", processCount);
