@@ -1,3 +1,6 @@
+#ifndef ARRAY_ADT_H
+#define ARRAY_ADT_H
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -8,16 +11,18 @@ struct ArrayInt {
     int* A;
     int length;
     int size;
+    int initialized;
 };
 
 struct ArrayFloat {
     float* A;
     int length;
     int size;
+    int initialized;
 };
 
 int init_intArrayAdt(struct ArrayInt *arr, int* val, int size, int length);
-int free_intArrayAdt(struct ArrayInt *arr);
+int deinit_intArrayAdt(struct ArrayInt *arr);
 
 void swap(void *x, void *y, size_t size);
 
@@ -27,7 +32,6 @@ int insert_intArrayAdt(struct ArrayInt *arr, int val, int pos);
 int delete_intArrayAdt(struct ArrayInt *arr, int pos);
 int linSearch_intArrayAdt(struct ArrayInt *arr, int val);
 int binSearch_intArrayAdt(struct ArrayInt *arr, int val, int lo, int hi);
-int dncSort_intArrayAdt(struct ArrayInt *arr, int lo, int hi);
 int get_intArrayAdt(struct ArrayInt *arr, int pos);
 int set_intArrayAdt(struct ArrayInt *arr, int val, int pos);
 int max_intArrayAdt(struct ArrayInt *arr);
@@ -48,3 +52,5 @@ int fMin(struct ArrayFloat *arr);
 int fReverse(struct ArrayFloat *arr);
 int fShift(struct ArrayFloat *arr, int n, int dir);
 int fRotate(struct ArrayFloat *arr, int n, int dir);
+
+#endif

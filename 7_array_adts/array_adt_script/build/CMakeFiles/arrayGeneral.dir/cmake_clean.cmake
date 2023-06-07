@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/arrayGeneral.dir/arrayAdt.c.o"
   "CMakeFiles/arrayGeneral.dir/arrayAdt.c.o.d"
+  "CMakeFiles/arrayGeneral.dir/arrayAdtSort.c.o"
+  "CMakeFiles/arrayGeneral.dir/arrayAdtSort.c.o.d"
   "CMakeFiles/arrayGeneral.dir/main.c.o"
   "CMakeFiles/arrayGeneral.dir/main.c.o.d"
   "arrayGeneral"

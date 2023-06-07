@@ -3,6 +3,7 @@
 #include <getopt.h>
 
 #include "arrayAdt.h"
+#include "arrayAdtSort.h"
 
 int processCount;
 
@@ -147,7 +148,15 @@ int main(int argc, char *argv[])
     rotate_intArrayAdt(&arr, 23, RIGHT);  
     display_intArrayAdt(&arr);
 
-    free_intArrayAdt(&arr);
+    printf("\nReinitializing array");
+    init_intArrayAdt(&arr, tempC, 40, sizeof(tempC)/sizeof(int));    
+    display_intArrayAdt(&arr);
+
+    printf("\nMerge Sort");
+    mergeSort_intArrayAdt(&arr, 0, arr.length-1);
+    display_intArrayAdt(&arr);
+
+    deinit_intArrayAdt(&arr);
 
     printf("\nProcess count: %d\n\n", processCount);
 

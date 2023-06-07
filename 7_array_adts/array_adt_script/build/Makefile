@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/jbates/algtraining/7_array_adts/array_adt_script
+CMAKE_SOURCE_DIR = /home/dev/algTraining/7_array_adts/array_adt_script
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/jbates/algtraining/7_array_adts/array_adt_script/build
+CMAKE_BINARY_DIR = /home/dev/algTraining/7_array_adts/array_adt_script/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jbates/algtraining/7_array_adts/array_adt_script/build/CMakeFiles /home/jbates/algtraining/7_array_adts/array_adt_script/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dev/algTraining/7_array_adts/array_adt_script/build/CMakeFiles /home/dev/algTraining/7_array_adts/array_adt_script/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/jbates/algtraining/7_array_adts/array_adt_script/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/dev/algTraining/7_array_adts/array_adt_script/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -153,6 +153,30 @@ arrayAdt.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/arrayGeneral.dir/build.make CMakeFiles/arrayGeneral.dir/arrayAdt.c.s
 .PHONY : arrayAdt.c.s
 
+arrayAdtSort.o: arrayAdtSort.c.o
+.PHONY : arrayAdtSort.o
+
+# target to build an object file
+arrayAdtSort.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/arrayGeneral.dir/build.make CMakeFiles/arrayGeneral.dir/arrayAdtSort.c.o
+.PHONY : arrayAdtSort.c.o
+
+arrayAdtSort.i: arrayAdtSort.c.i
+.PHONY : arrayAdtSort.i
+
+# target to preprocess a source file
+arrayAdtSort.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/arrayGeneral.dir/build.make CMakeFiles/arrayGeneral.dir/arrayAdtSort.c.i
+.PHONY : arrayAdtSort.c.i
+
+arrayAdtSort.s: arrayAdtSort.c.s
+.PHONY : arrayAdtSort.s
+
+# target to generate assembly for a file
+arrayAdtSort.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/arrayGeneral.dir/build.make CMakeFiles/arrayGeneral.dir/arrayAdtSort.c.s
+.PHONY : arrayAdtSort.c.s
+
 main.o: main.c.o
 .PHONY : main.o
 
@@ -189,6 +213,9 @@ help:
 	@echo "... arrayAdt.o"
 	@echo "... arrayAdt.i"
 	@echo "... arrayAdt.s"
+	@echo "... arrayAdtSort.o"
+	@echo "... arrayAdtSort.i"
+	@echo "... arrayAdtSort.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

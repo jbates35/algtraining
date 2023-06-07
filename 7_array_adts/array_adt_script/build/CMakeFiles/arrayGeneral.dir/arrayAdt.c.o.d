@@ -1,7 +1,7 @@
 CMakeFiles/arrayGeneral.dir/arrayAdt.c.o: \
- /home/jbates/algtraining/7_array_adts/array_adt_script/arrayAdt.c \
+ /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdt.c \
  /usr/include/stdc-predef.h \
- /home/jbates/algtraining/7_array_adts/array_adt_script/arrayAdt.h \
+ /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdt.h \
  /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \

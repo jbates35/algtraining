@@ -7,6 +7,9 @@ int init_intArrayAdt(struct ArrayInt *arr, int *val, int size, int length)
     if (arr == NULL)
         return -2;
 
+    if(arr->initialized==1)
+        deinit_intArrayAdt(arr);
+
     arr->A = (int *)malloc(sizeof(int) * size);
 
     // Dump all the values into the struct's array
@@ -21,18 +24,21 @@ int init_intArrayAdt(struct ArrayInt *arr, int *val, int size, int length)
 
     arr->size = size;
     arr->length = length;
-
+    arr->initialized=1;
+    
     return 0;
 }
 
-int free_intArrayAdt(struct ArrayInt *arr)
-{
+int deinit_intArrayAdt(struct ArrayInt *arr)
+{    
     // Detect null pointer
     if (arr == NULL)
         return -2;
 
     free(arr->A);
     arr->A = NULL;
+
+    arr->initialized=0;
 }
 
 void swap(void *x, void *y, size_t size)
@@ -172,36 +178,6 @@ int binSearch_intArrayAdt(struct ArrayInt *arr, int val, int lo, int hi)
     }
 
     return binSearch_intArrayAdt(arr, val, newLo, newHi);
-}
-
-int dncSort_intArrayAdt(struct ArrayInt *arr, int lo, int hi)
-{
-    // Detect null pointer
-    if (arr == NULL)
-        return -2;
-
-    // No need to do anything
-    if (lo == hi)
-    {
-        printf("\n<%d, %d>\n", lo, arr->A[lo]);
-        return -1;
-    }
-
-    int mid = (hi + lo) / 2;
-
-    dncSort_intArrayAdt(arr, lo, mid);
-    dncSort_intArrayAdt(arr, mid + 1, hi);
-
-    printf("\n<");
-    for (int i = lo; i <= mid; i++)
-    {
-        printf("%d: %d", i, arr->A[i]);
-        if (i != mid)
-            printf(", ");
-    }
-    printf(">\n");
-
-    return 0;
 }
 
 int get_intArrayAdt(struct ArrayInt *arr, int pos)

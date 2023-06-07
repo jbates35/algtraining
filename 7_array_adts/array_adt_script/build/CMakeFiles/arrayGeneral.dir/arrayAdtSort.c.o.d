@@ -1,6 +1,8 @@
-CMakeFiles/arrayGeneral.dir/main.c.o: \
- /home/dev/algTraining/7_array_adts/array_adt_script/main.c \
- /usr/include/stdc-predef.h /usr/include/stdio.h \
+CMakeFiles/arrayGeneral.dir/arrayAdtSort.c.o: \
+ /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdtSort.c \
+ /usr/include/stdc-predef.h \
+ /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdtSort.h \
+ /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -47,8 +49,5 @@ CMakeFiles/arrayGeneral.dir/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
- /usr/include/x86_64-linux-gnu/bits/stdlib-float.h /usr/include/getopt.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_ext.h \
- /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdt.h \
- /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdtSort.h
+ /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+ /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdt.h

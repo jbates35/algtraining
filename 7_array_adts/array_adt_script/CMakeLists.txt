@@ -9,4 +9,4 @@ set(CMAKE_C_STANDARD 99)
 #allow vscode to find compile commands
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(arrayGeneral main.c arrayAdt.c arrayAdt.h)
+add_executable(arrayGeneral main.c arrayAdt.c arrayAdt.h arrayAdtSort.h arrayAdtSort.c)
