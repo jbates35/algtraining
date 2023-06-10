@@ -1,7 +1,8 @@
 #include "arrayAdt.h"
 #include <string.h>
+#include <stdbool.h>
 
-int init_intArrayAdt(struct ArrayInt *arr, int *val, int size, int length)
+int init_intArrayAdt(ArrayInt *arr, int *val, int size, int length)
 {
     // Detect null pointer
     if (arr == NULL)
@@ -29,7 +30,7 @@ int init_intArrayAdt(struct ArrayInt *arr, int *val, int size, int length)
     return 0;
 }
 
-int deinit_intArrayAdt(struct ArrayInt *arr)
+int deinit_intArrayAdt(ArrayInt *arr)
 {    
     // Detect null pointer
     if (arr == NULL)
@@ -50,7 +51,7 @@ void swap(void *x, void *y, size_t size)
     free(temp);
 }
 
-int display_intArrayAdt(struct ArrayInt *arr)
+int display_intArrayAdt(ArrayInt *arr)
 {
     // Detect null pointer
     if (arr == NULL)
@@ -67,7 +68,7 @@ int display_intArrayAdt(struct ArrayInt *arr)
     return 0;
 }
 
-int append_intArrayAdt(struct ArrayInt *arr, int val)
+int append_intArrayAdt(ArrayInt *arr, int val)
 {
     // Detect null pointer
     if (arr == NULL)
@@ -84,7 +85,7 @@ int append_intArrayAdt(struct ArrayInt *arr, int val)
     return 0;
 }
 
-int insert_intArrayAdt(struct ArrayInt *arr, int val, int pos)
+int insert_intArrayAdt(ArrayInt *arr, int val, int pos)
 {
     // Detect null pointer
     if (arr == NULL)
@@ -108,7 +109,7 @@ int insert_intArrayAdt(struct ArrayInt *arr, int val, int pos)
     return 0;
 }
 
-int delete_intArrayAdt(struct ArrayInt *arr, int pos)
+int delete_intArrayAdt(ArrayInt *arr, int pos)
 {
     // Detect null pointer
     if (arr == NULL)
@@ -130,7 +131,7 @@ int delete_intArrayAdt(struct ArrayInt *arr, int pos)
     return delVal;
 }
 
-int linSearch_intArrayAdt(struct ArrayInt *arr, int val)
+int linSearch_intArrayAdt(ArrayInt *arr, int val)
 {
     // Detect null pointer
     if (arr == NULL)
@@ -147,7 +148,7 @@ int linSearch_intArrayAdt(struct ArrayInt *arr, int val)
     return -1;
 }
 
-int binSearch_intArrayAdt(struct ArrayInt *arr, int val, int lo, int hi)
+int binSearch_intArrayAdt(ArrayInt *arr, int val, int lo, int hi)
 {
     // Detect null pointer
     if (arr == NULL)
@@ -180,7 +181,7 @@ int binSearch_intArrayAdt(struct ArrayInt *arr, int val, int lo, int hi)
     return binSearch_intArrayAdt(arr, val, newLo, newHi);
 }
 
-int get_intArrayAdt(struct ArrayInt *arr, int pos)
+int get_intArrayAdt(ArrayInt *arr, int pos)
 {
     if (arr == NULL || pos >= arr->length || pos < 0)
         return 0;
@@ -188,7 +189,7 @@ int get_intArrayAdt(struct ArrayInt *arr, int pos)
     return arr->A[pos];
 }
 
-int set_intArrayAdt(struct ArrayInt *arr, int val, int pos)
+int set_intArrayAdt(ArrayInt *arr, int val, int pos)
 {
     // Can't do much with a null pointer
     if (arr == NULL)
@@ -203,7 +204,7 @@ int set_intArrayAdt(struct ArrayInt *arr, int val, int pos)
     return 0;
 }
 
-int max_intArrayAdt(struct ArrayInt *arr)
+int max_intArrayAdt(ArrayInt *arr)
 {
     // Can't do much with a null pointer
     if (arr == NULL || arr->length == 0)
@@ -217,7 +218,7 @@ int max_intArrayAdt(struct ArrayInt *arr)
     return maxval;
 }
 
-int min_intArrayAdt(struct ArrayInt *arr)
+int min_intArrayAdt(ArrayInt *arr)
 {
     // Can't do much with a null pointer
     if (arr == NULL || arr->length == 0)
@@ -231,7 +232,7 @@ int min_intArrayAdt(struct ArrayInt *arr)
     return minval;
 }
 
-int reverse_intArrayAdt(struct ArrayInt *arr)
+int reverse_intArrayAdt(ArrayInt *arr)
 {
     // Can't do much with a null pointer
     if (arr == NULL)
@@ -243,7 +244,7 @@ int reverse_intArrayAdt(struct ArrayInt *arr)
         swap(&arr->A[i], &arr->A[j], sizeof(int));
 }
 
-int shift_intArrayAdt(struct ArrayInt *arr, int n, int dir)
+int shift_intArrayAdt(ArrayInt *arr, int n, int dir)
 {
     // Can't do much with a null pointer
     if (arr == NULL)
@@ -276,7 +277,7 @@ int shift_intArrayAdt(struct ArrayInt *arr, int n, int dir)
     return 0;
 }
 
-int rotate_intArrayAdt(struct ArrayInt *arr, int n, int dir)
+int rotate_intArrayAdt(ArrayInt *arr, int n, int dir)
 {
     // Can't do much with a null pointer
     if (arr == NULL)
@@ -320,3 +321,85 @@ int rotate_intArrayAdt(struct ArrayInt *arr, int n, int dir)
 
     return 0;
 }
+
+int insertInSorted_intArrayAdt(ArrayInt *arr, int val)
+{
+    // Can't do much with a null pointer
+    if (arr == NULL)
+        return -2;
+
+    for(int i = 0; i < arr->length; i++)
+        if(val<=arr->A[i])
+        {
+            insert_intArrayAdt(arr, val, i);
+            return 0;
+        }
+
+    append_intArrayAdt(arr, val);
+    return 0;
+}
+
+bool isSorted_intArrayAdt(ArrayInt *arr)
+{
+    // Can't do much with a null pointer
+    if (arr == NULL || arr->length==0)
+        return false;
+
+    if(arr->length == 1)
+        return true;
+        
+    for(int i=1; i<arr->length; i++)
+    {
+        if(arr->A[i] < arr->A[i-1])
+            return false;
+    }
+    return true;
+}
+
+int moveNegsLeft_intArrayAdt(ArrayInt *arr) 
+{
+    // Can't do much with a null pointer
+    if (arr == NULL)
+        return -2;
+
+    int i = 0, j = arr->length-1;
+
+    while(i < j) 
+    {
+        if(arr->A[i] >= 0)
+            swap(&arr->A[i], &arr->A[j], sizeof(int));
+        else
+            i++;
+
+        if(arr->A[j] < 0)
+            swap(&arr->A[i], &arr->A[j], sizeof(int));
+        else
+            j--;
+    }
+
+    return 0;
+}
+
+int moveNegsLeft(int *arr, int N)
+{
+    // Can't do much with a null pointer
+    if (arr == NULL)
+        return -1; 
+
+    int i = 0, j = N-1;
+
+    while(i < j) 
+    {
+        if(arr[i] >= 0)
+            swap(&arr[i], &arr[j], sizeof(int));
+        else
+            i++;
+
+        if(arr[j] < 0)
+            swap(&arr[i], &arr[j], sizeof(int));
+        else
+            j--;
+    }
+
+    return 0;    
+} 

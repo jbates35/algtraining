@@ -1,6 +1,6 @@
 #include "arrayAdtSort.h"
 
-int mergeSort_intArrayAdt(struct ArrayInt *arr, int lo, int hi)
+int mergeSort_intArrayAdt(ArrayInt *arr, int lo, int hi)
 {
     // Can't do nuthin with a null pointer!
     if (arr == NULL)

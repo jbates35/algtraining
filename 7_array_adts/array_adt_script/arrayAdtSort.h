@@ -5,6 +5,6 @@
 #include <stdlib.h>
 #include "arrayAdt.h"
 
-int mergeSort_intArrayAdt(struct ArrayInt *arr, int lo, int hi);
+int mergeSort_intArrayAdt(ArrayInt *arr, int lo, int hi);
 
 #endif

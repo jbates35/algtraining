@@ -56,6 +56,7 @@ CMakeFiles/arrayGeneral.dir/arrayAdt.c.o: ../arrayAdt.c \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
   /usr/include/string.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
@@ -116,7 +117,8 @@ CMakeFiles/arrayGeneral.dir/arrayAdtSort.c.o: ../arrayAdtSort.c \
   /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h \
   /usr/include/alloca.h \
   /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
-  ../arrayAdt.h
+  ../arrayAdt.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h
 
 CMakeFiles/arrayGeneral.dir/main.c.o: ../main.c \
   /usr/include/stdc-predef.h \
@@ -176,12 +178,15 @@ CMakeFiles/arrayGeneral.dir/main.c.o: ../main.c \
   /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
   /usr/include/x86_64-linux-gnu/bits/getopt_ext.h \
   ../arrayAdt.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
   ../arrayAdtSort.h
 
 
 ../main.c:
 
 ../arrayAdtSort.c:
+
+/usr/include/strings.h:
 
 /usr/include/stdlib.h:
 
@@ -228,8 +233,6 @@ CMakeFiles/arrayGeneral.dir/main.c.o: ../main.c \
 ../arrayAdt.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
-
-/usr/include/strings.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
@@ -308,3 +311,5 @@ CMakeFiles/arrayGeneral.dir/main.c.o: ../main.c \
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h:

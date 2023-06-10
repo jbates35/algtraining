@@ -51,4 +51,5 @@ CMakeFiles/arrayGeneral.dir/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_ext.h \
  /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdt.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
  /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdtSort.h
