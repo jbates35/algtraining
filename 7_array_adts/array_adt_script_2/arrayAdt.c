@@ -174,32 +174,50 @@ int binSearchADT(struct ArrayInt *arr, int val, int lo, int hi)
     return binSearchADT(arr, val, newLo, newHi);
 }
 
-int dncSortADT(struct ArrayInt *arr, int lo, int hi)
+
+int mergeSortADT(struct ArrayInt *arr, int lo, int hi)
 {
-    // Detect null pointer
+    // Can't do nuthin with a null pointer!
     if (arr == NULL)
         return -2;
 
-    // No need to do anything
+    // No need to do anything (This means only one value in the array is able to be inspected with this call)
     if (lo == hi)
     {
-        printf("\n<%d, %d>\n", lo, arr->A[lo]);
         return -1;
     }
 
     int mid = (hi + lo) / 2;
 
-    dncSortADT(arr, lo, mid);
-    dncSortADT(arr, mid + 1, hi);
+    //Recursively call until only one or two values are left
+    mergeSortADT(arr, lo, mid);
+    mergeSortADT(arr, mid + 1, hi);
 
-    printf("\n<");
-    for (int i = lo; i <= mid; i++)
-    {
-        printf("%d: %d", i, arr->A[i]);
-        if (i != mid)
-            printf(", ");
-    }
-    printf(">\n");
+    int i = lo, j = mid+1, k = 0;
+
+    //Make new array to dump new vals in
+    int* tempArr = malloc(sizeof(int) * (hi - lo + 1));
+
+    //Incrementally compare and load lowest value between the two sections of the array
+    while(i <= mid && j <= hi)
+        if(arr->A[i] < arr->A[j])
+            tempArr[k++] = arr->A[i++];
+        else 
+            tempArr[k++] = arr->A[j++];
+
+    //Only one of these while loops will be activated, and we need the rest of the values
+    while(i <= mid)
+        tempArr[k++] = arr->A[i++];
+
+    while(j <= hi)
+        tempArr[k++] = arr->A[j++];
+
+    //The temp array is sorted, but we need to replace the values in the original array with them
+    for(i = lo, j=0; i<=hi; i++, j++)
+        arr->A[i] = tempArr[j];
+
+    free (tempArr);
+    tempArr = NULL;
 
     return 0;
 }
@@ -341,6 +359,65 @@ int rotateADT(struct ArrayInt *arr, int n, int dir)
 
     free(temparr);
     temparr = NULL;
+
+    return 0;
+}
+
+
+int insertInSortedADT(struct ArrayInt *arr, int val)
+{
+    // Can't do much with a null pointer
+    if (arr == NULL)
+        return -2;
+
+    for(int i = 0; i < arr->length; i++)
+        if(val<=arr->A[i])
+        {
+            insertADT(arr, val, i);
+            return 0;
+        }
+
+    appendADT(arr, val);
+    return 0;
+}
+
+bool isSortedADT(struct ArrayInt *arr)
+{
+    // Can't do much with a null pointer
+    if (arr == NULL || arr->length==0)
+        return false;
+
+    if(arr->length == 1)
+        return true;
+        
+    for(int i=1; i<arr->length; i++)
+    {
+        if(arr->A[i] < arr->A[i-1])
+            return false;
+    }
+    return true;
+}
+
+int moveNegsLeftADT(struct ArrayInt *arr) 
+{
+    // Can't do much with a null pointer
+    if (arr == NULL)
+        return -2;
+
+    int i = 0, j = arr->length-1;
+
+    while(i < j) 
+    {
+        if(arr->A[i] >= 0)
+            swap(&arr->A[i], &arr->A[j], sizeof(int));
+        else
+            i++;
+
+        if(arr->A[j] < 0)
+            swap(&arr->A[i], &arr->A[j], sizeof(int));
+        else
+            j--;
+    }
 
     return 0;
 }
