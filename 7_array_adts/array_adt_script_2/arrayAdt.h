@@ -21,6 +21,7 @@ int insertADT(struct ArrayInt *arr, int val, int pos);
 int deleteADT(struct ArrayInt *arr, int pos);
 int linSearchADT(struct ArrayInt *arr, int val);
 int binSearchADT(struct ArrayInt *arr, int val, int lo, int hi);
+int bubbleSortADT(struct ArrayInt *arr);
 int dncSortADT(struct ArrayInt *arr, int lo, int hi);
 int getADT(struct ArrayInt *arr, int pos);
 int setADT(struct ArrayInt *arr, int val, int pos);

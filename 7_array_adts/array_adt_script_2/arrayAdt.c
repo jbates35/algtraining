@@ -174,6 +174,26 @@ int binSearchADT(struct ArrayInt *arr, int val, int lo, int hi)
     return binSearchADT(arr, val, newLo, newHi);
 }
 
+int bubbleSortADT(struct ArrayInt *arr) 
+{
+    // Detect null pointer
+    if (arr == NULL)
+        return -2;
+
+    // Operation is pointless if there's 0 or 1 elements
+    if (arr->length<=1)
+        return -1;    
+
+    for(int i = arr->length-1; i > 0; i--)
+    {
+        for(int j = i; j > 0; j--)
+        {
+            if(arr->A[j] < arr->A[j-1])
+                swap(&arr->A[j], &arr->A[j-1], sizeof(int));
+        }
+    }
+}
+
 int dncSortADT(struct ArrayInt *arr, int lo, int hi)
 {
     // Detect null pointer
@@ -183,7 +203,6 @@ int dncSortADT(struct ArrayInt *arr, int lo, int hi)
     // No need to do anything
     if (lo == hi)
     {
-        printf("\n<%d, %d>\n", lo, arr->A[lo]);
         return -1;
     }
 
@@ -192,7 +211,6 @@ int dncSortADT(struct ArrayInt *arr, int lo, int hi)
     dncSortADT(arr, lo, mid);
     dncSortADT(arr, mid + 1, hi);
 
-    printf("\n<");
     for (int i = lo; i <= mid; i++)
     {
         printf("%d: %d", i, arr->A[i]);
