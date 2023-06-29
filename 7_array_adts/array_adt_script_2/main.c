@@ -33,13 +33,20 @@ int main(int argc, char *argv[])
          3, 5, 2, 6, 3 
     };
 
-    struct ArrayInt arr;
+    int tempB[] = {
+        4, 9, 12, 5, 7
+    };
 
-    init_intArrayAdt(&arr, tempA, 20, 5);
+    struct ArrayInt arr1;
+    struct ArrayInt arr2;
 
+    initADT(&arr1, tempA, 20, sizeof(arr1)/sizeof(int));
+    initADT(&arr2, tempB, 20, sizeof(arr2)/sizeof(int));
+    
     
 
-    free_intArrayAdt(&arr);
+    freeADT(&arr1);
+    freeADT(&arr2);
 
     printf("\nProcess count: %d\n\n", processCount);
 
