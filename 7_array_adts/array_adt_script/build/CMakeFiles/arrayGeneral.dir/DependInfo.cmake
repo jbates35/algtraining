@@ -8,8 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/jbates/algtraining/7_array_adts/array_adt_script/arrayAdt.c" "CMakeFiles/arrayGeneral.dir/arrayAdt.c.o" "gcc" "CMakeFiles/arrayGeneral.dir/arrayAdt.c.o.d"
-  "/home/jbates/algtraining/7_array_adts/array_adt_script/main.c" "CMakeFiles/arrayGeneral.dir/main.c.o" "gcc" "CMakeFiles/arrayGeneral.dir/main.c.o.d"
+  "/home/dev/algTraining/7_array_adts/array_adt_script/arrayAdt.c" "CMakeFiles/arrayGeneral.dir/arrayAdt.c.o" "gcc" "CMakeFiles/arrayGeneral.dir/arrayAdt.c.o.d"
+  "/home/dev/algTraining/7_array_adts/array_adt_script/arrayAdtSort.c" "CMakeFiles/arrayGeneral.dir/arrayAdtSort.c.o" "gcc" "CMakeFiles/arrayGeneral.dir/arrayAdtSort.c.o.d"
+  "/home/dev/algTraining/7_array_adts/array_adt_script/main.c" "CMakeFiles/arrayGeneral.dir/main.c.o" "gcc" "CMakeFiles/arrayGeneral.dir/main.c.o.d"
   )
 
 # Targets to which this target links.

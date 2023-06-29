@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <getopt.h>
+#include <time.h>
 
 #include "arrayAdt.h"
+#include "sampleArrays.h"
+
 
 int processCount;
 
@@ -29,6 +32,9 @@ int main(int argc, char *argv[])
     // printf("\nx: %d", x);
     // printf("\nn: %d\n", n);
 
+    //For calculating processing time
+    clock_t start, end;
+
     int tempA[] = { 
          3, 5, 2, 6, 3, 4, 7, 10, 12, 10
     };
@@ -51,11 +57,24 @@ int main(int argc, char *argv[])
     displayADT(&arr1);
 
     printf("\nDisplaying array 2:");
-    displayADT(&arr1);
+    displayADT(&arr2);
 
     printf("\nNow sorting array 2:");
-    dncSortADT(&arr1, 0, arr1.length-1);
-    displayADT(&arr1);
+    mergeSortADT(&arr2, 0, arr2.length-1);
+    displayADT(&arr2);
+
+    initADT(&arr1, sampleArray0, sizeof(sampleArray0)/sizeof(int), sizeof(sampleArray0)/sizeof(int));
+    initADT(&arr2, sampleArray1, sizeof(sampleArray0)/sizeof(int), sizeof(sampleArray0)/sizeof(int));
+
+    start = clock();
+    bubbleSortADT(&arr1);
+    end = clock();
+    printf("\nAmount of time required for bubble sort of length 10000: %0.3f ms", (double) 1000 * (end - start)/CLOCKS_PER_SEC);
+
+    start = clock();
+    mergeSortADT(&arr2, 0, arr2.length-1);
+    end = clock();
+    printf("\nAmount of time required for merge sort of length 10000: %0.3f ms", (double) 1000 * (end - start)/CLOCKS_PER_SEC);
 
     freeADT(&arr1);
     freeADT(&arr2);

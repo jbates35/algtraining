@@ -1,7 +1,7 @@
-CMakeFiles/arrayGeneral.dir/arrayAdt.c.o: \
- /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdt.c \
+CMakeFiles/arrayGeneral.dir/arrayAdtSort.c.o: \
+ /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdtSort.c \
  /usr/include/stdc-predef.h \
- /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdt.h \
+ /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdtSort.h \
  /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -50,7 +50,5 @@ CMakeFiles/arrayGeneral.dir/arrayAdt.c.o: \
  /usr/include/x86_64-linux-gnu/bits/struct_mutex.h \
  /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h /usr/include/alloca.h \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
- /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h /usr/include/string.h \
- /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
- /usr/include/strings.h
+ /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdt.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h

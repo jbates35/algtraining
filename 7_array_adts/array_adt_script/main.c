@@ -3,6 +3,7 @@
 #include <getopt.h>
 
 #include "arrayAdt.h"
+#include "arrayAdtSort.h"
 
 int processCount;
 
@@ -33,7 +34,7 @@ int main(int argc, char *argv[])
          3, 5, 2, 6, 3 
     };
 
-    struct ArrayInt arr;
+    ArrayInt arr;
 
     init_intArrayAdt(&arr, tempA, 20, 5);
 
@@ -147,7 +148,52 @@ int main(int argc, char *argv[])
     rotate_intArrayAdt(&arr, 23, RIGHT);  
     display_intArrayAdt(&arr);
 
-    free_intArrayAdt(&arr);
+    printf("\nReinitializing array");
+    init_intArrayAdt(&arr, tempC, 40, sizeof(tempC)/sizeof(int));    
+    display_intArrayAdt(&arr);
+
+    printf("\nIs array sorted? %s\n", isSorted_intArrayAdt(&arr) ? "true" : "false");
+
+    printf("\nMerge Sort");
+    mergeSort_intArrayAdt(&arr, 0, arr.length-1);
+    display_intArrayAdt(&arr);
+
+    printf("\nInserting 5");
+    insertInSorted_intArrayAdt(&arr, 5);
+    display_intArrayAdt(&arr);
+
+    printf("\nInserting 500");
+    insertInSorted_intArrayAdt(&arr, 500);
+    display_intArrayAdt(&arr);
+
+    printf("\nInserting 5000");
+    insertInSorted_intArrayAdt(&arr, 5000);
+    display_intArrayAdt(&arr);
+
+    printf("\nIs array sorted? %s\n", isSorted_intArrayAdt(&arr) ? "true" : "false");
+
+    //Make new array
+    printf("\nMaking new array...");
+    int tempD[] = { 
+         4, -8, 10, 15, -18, -21, 24, 27, -29, 33, -34, 37, -39, 41, -43
+    };
+    init_intArrayAdt(&arr, tempD, 40, sizeof(tempD)/sizeof(int));    
+    display_intArrayAdt(&arr);
+
+    printf("\nSorting negatives to the left, positives to the right");
+    moveNegsLeft_intArrayAdt(&arr);
+    display_intArrayAdt(&arr);
+
+    //Make new array
+    printf("\nResorting array...");
+    init_intArrayAdt(&arr, tempD, 40, sizeof(tempD)/sizeof(int));    
+    display_intArrayAdt(&arr);
+
+    printf("\nSorting negatives to the left, positives to the right");
+    moveNegsLeft(arr.A, arr.length);
+    display_intArrayAdt(&arr);
+
+    deinit_intArrayAdt(&arr);
 
     printf("\nProcess count: %d\n\n", processCount);
 

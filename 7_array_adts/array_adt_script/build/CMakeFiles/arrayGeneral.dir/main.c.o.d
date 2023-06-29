@@ -1,5 +1,5 @@
 CMakeFiles/arrayGeneral.dir/main.c.o: \
- /home/jbates/algtraining/7_array_adts/array_adt_script/main.c \
+ /home/dev/algTraining/7_array_adts/array_adt_script/main.c \
  /usr/include/stdc-predef.h /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -50,4 +50,6 @@ CMakeFiles/arrayGeneral.dir/main.c.o: \
  /usr/include/x86_64-linux-gnu/bits/stdlib-float.h /usr/include/getopt.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_ext.h \
- /home/jbates/algtraining/7_array_adts/array_adt_script/arrayAdt.h
+ /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdt.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
+ /home/dev/algTraining/7_array_adts/array_adt_script/arrayAdtSort.h
