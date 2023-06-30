@@ -194,49 +194,69 @@ int bubbleSortADT(struct ArrayInt *arr)
     }
 }
 
-int mergeSortADT(struct ArrayInt *arr, int lo, int hi)
+int mergeSortADT(struct ArrayInt *arr)
 {
     // Can't do nuthin with a null pointer!
     if (arr == NULL)
         return -2;
 
     // No need to do anything (This means only one value in the array is able to be inspected with this call)
-    if (lo == hi)
+    if (arr->length <= 1)
     {
         return -1;
     }
 
-    int mid = (hi + lo) / 2;
+    int mid = arr->length / 2;
+
+    //Make two new arrays
+    //low should go from 0 - mid-1
+    //high should go from mid - length-1
+    struct ArrayInt arrLow;
+    arrLow.length = mid;
+    arrLow.size = mid;
+    arrLow.A = (int*) malloc(sizeof(int) * arrLow.size);
+
+    struct ArrayInt arrHigh;
+    arrHigh.length = arr->length - mid;
+    arrHigh.size = arr->length - mid;
+    arrHigh.A = (int*) malloc(sizeof(int) * arrHigh.size);
+
+    // Now dump data into array
+    for(int i = 0; i < mid; i++) 
+    {
+        arrLow.A[i] = arr->A[i];
+        arrHigh.A[i] = arr->A[i+mid];
+    }
+
+    if(arr->length%2 == 1)
+        arrHigh.A[arrHigh.length-1] = arr->A[arr->length-1];
 
     //Recursively call until only one or two values are left
-    mergeSortADT(arr, lo, mid);
-    mergeSortADT(arr, mid + 1, hi);
+    mergeSortADT(&arrLow);
+    mergeSortADT(&arrHigh);
 
-    int i = lo, j = mid+1, k = 0;
+    //Merging arrays in order of number
+    int i = 0, j = 0, k = 0;
 
-    //Make new array to dump new vals in
-    int* tempArr = malloc(sizeof(int) * (hi - lo + 1));
+    //Walk through the arrays depositing the lowest number in either array
+    //Keep in mind, these arrays are sorted
+    while(i < arrLow.length && j < arrHigh.length)
+    {
+        if(arrLow.A[i] < arrHigh.A[j])
+            arr->A[k++] = arrLow.A[i++];
+        else
+            arr->A[k++] = arrHigh.A[j++];
+    }
 
-    //Incrementally compare and load lowest value between the two sections of the array
-    while(i <= mid && j <= hi)
-        if(arr->A[i] < arr->A[j])
-            tempArr[k++] = arr->A[i++];
-        else 
-            tempArr[k++] = arr->A[j++];
-
-    //Only one of these while loops will be activated, and we need the rest of the values
-    while(i <= mid)
-        tempArr[k++] = arr->A[i++];
-
-    while(j <= hi)
-        tempArr[k++] = arr->A[j++];
-
-    //The temp array is sorted, but we need to replace the values in the original array with them
-    for(i = lo, j=0; i<=hi; i++, j++)
-        arr->A[i] = tempArr[j];
-
-    free (tempArr);
-    tempArr = NULL;
+    //Parse through remaining values and add them
+    while(i < arrLow.length)
+        arr->A[k++] = arrLow.A[i++];
+    while(j < arrHigh.length)
+        arr->A[k++] = arrHigh.A[j++];
+    
+    //Return the memory to the computer like a good person
+    freeADT(&arrLow);
+    freeADT(&arrHigh);
 
     return 0;
 }

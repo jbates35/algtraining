@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     displayADT(&arr2);
 
     printf("\nNow sorting array 2:");
-    mergeSortADT(&arr2, 0, arr2.length-1);
+    mergeSortADT(&arr2);
     displayADT(&arr2);
 
     initADT(&arr1, sampleArray0, sizeof(sampleArray0)/sizeof(int), sizeof(sampleArray0)/sizeof(int));
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     printf("\nAmount of time required for bubble sort of length 10000: %0.3f ms", (double) 1000 * (end - start)/CLOCKS_PER_SEC);
 
     start = clock();
-    mergeSortADT(&arr2, 0, arr2.length-1);
+    mergeSortADT(&arr2);
     end = clock();
     printf("\nAmount of time required for merge sort of length 10000: %0.3f ms", (double) 1000 * (end - start)/CLOCKS_PER_SEC);
 
