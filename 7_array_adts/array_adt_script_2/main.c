@@ -5,6 +5,7 @@
 
 #include "arrayAdt.h"
 #include "sampleArrays.h"
+#include "helpFuncs.h"
 
 
 int processCount;
@@ -66,15 +67,8 @@ int main(int argc, char *argv[])
     initADT(&arr1, sampleArray0, sizeof(sampleArray0)/sizeof(int), sizeof(sampleArray0)/sizeof(int));
     initADT(&arr2, sampleArray1, sizeof(sampleArray0)/sizeof(int), sizeof(sampleArray0)/sizeof(int));
 
-    start = clock();
-    bubbleSortADT(&arr1);
-    end = clock();
-    printf("\nAmount of time required for bubble sort of length 10000: %0.3f ms", (double) 1000 * (end - start)/CLOCKS_PER_SEC);
-
-    start = clock();
-    mergeSortADT(&arr2);
-    end = clock();
-    printf("\nAmount of time required for merge sort of length 10000: %0.3f ms", (double) 1000 * (end - start)/CLOCKS_PER_SEC);
+    funcTime(bubbleSortADT, &arr1, "Bubble-sort");
+    funcTime(mergeSortADT, &arr2, "Merge-Sort");
 
     freeADT(&arr1);
     freeADT(&arr2);
