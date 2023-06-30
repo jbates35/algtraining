@@ -1,3 +1,6 @@
+#ifndef ARRAYADT_H
+#define ARRAYADT_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -34,3 +37,5 @@ int rotateADT(struct ArrayInt *arr, int n, int dir);
 int insertInSortedADT(struct ArrayInt *arr, int val);
 bool isSortedADT(struct ArrayInt *arr);
 int moveNegsLeftADT(struct ArrayInt *arr);
+
+#endif
