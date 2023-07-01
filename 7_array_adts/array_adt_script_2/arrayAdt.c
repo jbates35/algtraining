@@ -186,7 +186,7 @@ int bubbleSortADT(struct ArrayInt *arr)
 
     for(int i = arr->length-1; i > 0; i--)
     {
-        for(int j = i; j > 0; j--)
+        for(int j = arr->length-1; j > (arr->length - i - 1); j--)
         {
             if(arr->A[j] < arr->A[j-1])
                 swap(&arr->A[j], &arr->A[j-1], sizeof(int));
