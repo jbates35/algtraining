@@ -46,34 +46,28 @@ int main(int argc, char *argv[])
 
     struct ArrayInt arr1;
     struct ArrayInt arr2;
+    struct ArrayInt arr3;
 
-    initADT(&arr1, tempA, 20, sizeof(tempA)/sizeof(int));
-    initADT(&arr2, tempB, 20, sizeof(tempB)/sizeof(int));
+    initADT(&arr1, sampleArray0, 6, 6);
+    initADT(&arr2, sampleArray1, 6, 6);
+
+    funcShow(displayADT, &arr1, "\nShowing array 1");
+    funcShow(displayADT, &arr2, "Showing array 2");
     
-    printf("\nDisplaying array 1:");
-    displayADT(&arr1);
-
-    printf("\nNow sorting array 1:");
-    bubbleSortADT(&arr1);
-    displayADT(&arr1);
-
-    printf("\nDisplaying array 2:");
-    displayADT(&arr2);
-
-    printf("\nNow sorting array 2:");
-    mergeSortADT(&arr2);
-    displayADT(&arr2);
-
-    initADT(&arr1, sampleArray0, sizeof(sampleArray0)/sizeof(int), sizeof(sampleArray0)/sizeof(int));
-    initADT(&arr2, sampleArray1, sizeof(sampleArray0)/sizeof(int), sizeof(sampleArray0)/sizeof(int));
-
     funcTime(bubbleSortADT, &arr1, "Bubble-sort");
     funcTime(mergeSortADT, &arr2, "Merge-Sort");
+    
+    funcShow(displayADT, &arr1, "\nShowing array 1");
+    funcShow(displayADT, &arr2, "Showing array 2");
+
+    mergeADT(&arr1, &arr2, &arr3);
+    funcShow(displayADT, &arr3, "Merging the two arrays");
 
     freeADT(&arr1);
     freeADT(&arr2);
+    freeADT(&arr3);
 
-    printf("\nProcess count: %d\n\n", processCount);
+    // printf("\nProcess count: %d\n\n", processCount);
 
     return 0;
 }

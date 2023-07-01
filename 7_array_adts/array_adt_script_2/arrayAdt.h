@@ -37,5 +37,7 @@ int rotateADT(struct ArrayInt *arr, int n, int dir);
 int insertInSortedADT(struct ArrayInt *arr, int val);
 bool isSortedADT(struct ArrayInt *arr);
 int moveNegsLeftADT(struct ArrayInt *arr);
+int mergeADT(struct ArrayInt *arr1, struct ArrayInt *arr2, struct ArrayInt *arr);
+
 
 #endif

@@ -31,7 +31,11 @@ int freeADT(struct ArrayInt *arr)
     if (arr == NULL)
         return -2;
 
+    if (arr->A == NULL || arr->size == 0)
+        return -1;
+
     free(arr->A);
+
     arr->A = NULL;
 }
 
@@ -211,15 +215,19 @@ int mergeSortADT(struct ArrayInt *arr)
     //Make two new arrays
     //low should go from 0 - mid-1
     //high should go from mid - length-1
-    struct ArrayInt arrLow;
-    arrLow.length = mid;
-    arrLow.size = mid;
-    arrLow.A = (int*) malloc(sizeof(int) * arrLow.size);
+    struct ArrayInt arrLow = { 
+        NULL, mid, mid
+    };
 
-    struct ArrayInt arrHigh;
-    arrHigh.length = arr->length - mid;
-    arrHigh.size = arr->length - mid;
-    arrHigh.A = (int*) malloc(sizeof(int) * arrHigh.size);
+    if(mid != 0)
+        arrLow.A = (int*) malloc(sizeof(int) * arrLow.size);
+
+    struct ArrayInt arrHigh = {
+        NULL, arr->length - mid, arr->length - mid
+    };
+    
+    if(mid != 0)
+        arrHigh.A = (int*) malloc(sizeof(int) * arrHigh.size);
 
     // Now dump data into array
     for(int i = 0; i < mid; i++) 
@@ -457,6 +465,43 @@ int moveNegsLeftADT(struct ArrayInt *arr)
         else
             j--;
     }
+
+    return 0;
+}
+
+int mergeADT(struct ArrayInt *arr1, struct ArrayInt *arr2, struct ArrayInt *arr)
+{    // Can't do much with a null pointer
+    if (arr1 == NULL || arr2 == NULL)
+        return -2;
+
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
+    int *tempArr;
+    tempArr = (int*) malloc(sizeof(int) * (arr1->size + arr2->size));
+
+    while(i<arr1->length && j<arr2->length)
+    {
+        if(arr1->A[i] < arr2->A[j]) 
+            tempArr[k++] = arr1->A[i++];
+        else
+            tempArr[k++] = arr2->A[j++];
+    }
+
+    while(i < arr1->length)
+        tempArr[k++] = arr1->A[i++];
+    while(j < arr2->length)
+        tempArr[k++] = arr2->A[j++];
+
+    if(arr->A != NULL)
+        freeADT(arr);
+
+    arr->A = tempArr;
+    arr->size = arr1->size + arr2->size;
+    arr->length = arr1->length + arr2->length;
+    
+    tempArr = NULL;
 
     return 0;
 }
