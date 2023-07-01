@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/dev/algTraining/6_arrays/general_practice/build",
-  "command": "/usr/bin/cc   -std=gnu99 -o CMakeFiles/arraypract.dir/main.c.o -c /home/dev/algTraining/6_arrays/general_practice/main.c",
-  "file": "/home/dev/algTraining/6_arrays/general_practice/main.c"
-}
-]

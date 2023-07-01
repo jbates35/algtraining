@@ -1,3 +1,0 @@
-/home/dev/algTraining/5_recursion/65_powers/build/CMakeFiles/powers.dir
-/home/dev/algTraining/5_recursion/65_powers/build/CMakeFiles/edit_cache.dir
-/home/dev/algTraining/5_recursion/65_powers/build/CMakeFiles/rebuild_cache.dir

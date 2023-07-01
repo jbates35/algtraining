@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/dev/algTraining/6_arrays/87_2d_array/build",
-  "command": "/usr/bin/gcc -g -std=gnu99 -o CMakeFiles/static_vs_dynamic.dir/main.c.o -c /home/dev/algTraining/6_arrays/87_2d_array/main.c",
-  "file": "/home/dev/algTraining/6_arrays/87_2d_array/main.c"
-}
-]

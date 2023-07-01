@@ -1,3 +1,0 @@
-/home/dev/algTraining/7_array_adts/array_adt_script/build/CMakeFiles/arrayGeneral.dir
-/home/dev/algTraining/7_array_adts/array_adt_script/build/CMakeFiles/edit_cache.dir
-/home/dev/algTraining/7_array_adts/array_adt_script/build/CMakeFiles/rebuild_cache.dir

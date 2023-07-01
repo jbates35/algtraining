@@ -1,3 +1,0 @@
-/home/dev/algTraining/5_recursion/74_ncr/build/CMakeFiles/ncr.dir
-/home/dev/algTraining/5_recursion/74_ncr/build/CMakeFiles/edit_cache.dir
-/home/dev/algTraining/5_recursion/74_ncr/build/CMakeFiles/rebuild_cache.dir

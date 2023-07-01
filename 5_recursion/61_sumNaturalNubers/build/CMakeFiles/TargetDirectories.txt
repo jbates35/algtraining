@@ -1,3 +1,0 @@
-/home/dev/algTraining/5_61_sumOfNaturalNumbers_Recursion/build/CMakeFiles/sumNaturalNumbers.dir
-/home/dev/algTraining/5_61_sumOfNaturalNumbers_Recursion/build/CMakeFiles/edit_cache.dir
-/home/dev/algTraining/5_61_sumOfNaturalNumbers_Recursion/build/CMakeFiles/rebuild_cache.dir

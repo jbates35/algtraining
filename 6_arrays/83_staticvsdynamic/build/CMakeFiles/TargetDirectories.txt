@@ -1,3 +1,0 @@
-/home/dev/algTraining/6_arrays/83_staticvsdynamic/build/CMakeFiles/static_vs_dynamic.dir
-/home/dev/algTraining/6_arrays/83_staticvsdynamic/build/CMakeFiles/edit_cache.dir
-/home/dev/algTraining/6_arrays/83_staticvsdynamic/build/CMakeFiles/rebuild_cache.dir

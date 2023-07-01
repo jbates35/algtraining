@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/jbates/algtraining/5_recursion/72_fibonacci/build",
-  "command": "/usr/bin/gcc   -g -std=gnu99 -o CMakeFiles/fibSequence.dir/main_memoization.c.o -c /home/jbates/algtraining/5_recursion/72_fibonacci/main_memoization.c",
-  "file": "/home/jbates/algtraining/5_recursion/72_fibonacci/main_memoization.c"
-}
-]
