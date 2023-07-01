@@ -597,3 +597,84 @@ int intersectADT(struct ArrayInt *arr1, struct ArrayInt *arr2, struct ArrayInt *
 
     return 0;
 }
+
+int differenceADT(struct ArrayInt *arr1, struct ArrayInt *arr2, struct ArrayInt *arr)
+{
+    if (arr1 == NULL || arr2 == NULL)
+        return -2; 
+
+    if(arr->A != NULL)
+        freeADT(arr);
+
+    arr->size = arr1->size + arr2->size;
+    arr->length = 0;
+    arr->A = (int*) malloc(sizeof(int) * (arr->size));
+
+    for(int i=0; i < arr1->length; i++)
+    {
+        int isInArray=0;
+
+        for(int j=0; j < arr2->length; j++)
+        {
+            if(arr1->A[i] == arr2->A[j])
+            {
+                isInArray=1;
+                break;
+            }
+        }
+
+        if(isInArray)
+            continue;
+        
+        //Need to make sure it's not a set
+        int isDuplicate = 0;
+        for (int k = 0; k < arr->length; k++)
+        {
+            if(arr1->A[i] == arr->A[k])
+            {
+                isDuplicate = 1;
+                break;
+            }
+        }
+            
+        if(isDuplicate)
+            continue;
+
+        arr->A[arr->length++] = arr1->A[i];
+    }
+
+    for(int i = 0; i < arr2->length; i++)
+    {
+        int isInArray=0;
+
+        for(int j=0; j < arr1->length; j++)
+        {
+            if(arr2->A[i] == arr1->A[j])
+            {
+                isInArray=1;
+                break;
+            }            
+        }
+
+        if(isInArray)
+            continue;
+        
+        //Need to make sure it's not a set
+        int isDuplicate = 0;
+        for (int k = 0; k < arr->length; k++)
+        {
+            if(arr2->A[i] == arr->A[k])
+            {
+                isDuplicate = 1;
+                break;
+            }
+        }
+            
+        if(isDuplicate)
+            continue;
+
+        arr->A[arr->length++] = arr2->A[i];
+    }
+
+    return 0;
+}

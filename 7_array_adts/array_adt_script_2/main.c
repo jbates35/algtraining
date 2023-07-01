@@ -63,8 +63,8 @@ int main(int argc, char *argv[])
     mergeADT(&arr1, &arr2, &arr3);
     funcShow(displayADT, &arr3, "Merging the two arrays");
     
-    initADT(&arr1, sampleArray0, sizeof(sampleArray0)/sizeof(int), sizeof(sampleArray0)/sizeof(int));
-    initADT(&arr2, sampleArray1, sizeof(sampleArray1)/sizeof(int), sizeof(sampleArray1)/sizeof(int));
+    initADT(&arr1, tempA, sizeof(tempA)/sizeof(int), sizeof(tempA)/sizeof(int));
+    initADT(&arr2, tempB, sizeof(tempB)/sizeof(int), sizeof(tempB)/sizeof(int));
 
     // funcShow(displayADT, &arr1, "Showing array 1");
     // funcShow(displayADT, &arr2, "Showing array 2");
@@ -73,9 +73,13 @@ int main(int argc, char *argv[])
     // mergeSortADT(&arr3);
     // funcShow(displayADT, &arr3, "Showing array 3 after union");
 
-    intersectADT(&arr1, &arr2, &arr3);
+    // intersectADT(&arr1, &arr2, &arr3);
+    // mergeSortADT(&arr3);
+    // funcShow(displayADT, &arr3, "Showing array 3 after intersect");
+
+    differenceADT(&arr1, &arr2, &arr3);
     mergeSortADT(&arr3);
-    funcShow(displayADT, &arr3, "Showing array 3 after intersect");
+    funcShow(displayADT, &arr3, "Showing array 3 after difference");
 
     freeADT(&arr1);
     freeADT(&arr2);

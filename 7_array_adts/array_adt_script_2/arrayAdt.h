@@ -41,6 +41,5 @@ int mergeADT(struct ArrayInt *arr1, struct ArrayInt *arr2, struct ArrayInt *arr)
 int unionADT(struct ArrayInt *arr1, struct ArrayInt *arr2, struct ArrayInt *arr);
 int intersectADT(struct ArrayInt *arr1, struct ArrayInt *arr2, struct ArrayInt *arr);
 int differenceADT(struct ArrayInt *arr1, struct ArrayInt *arr2, struct ArrayInt *arr);
-int setmembershipADT(struct ArrayInt *arr1, struct ArrayInt *arr2, struct ArrayInt *arr);
 
 #endif

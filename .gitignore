@@ -2,3 +2,5 @@
 *.cmake
 *Cache.txt
 **/Makefile
+*.json
+**/.vscode/**
