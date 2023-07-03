@@ -9,6 +9,8 @@
 
 int processCount;
 
+int findMissingVal(struct ArrayInt *arr);
+
 int main(int argc, char *argv[])
 {
     int c, index;
@@ -73,35 +75,10 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    // Lets make sure it's sorted first
-    if (!isSortedADT(&arr))
-    {
-        mergeSortADT(&arr);
-    }
-
     // Show array for context
     funcShow(displayADT, &arr, "Showing array vals:");
 
-    // General idea is -
-    //   Should start at val 0 in array, end at length-1
-    //   Then when the val doesn't equal the indexing integer, we know it's the missing value.
-    //   Since only one value is required, we can break from there and end the program
-    int missingVal = -1;
-    int compareVal = arr.A[0];
-
-    for (int i = 0; i < arr.length; i++)
-    {
-        if (arr.A[i] == compareVal)
-            continue;
-
-        compareVal++;
-
-        if (arr.A[i] != compareVal)
-        {
-            missingVal = compareVal;
-            break;
-        }
-    }
+    int missingVal = findMissingVal(&arr);
 
     if (missingVal == -1)
         printf("\nNo value was missing\n\n");
@@ -111,4 +88,39 @@ int main(int argc, char *argv[])
     freeADT(&arr);
 
     return 0;
+}
+
+int findMissingVal(struct ArrayInt *arr)
+{
+    if(arr==NULL)
+        return -1;
+
+    // Lets make sure it's sorted first
+    if (!isSortedADT(arr))
+    {
+        mergeSortADT(arr);
+    }
+
+    // General idea is -
+    //   Should start at val 0 in array, end at length-1
+    //   Then when the val doesn't equal the indexing integer, we know it's the missing value.
+    //   Since only one value is required, we can break from there and end the program
+    int missingVal = -1;
+    int compareVal = arr->A[0];
+
+    for (int i = 0; i < arr->length; i++)
+    {
+        if (arr->A[i] == compareVal)
+            continue;
+
+        compareVal++;
+
+        if (arr->A[i] != compareVal)
+        {
+            missingVal = compareVal;
+            break;
+        }
+    }
+    
+    return missingVal;
 }

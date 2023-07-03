@@ -18,3 +18,9 @@ Once built, there is one parameter for this program:
 $ ./challenge1 -x "4 3 6 2"
 ```
 The missing value here would be 5, which would be returned.
+
+Note: This program only works with positive integers.
+Another note: If looking through code, the function of interest is 
+```c
+int findMissingVal(struct ArrayInt *arr)
+```
