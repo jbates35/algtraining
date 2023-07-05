@@ -1,5 +1,5 @@
-# Student challenge 1
-## Finding the missing value in an array
+# Student challenge 13
+## Finding duplicate values in an array
 ### Description:
 This exercise is meant to take in an array supplied by user. It then finds duplicate entries.
 ### Setup: 
