@@ -1,4 +1,4 @@
-# Student challenge 13
+# Student challenge 3
 ## Finding duplicate values in an array
 ### Description:
 This exercise is meant to take in an array supplied by user. It then finds duplicate entries.
