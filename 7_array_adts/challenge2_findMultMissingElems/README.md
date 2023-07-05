@@ -22,5 +22,5 @@ The missing value here would be 5, 7, 8. This would be stored in an array ADT.
 Note: This program only works with positive integers.
 Another note: If looking through code, the function of interest is 
 ```c
-int findMissingVals(struct ArrayInt *arrInput, struct ArrayInt *arrOutput)
+struct ArrayInt *findMissingVals(struct ArrayInt *arr);
 ```
