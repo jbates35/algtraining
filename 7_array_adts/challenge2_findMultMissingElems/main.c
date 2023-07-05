@@ -9,7 +9,7 @@
 
 int processCount;
 
-int findMissingVal(struct ArrayInt *arr);
+struct ArrayInt *findMissingVals(struct ArrayInt *arr);
 
 int main(int argc, char *argv[])
 {
@@ -78,22 +78,32 @@ int main(int argc, char *argv[])
     // Show array for context
     funcShow(displayADT, &arr, "Showing array vals:");
 
-    int missingVal = findMissingVal(&arr);
+    struct ArrayInt *missingVals = findMissingVals(&arr);
 
-    if (missingVal == -1)
+    if (missingVals->length == 0)
         printf("\nNo value was missing\n\n");
     else
-        printf("\nMissing value was %d\n\n", missingVal);
+        funcShow(displayADT, missingVals, "Missing values are:");
 
+    getADT(missingVals, 50);
+
+    freeADT(missingVals);
     freeADT(&arr);
+    free(missingVals);
 
     return 0;
 }
 
-int findMissingVal(struct ArrayInt *arr)
+struct ArrayInt *findMissingVals(struct ArrayInt *arr)
 {
+    struct ArrayInt *missingVals = (struct ArrayInt*) malloc(sizeof(struct ArrayInt));
+    initADT(missingVals, NULL, 10, 0);
+
     if(arr==NULL)
-        return -1;
+    {    
+        fprintf(stderr, "\nError: Null pointer in findMissingVals");
+        return NULL;
+    }
 
     // Lets make sure it's sorted first
     if (!isSortedADT(arr))
@@ -104,8 +114,8 @@ int findMissingVal(struct ArrayInt *arr)
     // General idea is -
     //   Should start at val 0 in array, end at length-1
     //   Then when the val doesn't equal the indexing integer, we know it's the missing value.
-    //   Since only one value is required, we can break from there and end the program
-    int missingVal = -1;
+    //   We need to make sure that there is a while loop which keeps track of when numbers have been missed
+    //   This way, we catch all the numbers that are missing
     int compareVal = arr->A[0];
 
     for (int i = 0; i < arr->length; i++)
@@ -115,12 +125,12 @@ int findMissingVal(struct ArrayInt *arr)
 
         compareVal++;
 
-        if (arr->A[i] != compareVal)
+        while (arr->A[i] != compareVal)
         {
-            missingVal = compareVal;
-            break;
+            appendADT(missingVals, compareVal);
+            compareVal++;
         }
     }
     
-    return missingVal;
+    return missingVals;
 }

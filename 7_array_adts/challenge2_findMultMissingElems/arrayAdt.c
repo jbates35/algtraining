@@ -5,7 +5,10 @@ int initADT(struct ArrayInt *arr, const int *val, int size, int length)
 {
     // Detect null pointer
     if (arr == NULL)
+    {
+        fprintf(stderr, "\nError: Null pointer in initADT");
         return -2;
+    }
 
     arr->A = (int *)malloc(sizeof(int) * size);
 
@@ -29,7 +32,10 @@ int freeADT(struct ArrayInt *arr)
 {
     // Detect null pointer
     if (arr == NULL)
+    {
+        fprintf(stderr, "\nError: Null pointer in freeADT");
         return -2;
+    }
 
     if (arr->A == NULL || arr->size == 0)
         return -1;
@@ -54,7 +60,10 @@ int displayADT(struct ArrayInt *arr)
 {
     // Detect null pointer
     if (arr == NULL)
+    {
+        fprintf(stderr, "\nError: Null pointer in displayADT");
         return -2;
+    }
 
     // Parse through array and display
     printf("\n");
@@ -71,11 +80,20 @@ int appendADT(struct ArrayInt *arr, int val)
 {
     // Detect null pointer
     if (arr == NULL)
+    {
+        fprintf(stderr, "\nError: Null pointer in appendADT");
         return -2;
+    }
 
     // Make sure there's enough room
     if (arr->size == arr->length)
-        return -3;
+    {   
+        arr->size *= 2;
+        arr->A = (int*) realloc(arr->A, arr->size * sizeof(int));
+
+        if(arr->A == NULL)
+            fprintf(stderr, "Memory allocation failed.");
+    }
 
     // Append
     arr->A[arr->length] = val;
@@ -88,11 +106,20 @@ int insertADT(struct ArrayInt *arr, int val, int pos)
 {
     // Detect null pointer
     if (arr == NULL)
+    {
+        fprintf(stderr, "\nError: Null pointer in insertADT");
         return -2;
+    }
 
     // Make sure there's enough room
     if (arr->size == arr->length)
-        return -3;
+    {   
+        arr->size *= 2;
+        arr->A = (int*) realloc(arr->A, arr->size * sizeof(int));
+
+        if(arr->A == NULL)
+            fprintf(stderr, "Memory allocation failed.");
+    }
 
     // If the position is out of these ranges, it's incompatible
     if (pos < 0 || pos > arr->length)
@@ -112,7 +139,10 @@ int deleteADT(struct ArrayInt *arr, int pos)
 {
     // Detect null pointer
     if (arr == NULL)
+    {
+        fprintf(stderr, "\nError: Null pointer in deleteADT");
         return 0;
+    }
 
     // If the position is out of these ranges, it's incompatible
     if (pos < 0 || pos >= arr->length)
@@ -134,8 +164,11 @@ int linSearchADT(struct ArrayInt *arr, int val)
 {
     // Detect null pointer
     if (arr == NULL)
+    {
+        fprintf(stderr, "\nError: Null pointer in linSearchADT");
         return -2;
-
+    }
+    
     // Search for place in array that val can be found
     for (int i = 0; i < arr->length; i++)
     {
@@ -151,8 +184,11 @@ int binSearchADT(struct ArrayInt *arr, int val, int lo, int hi)
 {
     // Detect null pointer
     if (arr == NULL)
+    {
+        fprintf(stderr, "\nError: Null pointer in binSearchADT");
         return -2;
-
+    }
+    
     // do housekeeping to return if we found value
     if (arr->A[lo] == val)
         return lo;
@@ -184,8 +220,11 @@ int bubbleSortADT(struct ArrayInt *arr)
 {
     // Detect null pointer
     if (arr == NULL)
+    {
+        fprintf(stderr, "\nError: Null pointer in bubbleSortADT");
         return -2;
-
+    }
+    
     // Operation is pointless if there's 0 or 1 elements
     if (arr->length<=1)
         return -1;    
@@ -202,10 +241,13 @@ int bubbleSortADT(struct ArrayInt *arr)
 
 int mergeSortADT(struct ArrayInt *arr)
 {
-    // Can't do nuthin with a null pointer!
+    // Detect null pointer
     if (arr == NULL)
+    {
+        fprintf(stderr, "\nError: Null pointer in mergeSortADT");
         return -2;
-
+    }
+    
     // No need to do anything (This means only one value in the array is able to be inspected with this call)
     if (arr->length <= 1)
     {
@@ -273,8 +315,18 @@ int mergeSortADT(struct ArrayInt *arr)
 
 int getADT(struct ArrayInt *arr, int pos)
 {
-    if (arr == NULL || pos >= arr->length || pos < 0)
+    // Detect null pointer
+    if (arr == NULL)
+    {
+        fprintf(stderr, "\nError: Null pointer in getADT");
         return 0;
+    }
+
+    if (pos >= arr->length || pos < 0)
+    {
+        fprintf(stderr, "\nError: List out of range");
+        return 0;
+    }
 
     return arr->A[pos];
 }
