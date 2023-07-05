@@ -85,8 +85,6 @@ int main(int argc, char *argv[])
     else
         funcShow(displayADT, missingVals, "Missing values are:");
 
-    getADT(missingVals, 50);
-
     freeADT(missingVals);
     freeADT(&arr);
     free(missingVals);
