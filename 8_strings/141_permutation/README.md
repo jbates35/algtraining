@@ -15,10 +15,19 @@ $ make
 Once built, there is one parameter for this program:
 - x: The string
 ```
-$ ./challenge1 -x "ASDF"
+$ ./permutation -x "ASD"
 ```
 
-
+The result should be:
+```
+ASD
+ADS
+SAD
+SDA
+DAS
+DSA
+```
+Note: I didn't use string.h. The only functions that would have been useful from that are ```strlen``` and ```strcat```, but even then, it would have saved me like 2 lines of code.
 
 Another note: If looking through code, the function of interest is 
 ```c

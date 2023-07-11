@@ -17,9 +17,11 @@ add_custom_target(
     --enable=all
     --inconclusive
     --std=c99
-    ${CMAKE_SOURCE_DIR}/main.c
+    -I /usr/include
+    -I /usr/local/include
+    --project=${CMAKE_BINARY_DIR}/compile_commands.json
     COMMENT "Running Cppcheck"
 )
 
 # Make Cppcheck target dependent on the desired build target
-add_dependencies(cppcheck permutation)
+add_dependencies(permutation cppcheck)
