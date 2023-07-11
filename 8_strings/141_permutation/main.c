@@ -6,7 +6,7 @@
 
 int processCount;
 
-int permutation(const char* inputStr, const char *outputStr);
+int permutation(const char* inputStr, char *outputStr);
 
 int main(int argc, char *argv[])
 {
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-int permutation(const char* inputStr, const char *outputStr)
+int permutation(const char* inputStr, char *outputStr)
 {
     //Get length of string
     int inputLength;
@@ -47,15 +47,17 @@ int permutation(const char* inputStr, const char *outputStr)
     for(int i = 0; i < inputLength; i++)
     {
         char pop = inputStr[i];
-        char* newOutput = malloc(outputLength + 1);
+        char* newOutput = malloc(outputLength + 2);
 
-        for(int j = 0; j < outputLength; j++)
+        int j;
+        for(j = 0; j < outputLength; j++)
+        {
             newOutput[j] = outputStr[j];
-        newOutput[outputLength] = pop;
+        }
+        newOutput[j++] = pop;
+        newOutput[j] = '\0';
 
-
-        printf("\n%s", newOutput);
-        // printf("\n%s", newOutput);
+        printf("%s\n",newOutput);
 
         char* newInput = malloc(inputLength-1);
         for(int j = 0; j < inputLength; j++)
@@ -64,17 +66,13 @@ int permutation(const char* inputStr, const char *outputStr)
                 continue;
 
             if(j<i)
-            {
                 newInput[j] = inputStr[j];
-            }
             else
-            {
-                newInput[j-1] = inputStr[j];
-            }            
+                newInput[j-1] = inputStr[j];          
         }
 
         // permutation(newInput, newOutput);
         free(newInput);
-        free(newOutput);
+        // free(newOutput);
     }
 }
