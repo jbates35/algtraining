@@ -10,18 +10,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Add executable target
 add_executable(diagMatrix main.c)
 
-# Add a custom target for Cppcheck
-add_custom_target(
-    cppcheck
-    COMMAND cppcheck
-    --enable=all
-    --inconclusive
-    --std=c99
-    -I /usr/include
-    -I /usr/local/include
-    --project=${CMAKE_BINARY_DIR}/compile_commands.json
-    COMMENT "Running Cppcheck"
-)
+# Specify the include directories
+target_include_directories(diagMatrix PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
-# Make Cppcheck target dependent on the desired build target
-add_dependencies(diagMatrix cppcheck)
+# Add the source files to your target
+target_sources(diagMatrix PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/arrayAdt.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/matrixAdt.c)

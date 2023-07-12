@@ -15,11 +15,19 @@ $ make
 Once built, there is one parameter for this program:
 
 ```
-$ ./permutation -x "ASD"
+$ ./diagMatrix -x "1 3 5 7"
 ```
 
 The result should be:
 ```
+Showing array vals:
+1 3 5 7 
+
+Matrix:
+        [ 1, 0, 0, 0
+          0, 3, 0, 0
+          0, 0, 5, 0
+          0, 0, 0, 7 ]
 ```
 
 Another note: If looking through code, the function of interest is 
