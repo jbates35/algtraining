@@ -7,8 +7,6 @@
 #include "arrayAdt.h"
 #include "helpFuncs.h"
 
-int processCount;
-
 struct Pairs {
     int x1;
     int x2;
