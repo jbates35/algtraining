@@ -14,6 +14,8 @@ $ cd 143_diagMatrix
 ### Example:
 Once built, there is one parameter for this program:
 
+-x The array of values to put into the matrix
+
 ```
 $ ./diagMatrix -x "1 3 5 7"
 ```
