@@ -30,6 +30,11 @@ Matrix:
           0, 0, 0, 7 ]
 ```
 
-Another note: If looking through code, the function of interest is 
+Another note: If looking through code, the functions of interest are 
 ```c
+int initMat(struct MatrixInt *mat, int rows, int cols);
+int freeMat(struct MatrixInt *mat);
+void displayMat(struct MatrixInt *mat);
+void setMatDiag(struct MatrixInt *mat, struct ArrayInt *arr);
 ```
+All of these are found in src/matrixAdt.c.
