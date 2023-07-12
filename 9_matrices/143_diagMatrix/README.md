@@ -6,10 +6,10 @@ This exercise is an introduction to matrices, starting with the diagonal matrix.
 To use the program, rip the git, and then make a folder build in this folder. I.e.
 ```
 $ git clone https://github.com/jbates35/algtraining
-$ cd ./algtraining/8_strings/143_diagMatrix
+$ cd ./algtraining/9_matrix
 $ mkdir build && cd build
-$ cmake ..
-$ make
+$ cmake .. && make
+$ cd 143_diagMatrix 
 ```
 ### Example:
 Once built, there is one parameter for this program:
