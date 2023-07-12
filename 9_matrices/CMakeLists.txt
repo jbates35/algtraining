@@ -4,6 +4,7 @@ project(Matrices)
 # Add subdirectories for each sub-project
 add_subdirectory(143_diagMatrix)
 add_subdirectory(145_lowSRMatrix)
+add_subdirectory(148_lowSCMatrix)
 
 # Specify the include directories
 include_directories(include)
