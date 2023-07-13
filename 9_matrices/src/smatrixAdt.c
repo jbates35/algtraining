@@ -39,7 +39,7 @@ void freeSRLowTri(struct SRMatInt *mat)
 {
     if(mat==NULL)
     {
-        fprintf(stderr, "Error: Arr is a null pointer in getSCLowTri");
+        fprintf(stderr, "Error: Arr is a null pointer in getSRLowTri");
         return;
     }
 
@@ -155,7 +155,7 @@ void initSCLowTri(struct SCMatInt *mat, struct ArrayInt *arr, int cols)
 {
     if(mat==NULL)
     {
-        fprintf(stderr, "Error: Null pointer in initSRLowTri");
+        fprintf(stderr, "Error: Null pointer in initSCLowTri");
         return;
     }
 
@@ -321,5 +321,172 @@ void dispSCLowTri(struct SCMatInt *mat)
             else
                 printf("\n");            
         }
+    }
+}
+
+
+void initSRUpTri(struct SRMatInt *mat, struct ArrayInt *arr, int rows)
+{
+    if(mat==NULL)
+    {
+        fprintf(stderr, "Error: Null pointer in initSRUpTri");
+        return;
+    }
+
+    mat->rows = rows;
+
+    //Need to get number of values to a lower triangle of said rows
+    int length = 0;
+    while(rows != 0)
+    {
+        length += rows;
+        rows--;
+    }
+    mat->length = length;
+
+    int tempX[0] = {};
+    initADT(&mat->arr, tempX, 1000, 0);
+
+    int i;
+    for(i = 0; i < arr->length; i++)
+    {
+        if(i == mat->length)
+            break;
+
+        appendADT(&mat->arr, arr->A[i]);
+    }
+
+    for(; i < mat->length; i++)
+        appendADT(&mat->arr, 0);
+}
+
+void freeSRUpTri(struct SRMatInt *mat)
+{
+    if(mat==NULL)
+    {
+        fprintf(stderr, "Error: Arr is a null pointer in getSRLowTri");
+        return;
+    }
+
+    freeADT(&mat->arr);
+}
+
+
+int getSRUpTri(struct SRMatInt *mat, int row, int col)
+{
+    if(mat==NULL)
+    {
+        fprintf(stderr, "Error: Arr is a null pointer in getSCLowTri");
+        return 0;
+    }
+
+    if(row > col)
+    {
+        fprintf(stderr, "Error: in an upper triangle, cols cannot be lower than rows");
+        return 0;
+    }
+
+    if(row > mat->rows)
+    {
+        fprintf(stderr, "Error: Specified x (rows) out of bounds");
+        return 0;
+    }
+
+    if(row==0 || col==0)
+    {
+        fprintf(stderr, "Error: cols and rows are one-indexed here.");
+        return 0;
+    }
+
+    row--;
+    col--;
+
+    int index=0;
+    for(int i = 0; i < row; i++)
+    {
+        index += mat->rows - i; 
+    }
+    index += col - row;
+
+    return mat->arr.A[index];
+}
+
+
+void setSRUpTri(struct SRMatInt *mat, int row, int col, int val)
+{
+    if(mat==NULL)
+    {
+        fprintf(stderr, "Error: Arr is a null pointer in getSCLowTri");
+        return;
+    }
+
+    if(row > col)
+    {
+        fprintf(stderr, "Error: in an upper triangle, cols cannot be lower than rows");
+        return;
+    }
+
+    if(row > mat->rows)
+    {
+        fprintf(stderr, "Error: Specified x (rows) out of bounds");
+        return;
+    }
+
+    if(row==0 || col==0)
+    {
+        fprintf(stderr, "Error: cols and rows are one-indexed here.");
+        return;
+    }
+
+    row--;
+    col--;
+
+    int index=0;
+    for(int i = 0; i < row; i++)
+    {
+        index += mat->rows - i; 
+    }
+    index += col - row;
+    
+    mat->arr.A[index] = val;
+
+    return;
+}
+
+
+void dispSRUpTri(struct SRMatInt *mat)
+{
+    if(mat==NULL)
+    {
+        fprintf(stderr, "Error: Arr is a null pointer in getSCLowTri");
+        return;
+    }
+
+    int startInd = 0;
+
+    printf("Upper single-dimension row-major matrix:\n");
+    for (int row = 0; row < mat->rows; row++)
+    {
+        if(row==0)
+            printf("[ ");
+        else
+            printf("  ");
+
+        for (int i = 0; i < row; i++)
+            printf("0, ");
+
+        for (int i = 0; i < mat->rows - row; i++)
+        {
+            printf("%d", mat->arr.A[startInd + i]);
+            if(i != mat->rows - row - 1)
+                printf(", ");
+        }
+        
+        startInd += mat->rows - row;
+
+        if(row != mat->rows-1)
+            printf("\n");
+        else
+            printf(" ]\n\n");
     }
 }
