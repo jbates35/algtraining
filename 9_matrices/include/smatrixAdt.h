@@ -4,7 +4,6 @@
 #include "arrayAdt.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 
 //Row major single dimension matrix ADT
 struct SRMatInt {
@@ -38,7 +37,7 @@ int getSRUpTri(struct SRMatInt *mat, int row, int col);
 void setSRUpTri(struct SRMatInt *mat, int row, int col, int val);
 void dispSRUpTri(struct SRMatInt *mat);
 
-void initSCUpTri(struct SCMatInt *mat, struct ArrayInt *arr, int rows);
+void initSCUpTri(struct SCMatInt *mat, struct ArrayInt *arr, int cols);
 void freeSCUpTri(struct SCMatInt *mat);
 int getSCUpTri(struct SCMatInt *mat, int row, int col);
 void setSCUpTri(struct SCMatInt *mat, int row, int col, int val);

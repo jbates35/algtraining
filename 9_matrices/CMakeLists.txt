@@ -6,6 +6,7 @@ add_subdirectory(143_diagMatrix)
 add_subdirectory(145_lowSRMatrix)
 add_subdirectory(148_lowSCMatrix)
 add_subdirectory(151_upSRMatrix)
+add_subdirectory(152_upSCMatrix)
 
 # Specify the include directories
 include_directories(include)
