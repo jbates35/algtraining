@@ -1,7 +1,7 @@
 # Lesson 151
 ## Upper Row-Major Single-Dimension Matrix
 ### Description:
-This exercise is designed to provide practice for single dimension matrices, and in this one, it'll be lower col-major matrices.
+This exercise is designed to provide practice for single dimension matrices, and in this one, it'll be upper row-major matrices.
 ### Setup: 
 To use the program, rip the git, and then make a folder build in this folder. I.e.
 ```
