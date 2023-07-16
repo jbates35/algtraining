@@ -123,7 +123,7 @@ void sortSparseMat(struct SparseMatrix *A)
     Therefore Index 1 would be 34, and Index 2 would be 25.
     */
     int mFact = 1;
-    while ((float)A->n / mFact > 1.0)
+    while (A->n / mFact > 1)
         mFact *= 10;
 
     // Parse through every entry
