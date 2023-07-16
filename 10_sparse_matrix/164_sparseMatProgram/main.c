@@ -147,14 +147,14 @@ void sortMatProgram(void)
         appendSparseMat(mat, entry);
     }   
 
-    printf("\nDisplaying matrix:\n");
-    printEntries(mat);
-
     printf("\nSorting matrix...\n");
     sortSparseMat(mat);
 
-    printf("\nDisplaying matrix:\n");
+    printf("\nDisplaying entries:\n");
     printEntries(mat);
+
+    printf("\nDisplaying matrix:\n");
+    printMatrix(mat);
 
     free(prevEntries);
     prevEntries = NULL;

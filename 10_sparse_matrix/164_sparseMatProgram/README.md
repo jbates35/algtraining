@@ -43,10 +43,20 @@ It will sort it to:
 | Row 2 | Col 2 | Val 2
 ```
 
-Why do we need this? Well, a sorted sparse matrix (and not by the values, but by the matrix indices) makes iterating and operating on the struct arrays much faster. For the most part, we can keep our algorithms O(n+m) or O(n). A sorted matrix makes it much easier to print the matrix in a format that is readable, such as:
-
+Why do we need this? Well, a sorted sparse matrix (and not by the values, but by the matrix indices) makes iterating and operating on the struct arrays much faster. For the most part, we can keep our algorithms O(n+m) or O(n). A sorted matrix makes it much easier to print the matrix in a format that is readable, such as taking:
 ```
+| Row 1 | Col 1 | Val 1
+| Row 2 | Col 2 | Val 4
+| Row 3 | Col 1 | Val 3
 ```
+And making it look like:
+```
+0       0       0       0
+0       1       0       0
+0       0       4       0
+0       3       0       0
+```
+It would be worthwhile noting that the sparse matrix here is 0-indexed.
 
 Another note: If looking through code, the functions of interest are 
 ```c

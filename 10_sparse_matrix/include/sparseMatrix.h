@@ -28,7 +28,7 @@ void printEntries(struct SparseMatrix *A);
 void printMatrix(struct SparseMatrix *A);
 
 //Funcs from lesson
-struct SparseMatrix* addMatrices(struct SparseMatrix *A, struct SparseMatrix *B);
+struct SparseMatrix addMatrices(struct SparseMatrix *A, struct SparseMatrix *B);
 
 
 #endif

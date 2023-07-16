@@ -5,7 +5,7 @@ void initSparseMat(struct SparseMatrix *A, int rows, int cols)
 {
     if (A == NULL)
     {
-        fprintf(stderr, "Error: Null pointer in initSparseMat");
+        fprintf(stderr, "\nError: Null pointer in initSparseMat");
         return;
     }
 
@@ -20,7 +20,7 @@ void freeSparseMat(struct SparseMatrix *A)
 {
     if (A == NULL)
     {
-        fprintf(stderr, "Error: Null pointer in freeSparseMat");
+        fprintf(stderr, "\nError: Null pointer in freeSparseMat");
         return;
     }
 
@@ -31,7 +31,7 @@ void appendSparseMat(struct SparseMatrix *A, struct MatrixEntry entry)
 {
     if (A == NULL)
     {
-        fprintf(stderr, "Error: Null pointer in appendSparseMat");
+        fprintf(stderr, "\nError: Null pointer in appendSparseMat");
         return;
     }
 
@@ -42,7 +42,17 @@ void appendSparseMat(struct SparseMatrix *A, struct MatrixEntry entry)
 
         if (A->mat == NULL)
         {
-            fprintf(stderr, "Error: Memory reallocation failed\n");
+            fprintf(stderr, "\nError: Memory reallocation failed\n");
+            return;
+        }
+    }
+
+    //Want to make sure we aren't putting a duplicate entry in, but instead simply updating the old entry
+    for(int i = 0; i < A->entries; i++)
+    {
+        if(A->mat[i].row == entry.row && A->mat[i].col == entry.col)
+        {
+            A->mat[i].val = entry.val;
             return;
         }
     }
@@ -56,13 +66,13 @@ struct MatrixEntry deleteSparseMat(struct SparseMatrix *A, int i)
 
     if (A == NULL)
     {
-        fprintf(stderr, "Error: Null pointer in deleteSparseMat");
+        fprintf(stderr, "\nError: Null pointer in deleteSparseMat");
         return emptyEntry;
     }
 
     if (i < 0 || i >= A->entries)
     {
-        fprintf(stderr, "Error: i is out of range.");
+        fprintf(stderr, "\nError: i is out of range.");
         return emptyEntry;
     }
 
@@ -83,7 +93,7 @@ struct MatrixEntry popBackSparseMat(struct SparseMatrix *A)
 
     if (A == NULL)
     {
-        fprintf(stderr, "Error: Null pointer in deleteSparseMat");
+        fprintf(stderr, "\nError: Null pointer in deleteSparseMat");
         return emptyEntry;
     }
 
@@ -96,7 +106,7 @@ void sortSparseMat(struct SparseMatrix *A)
     // First make sure no null pointer
     if (A == NULL)
     {
-        fprintf(stderr, "Error: Null pointer in sortSparseMat");
+        fprintf(stderr, "\nError: Null pointer in sortSparseMat");
         return;
     }
 
@@ -135,19 +145,60 @@ void printEntries(struct SparseMatrix *A)
 {
     if (A == NULL)
     {
-        fprintf(stderr, "Error: Null pointer in printEntries");
+        fprintf(stderr, "\nError: Null pointer in printEntries");
         return;
     }
 
     for (int i = 0; i < A->entries; i++)
-        printf("\n| Row %d\t| Col %d\t| Val %d", A->mat[i].row, A->mat[i].col, A->mat[i].val);
+        printf("| Row %d\t| Col %d\t| Val %d\n", A->mat[i].row, A->mat[i].col, A->mat[i].val);
 }
 
 void printMatrix(struct SparseMatrix *A)
 {
+    if(A==NULL)
+    {
+        fprintf(stderr, "\nError: null pointer in printMatrix");
+        return;
+    }
+
+    //Note, this only works with a sorted matrix
+    int currInd = 0;
+
+    for(int i = 0; i < A->m; i++)
+    {
+        for(int j = 0; j < A->n; j++)
+        {
+            if(A->mat[currInd].row == i && A->mat[currInd].col == j)
+                printf("%d\t", A->mat[currInd++].val);
+            else
+                printf("0\t");
+        }
+        printf("\n");
+    }
 }
 
 // Funcs from lesson
-struct SparseMatrix *addMatrices(struct SparseMatrix *A, struct SparseMatrix *B)
+struct SparseMatrix addMatrices(struct SparseMatrix *A, struct SparseMatrix *B)
 {
+    struct SparseMatrix returnMat;
+
+    if(A == NULL || B == NULL)
+    {
+        fprintf(stderr, "\nError: null pointer in addMatrices");
+        return returnMat;
+    }
+
+    //Need to make sure mats are of equal size, then initiate next mat
+    
+    //Need two indices to keep track of two arrays. NOTE, arrays must both be sorted
+    int i = 0, j = 0;
+
+    while(i < A->entries && j < B->entries)
+    {
+        //Scenario 1: value exists for index in both A and B
+        if(A->mat[i].row == B->
+    }
+
+
+    return returnMat;
 }
