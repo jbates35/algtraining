@@ -47,10 +47,10 @@ void appendSparseMat(struct SparseMatrix *A, struct MatrixEntry entry)
         }
     }
 
-    //Want to make sure we aren't putting a duplicate entry in, but instead simply updating the old entry
-    for(int i = 0; i < A->entries; i++)
+    // Want to make sure we aren't putting a duplicate entry in, but instead simply updating the old entry
+    for (int i = 0; i < A->entries; i++)
     {
-        if(A->mat[i].row == entry.row && A->mat[i].col == entry.col)
+        if (A->mat[i].row == entry.row && A->mat[i].col == entry.col)
         {
             A->mat[i].val = entry.val;
             return;
@@ -155,20 +155,22 @@ void printEntries(struct SparseMatrix *A)
 
 void printMatrix(struct SparseMatrix *A)
 {
-    if(A==NULL)
+    if (A == NULL)
     {
         fprintf(stderr, "\nError: null pointer in printMatrix");
         return;
     }
 
-    //Note, this only works with a sorted matrix
+    // Note, this only works with a sorted matrix
     int currInd = 0;
 
-    for(int i = 0; i < A->m; i++)
+    printf("\n");
+
+    for (int i = 0; i < A->m; i++)
     {
-        for(int j = 0; j < A->n; j++)
+        for (int j = 0; j < A->n; j++)
         {
-            if(A->mat[currInd].row == i && A->mat[currInd].col == j)
+            if (A->mat[currInd].row == i && A->mat[currInd].col == j)
                 printf("%d\t", A->mat[currInd++].val);
             else
                 printf("0\t");
@@ -182,23 +184,85 @@ struct SparseMatrix addMatrices(struct SparseMatrix *A, struct SparseMatrix *B)
 {
     struct SparseMatrix returnMat;
 
-    if(A == NULL || B == NULL)
+    if (A == NULL || B == NULL)
     {
         fprintf(stderr, "\nError: null pointer in addMatrices");
         return returnMat;
     }
 
-    //Need to make sure mats are of equal size, then initiate next mat
-    
-    //Need two indices to keep track of two arrays. NOTE, arrays must both be sorted
-    int i = 0, j = 0;
-
-    while(i < A->entries && j < B->entries)
+    // Need to make sure mats are of equal size, then initiate next mat
+    if (A->m != B->m || A->n != B->n)
     {
-        //Scenario 1: value exists for index in both A and B
-        if(A->mat[i].row == B->
+        fprintf(stderr, "\nError: Mat A and Mat B are of different dimensions, therefore addMatrices will not work");
+        return returnMat;
     }
 
+    // Initialize returnMat so be proper size
+    initSparseMat(&returnMat, A->m, A->n);
+
+    // Eh everything is easier with this multiplying factor
+    int mFact = 1;
+    while (A->n / mFact > 1)
+        mFact *= 10;
+
+    // Need two indices to keep track of two arrays. NOTE, arrays must both be sorted
+    int i = 0, j = 0;
+    struct MatrixEntry entry;
+
+    while (i < A->entries && j < B->entries)
+    {
+        int Aind = mFact * A->mat[i].row + A->mat[i].col;
+        int Bind = mFact * B->mat[j].row + B->mat[j].col;
+
+        // Scenario 1: value exists for index in both A and B
+        if (Aind == Bind)
+        {
+            entry.row = A->mat[i].row;
+            entry.col = A->mat[i].col;
+            entry.val = A->mat[i].val + B->mat[j].val;
+
+            // Increase both i and j because we've just taken care of both entries
+            i++;
+            j++;
+        }
+        // Scenario 2: index is smaller for A mat and therefore it should be appended to return array
+        else if (Aind < Bind)
+        {
+            entry.row = A->mat[i].row;
+            entry.col = A->mat[i].col;
+            entry.val = A->mat[i].val;
+
+            i++;
+        }
+        // Scenario 3: index is smaller for B mat and therefore it should be appended to return array
+        else
+        {
+            entry.row = B->mat[j].row;
+            entry.col = B->mat[j].col;
+            entry.val = B->mat[j].val;
+
+            j++;
+        }
+
+        appendSparseMat(&returnMat, entry);
+    }
+
+    // Get last entries in for both arrays
+    for (; i < A->entries; i++)
+    {
+        entry.row = A->mat[i].row;
+        entry.col = A->mat[i].col;
+        entry.val = A->mat[i].val;
+        appendSparseMat(&returnMat, entry);
+    }
+
+    for (; j < B->entries; j++)
+    {
+        entry.row = B->mat[j].row;
+        entry.col = B->mat[j].col;
+        entry.val = B->mat[j].val;
+        appendSparseMat(&returnMat, entry);
+    }
 
     return returnMat;
 }

@@ -58,6 +58,34 @@ And making it look like:
 ```
 It would be worthwhile noting that the sparse matrix here is 0-indexed.
 
+Another function of note is addMatrices (program 2). This will return this:
+```
+Displaying matrix A with 5 entries:
+0       12      0       0       0
+0       0       10      16      0
+0       0       5       0       0
+0       4       0       0       0
+0       0       0       0       0
+
+Displaying matrix B with 5 entries:
+0       -5      0       0       0
+0       0       3       0       9
+5       0       0       0       0
+0       4       0       0       0
+0       0       0       0       0
+
+Displaying matrix C with 7 entries:
+0       7       0       0       0
+0       0       13      16      9
+5       0       5       0       0
+0       8       0       0       0
+0       0       0       0       0
+```
+Unlike the first program, I didn't want to go through the effort of allowing for a custom matrix as entered by the user. If interested and needing to see proof of concept, someone can change the array values in main.c in the function: 
+```c 
+void addMatsProgram(void)
+```
+
 Another note: If looking through code, the functions of interest are 
 ```c
 void initSparseMat(struct SparseMatrix *A, int rows, int cols);
