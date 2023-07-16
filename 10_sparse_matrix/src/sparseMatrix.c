@@ -170,7 +170,7 @@ void printMatrix(struct SparseMatrix *A)
     {
         for (int j = 0; j < A->n; j++)
         {
-            if (A->mat[currInd].row == i && A->mat[currInd].col == j)
+            if (currInd < A->entries && A->mat[currInd].row == i && A->mat[currInd].col == j)
                 printf("%d\t", A->mat[currInd++].val);
             else
                 printf("0\t");
