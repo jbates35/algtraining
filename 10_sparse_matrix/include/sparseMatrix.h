@@ -18,12 +18,14 @@ struct SparseMatrix {
     struct MatrixEntry *mat;
 };
 
-void initSparseMat(struct SparseMatrix *mat, int rows, int cols);
-void freeSparseMat(struct SparseMatrix *mat);
-void appendSparseMat(struct SparseMatrix *mat, struct MatrixEntry entry);
-struct MatrixEntry deleteSparseMat(struct SparseMatrix *mat, int i);
-struct MatrixEntry popBackSparseMat(struct SparseMatrix *mat);
-void sortSparseMat(struct SparseMatrix *mat);
+void initSparseMat(struct SparseMatrix *A, int rows, int cols);
+void freeSparseMat(struct SparseMatrix *A);
+void appendSparseMat(struct SparseMatrix *A, struct MatrixEntry entry);
+struct MatrixEntry deleteSparseMat(struct SparseMatrix *A, int i);
+struct MatrixEntry popBackSparseMat(struct SparseMatrix *A);
+void sortSparseMat(struct SparseMatrix *A);
+void printEntries(struct SparseMatrix *A);
+void printMatrix(struct SparseMatrix *A);
 
 //Funcs from lesson
 struct SparseMatrix* addMatrices(struct SparseMatrix *A, struct SparseMatrix *B);
