@@ -25,10 +25,17 @@ int main(int argc, char *argv[])
         }
     }
 
+    struct Node *valList = NULL;
+
     token = strtok(str, s);
     while(token != NULL)
     {
-        printf("%d\n", atoi(token));
+        createNode(&valList, atoi(token));
         token = strtok(NULL, s);
     }
+
+    printf("Displaying list:");
+    displayList(valList);
+    freeList(valList);
+    printf("\n\n");
 }

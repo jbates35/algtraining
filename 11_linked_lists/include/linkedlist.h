@@ -9,7 +9,8 @@ struct Node {
     struct Node *next;
 };
 
-void createNode(struct Node *node);
-void showLL(struct Node *first);
+void createNode(struct Node **p, int val);
+void freeList(struct Node *p);
+void displayList(struct Node *p);
 
 #endif

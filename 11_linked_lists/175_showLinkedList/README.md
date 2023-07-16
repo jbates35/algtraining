@@ -15,12 +15,17 @@ $ cd 175_showLinkedList
 There is one optarg for this program, which is:
 x - Elements in an array (separated with a space)
 ```bash
-$ ./showLinkedList -x "1 5 2 6 10 3"
+$ ./showLinkedList -x "1 2 1 3 1 4 1 5"
 ```
-
-
+This will give you a result of:
+```
+Displaying list:
+[ 1 2 1 3 1 4 1 5 ]
+```
 Another note: If looking through code, the functions of interest are 
 ```c
-
+void createNode(struct Node **p, int val);
+void freeList(struct Node *p);
+void displayList(struct Node *p);
 ```
-All of these are found in src/linkedlist.c.
+All of the implementations for these are found in src/linkedlist.c.
