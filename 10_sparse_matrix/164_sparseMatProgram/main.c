@@ -204,5 +204,8 @@ void addMatsProgram(void)
 
     printf("\nDisplaying matrix C with %d entries:", C.entries);
     printMatrix(&C);
-    
+
+    freeSparseMat(&A);
+    freeSparseMat(&B);
+    freeSparseMat(&C);
 }
