@@ -1,5 +1,6 @@
 #include <string.h>
-#include "arrayAdt.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 void swap(void *x, void *y, size_t size)
 {
