@@ -46,3 +46,29 @@ void displayList(struct Node *p)
     }
     printf("]");
 }
+
+int countNodes(struct Node *p)
+{
+    int count = 0;
+
+    while(p)
+    {
+        count ++;
+        p = p->next; 
+    }
+
+    return count;
+}
+
+int sumNodes(struct Node *p)
+{
+    int sum = 0;
+
+    while(p)
+    {
+        sum += p->val;
+        p = p->next;
+    }
+
+    return sum;
+}

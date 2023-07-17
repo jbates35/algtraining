@@ -38,3 +38,19 @@ void displayNodesR(struct RNode *p)
     printf("%d ", p->val);
     displayNodesR(p->next);
 }
+
+int countNodesR(struct RNode *p)
+{
+    if(!p)
+        return 0;
+    
+    return countNodesR(p->next) + 1;
+}
+
+int sumNodesR(struct RNode *p)
+{
+    if(!p)
+        return 0;
+
+    return sumNodesR(p->next) + p->val;
+}
