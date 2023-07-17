@@ -6,7 +6,7 @@ This exercise is designed to provide practice implementing and showing a linked 
 To use the program, rip the git, and then make a folder build in this folder. I.e.
 ```
 $ git clone https://github.com/jbates35/algtraining
-$ cd ./algtraining/10_sparse_matrix
+$ cd ./algtraining/11_linked_list
 $ mkdir build && cd build
 $ cmake .. && make
 $ cd 177_showRecursLinkedList 

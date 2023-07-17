@@ -72,3 +72,17 @@ int sumNodes(struct Node *p)
 
     return sum;
 }
+
+
+int maxNode(struct Node *p)
+{
+    int x = MIN_INT;
+
+    while(p)
+    {
+        x = p->val > x ? p->val : x;
+        p = p->next;
+    }
+
+    return x;
+}

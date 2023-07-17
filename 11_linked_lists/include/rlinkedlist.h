@@ -1,6 +1,8 @@
 #ifndef R_LINKED_LIST_H
 #define R_LINKED_LIST_H
 
+#define MIN_INT_R -2147483648
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,4 +19,7 @@ void displayNodesR(struct RNode *p);
 //Lesson 180
 int countNodesR(struct RNode *p);
 int sumNodesR(struct RNode *p);
+
+//Lesson 182
+int maxNodeR(struct RNode *p);
 #endif

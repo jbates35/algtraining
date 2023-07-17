@@ -1,6 +1,8 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
+#define MIN_INT -2147483648
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -17,4 +19,7 @@ void displayList(struct Node *p);
 //Lesson 180
 int countNodes(struct Node *p);
 int sumNodes(struct Node *p);
+
+//Lesson 182
+int maxNode(struct Node *p);
 #endif

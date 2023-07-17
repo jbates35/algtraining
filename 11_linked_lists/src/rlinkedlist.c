@@ -54,3 +54,12 @@ int sumNodesR(struct RNode *p)
 
     return sumNodesR(p->next) + p->val;
 }
+
+int maxNodeR(struct RNode *p)
+{
+    if(!p)
+        return MIN_INT_R;
+    
+    int x = maxNodeR(p->next);
+    return p->val > x ? p->val : x;
+}
