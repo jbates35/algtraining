@@ -25,5 +25,5 @@ Then to run a program, go:
 
 ```
 cd 175_showLinkedList
-./showLinkedList -x 5 9 10 4 2 11
+./showLinkedList -x "5 9 10 4 2 11"
 ```
