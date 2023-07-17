@@ -4,13 +4,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Node {
+struct RNode {
     int val;
-    struct Node *next;
+    struct RNode *next;
 };
 
-void createNode(struct Node **p, int val);
-void freeNodes(struct Node *p);
-void displayNodes(struct Node *p);
+void createNodeR(struct RNode **p, int val);
+void freeNodesR(struct RNode *p);
+void displayNodesR(struct RNode *p);
 
 #endif

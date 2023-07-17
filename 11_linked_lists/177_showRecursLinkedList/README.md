@@ -24,9 +24,9 @@ Displaying list:
 ```
 Another note: If looking through code, the functions of interest are 
 ```c
-void createNode(struct Node **p, int val);
-void freeNodes(struct Node *p);
-void displayNodes(struct Node *p);
+void createNodeR(struct RNode **p, int val);
+void freeNodesR(struct RNode *p);
+void displayNodesR(struct RNode *p);
 ```
 All of the implementations for these are found in src/rlinkedlist.c. 
 
