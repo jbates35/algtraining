@@ -15,17 +15,19 @@ $ cd 177_showRecursLinkedList
 There is one optarg for this program, which is:
 x - Elements in an array (separated with a space)
 ```bash
-$ ./showRLinkedList -x "1 2 1 3 1 4 1 5"
+$ ./showRLinkedList -x "1 3 1 2 4 6"
 ```
 This will give you a result of:
 ```
 Displaying list:
-[ 1 2 1 3 1 4 1 5 ]
+        1 3 1 2 4 6 
 ```
 Another note: If looking through code, the functions of interest are 
 ```c
 void createNode(struct Node **p, int val);
-void freeList(struct Node *p);
-void displayList(struct Node *p);
+void freeNodes(struct Node *p);
+void displayNodes(struct Node *p);
 ```
 All of the implementations for these are found in src/rlinkedlist.c. 
+
+All in all, recursion and linked lists seem to go very well together. The code ended up being much shorter, and it helps being able to control when you'd free or allocate memory (i.e. before or after the recursive function call).

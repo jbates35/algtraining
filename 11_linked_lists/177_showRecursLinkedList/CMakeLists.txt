@@ -14,4 +14,4 @@ add_executable(showRLinkedList main.c)
 target_include_directories(showRLinkedList PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 # Add the source files to your target
-target_sources(showRLinkedList PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/linkedlist.c)
+target_sources(showRLinkedList PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/rlinkedlist.c)

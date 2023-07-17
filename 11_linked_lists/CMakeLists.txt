@@ -3,6 +3,7 @@ project(LinkedLists)
 
 # Add subdirectories for each sub-project
 add_subdirectory(175_showLinkedList)
+add_subdirectory(177_showRecursLinkedList)
 
 # Specify the include directories
 include_directories(include)

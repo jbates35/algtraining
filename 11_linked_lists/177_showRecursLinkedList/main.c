@@ -34,8 +34,8 @@ int main(int argc, char *argv[])
         token = strtok(NULL, s);
     }
 
-    printf("Displaying list:");
-    displayList(valList);
-    freeList(valList);
+    printf("Displaying list:\n\t");
+    displayNodes(valList);
+    freeNodes(valList);
     printf("\n\n");
 }
