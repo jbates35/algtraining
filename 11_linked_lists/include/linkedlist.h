@@ -22,4 +22,8 @@ int sumNodes(struct Node *p);
 
 //Lesson 182
 int maxNode(struct Node *p);
+
+//Lesson 184
+struct Node *searchNode(struct Node *p, int key);
+struct Node *qsearchNode(struct Node **p, int key);
 #endif

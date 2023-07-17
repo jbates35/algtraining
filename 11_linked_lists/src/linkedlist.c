@@ -86,3 +86,48 @@ int maxNode(struct Node *p)
 
     return x;
 }
+
+struct Node *searchNode(struct Node *p, int key)
+{
+    while(p)
+    {
+        if(p->val == key)
+            return p;
+        else
+            p = p->next;
+    }
+    
+    return NULL;
+}
+
+
+struct Node *qsearchNode(struct Node **p, int key)
+{
+    struct Node *last;
+    struct Node *curr = *p;
+
+    while(curr)
+    {
+        if(curr->val == key)
+        {
+            //Need to make last link to the next
+            last->next = curr->next;
+
+            //Now store what the first pointer points to
+            struct Node *temp = *p;
+
+            //Now need to change head pointer and change what it points to
+            *p = curr;
+            (*p)->next = temp;
+
+            //Return the pointer
+            return curr;
+        }
+        else
+        {
+            last = curr;
+            curr = curr->next;
+        }
+    }
+    return NULL;
+}

@@ -63,3 +63,12 @@ int maxNodeR(struct RNode *p)
     int x = maxNodeR(p->next);
     return p->val > x ? p->val : x;
 }
+
+struct RNode *searchNodeR(struct RNode *p, int key)
+{
+    //Should return either the key that's found, or if it's reached the end of the list, then NULL
+    if(p->val == key || !p)
+        return p;
+    
+    return searchNodeR(p->next, key);
+}

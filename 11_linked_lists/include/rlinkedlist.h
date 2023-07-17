@@ -22,4 +22,8 @@ int sumNodesR(struct RNode *p);
 
 //Lesson 182
 int maxNodeR(struct RNode *p);
+
+//Lesson 184
+struct RNode *searchNodeR(struct RNode *p, int key);
+
 #endif

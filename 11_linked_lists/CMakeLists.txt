@@ -6,6 +6,7 @@ add_subdirectory(175_showLinkedList)
 add_subdirectory(177_showRecursLinkedList)
 add_subdirectory(180_countAndSum)
 add_subdirectory(182_max)
+add_subdirectory(184_search)
 
 
 # Specify the include directories
