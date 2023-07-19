@@ -8,7 +8,7 @@ add_subdirectory(180_countAndSum)
 add_subdirectory(182_max)
 add_subdirectory(184_search)
 add_subdirectory(191_insert)
-
+add_subdirectory(193_delete)
 
 # Specify the include directories
 include_directories(include)

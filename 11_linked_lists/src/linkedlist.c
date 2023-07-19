@@ -199,3 +199,45 @@ void insertNodeS(struct Node **p, int val)
     q->next = curr;
     prev->next = q;    
 }
+
+int deleteNode(struct Node **p, int pos)
+{
+    int returnVal = 0;
+    
+    //Need a node to allow operations while also having the pointer to free
+    struct Node *q = *p, *qPrev;
+
+    if(pos==0)
+    {        
+        //Store the value, and change where the pointer points to
+        returnVal = q->val; 
+        *p = q->next;
+        
+        //Don't need entry anymore but need to clear from heap
+        free(q);
+
+        return returnVal;
+    }
+
+    for(int i = 0; i < pos && q; i++)
+    {   
+        qPrev = q;
+        q = q->next;
+    }
+    //If a null pointer, well, obviously nothing to delete
+    if(!q)
+    {
+        fflush(stdout);
+        fprintf(stderr, "\nError: in deleteNode, position out of range");
+        return returnVal;
+    }
+
+    //Store value for return
+    returnVal = q->val;
+    
+    //Link the previous node to the next so we can clear memory
+    qPrev->next = q->next;
+    free(q);
+
+    return returnVal;
+}

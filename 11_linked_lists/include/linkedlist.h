@@ -30,4 +30,7 @@ struct Node *qsearchNode(struct Node **p, int key);
 int isSortedList(struct Node *p);
 void insertNode(struct Node **p, int val, int pos);
 void insertNodeS(struct Node **p, int val);
+
+//Lesson 193
+int deleteNode(struct Node **p, int pos);
 #endif
