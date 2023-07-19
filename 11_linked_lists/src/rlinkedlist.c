@@ -58,7 +58,7 @@ int sumNodesR(struct RNode *p)
 int maxNodeR(struct RNode *p)
 {
     if(!p)
-        return MIN_INT_R;
+        return INT_MIN;
     
     int x = maxNodeR(p->next);
     return p->val > x ? p->val : x;

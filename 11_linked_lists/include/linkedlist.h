@@ -1,10 +1,9 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
-#define MIN_INT -2147483648
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 struct Node {
     int val;
@@ -26,4 +25,9 @@ int maxNode(struct Node *p);
 //Lesson 184
 struct Node *searchNode(struct Node *p, int key);
 struct Node *qsearchNode(struct Node **p, int key);
+
+//Lesson 191
+int isSortedList(struct Node *p);
+void insertNode(struct Node **p, int val, int pos);
+void insertNodeS(struct Node **p, int val);
 #endif

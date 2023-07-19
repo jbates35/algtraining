@@ -13,7 +13,7 @@ $ git clone https://github.com/jbates35/algtraining
 $ cd ./algtraining/11_linked_list
 $ mkdir build && cd build
 $ cmake .. && make
-$ cd 182_max 
+$ cd 184_search 
 ```
 ### Example:
 There is one optarg for this program, which is:

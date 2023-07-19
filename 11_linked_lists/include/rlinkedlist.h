@@ -1,10 +1,9 @@
 #ifndef R_LINKED_LIST_H
 #define R_LINKED_LIST_H
 
-#define MIN_INT_R -2147483648
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 struct RNode {
     int val;

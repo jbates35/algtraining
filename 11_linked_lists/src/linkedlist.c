@@ -76,7 +76,7 @@ int sumNodes(struct Node *p)
 
 int maxNode(struct Node *p)
 {
-    int x = MIN_INT;
+    int x = INT_MIN;
 
     while(p)
     {
@@ -130,4 +130,72 @@ struct Node *qsearchNode(struct Node **p, int key)
         }
     }
     return NULL;
+}
+
+int isSortedList(struct Node *p)
+{
+    int x = INT_MIN; // Keeps track of current lowest value. Needed since it's a linked list, not array
+
+    //Checks last value to see if it's higher than the current val
+    while(p)
+    {
+        //If x is greater than p val, then not sorted
+        if(p->val < x)
+            return 0;
+
+        x = p->val;
+        p = p->next;
+    }
+
+    return 1;
+}
+
+void insertNode(struct Node **p, int val, int pos)
+{
+    struct Node *q = (struct Node*) malloc(sizeof(struct Node));
+    q-> val = val;
+
+    if(pos == 0)
+    {
+        q->next = *p;
+        *p = q;    
+        return;
+    }
+
+    struct Node *curr = *p;
+    struct Node *prev;
+    
+    for(int i = 0; i < pos && curr; i++)
+    {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    q->next = curr;
+    prev->next = q;
+}
+
+void insertNodeS(struct Node **p, int val)
+{
+    struct Node *q = (struct Node*) malloc(sizeof(struct Node));
+    q-> val = val;
+
+    if(val < (*p)->val)
+    {
+        q->next = *p;
+        *p = q;    
+        return;
+    }
+
+    struct Node *curr = *p;
+    struct Node *prev;
+
+    while(curr && curr->val < val)
+    {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    q->next = curr;
+    prev->next = q;    
 }
