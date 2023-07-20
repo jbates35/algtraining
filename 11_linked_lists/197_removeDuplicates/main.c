@@ -39,9 +39,17 @@ int main(int argc, char *argv[])
     printf("Displaying list:");
     displayList(valList);
     
-    printf("\n\nRemoving duplicate nodes from linked list");
-    removeDuplicates(valList);
-
+    if(isSortedList(valList))
+    {
+        printf("\n\nRemoving duplicate nodes from linked list");
+        removeDuplicates(valList);
+    }
+    else 
+    {
+        fflush(stdout);
+        fprintf(stderr, "Error: list isn't sorted");
+    }
+    
     printf("\n\nNow displaying list again:");
     displayList(valList);
     
