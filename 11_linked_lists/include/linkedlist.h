@@ -33,4 +33,9 @@ void insertNodeS(struct Node **p, int val);
 
 //Lesson 193
 int deleteNode(struct Node **p, int pos);
+
+//Lesson 197
+void removeDuplicates(struct Node *p);
+
+
 #endif

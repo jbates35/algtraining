@@ -241,3 +241,27 @@ int deleteNode(struct Node **p, int pos)
 
     return returnVal;
 }
+
+void removeDuplicates(struct Node *p)
+{
+    if(!p)
+        return;
+
+    struct Node *q = p->next;
+
+    while(q)
+    {
+        //If values aren't the same, we can update the pointers and move to next node
+        if(p->val != q->val)
+        {
+            p = q;
+            q = q->next;
+            continue;
+        }
+
+        //Otherwise, store p in another pointer so it can be freed
+        p->next = q->next;
+        free(q);
+        q = p->next;    
+    }
+}
