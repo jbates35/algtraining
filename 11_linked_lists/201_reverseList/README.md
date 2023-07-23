@@ -38,7 +38,7 @@ Reversing list...
 Now displaying list again:
 9 5 2 3 1 
 ```
-
+If looking through the code, you'll notice that, as usual, the recursive solution is much more elegant than the iterative one.
 
 Another note: If looking through code, the functions of interest are 
 ```c
@@ -48,6 +48,6 @@ This one can be found in src/linkedlist.c.
 
 And
 ```c
-void reverseListR(struct RNode **p);
+struct RNode *reverseListR(struct RNode *curr, struct RNode *next);
 ```
 This one can be found in src/rlinkedlist.c
