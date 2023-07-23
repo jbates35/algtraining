@@ -114,11 +114,10 @@ struct Node *qsearchNode(struct Node **p, int key)
             last->next = curr->next;
 
             //Now store what the first pointer points to
-            struct Node *temp = *p;
+            curr->next = *p;
 
             //Now need to change head pointer and change what it points to
             *p = curr;
-            (*p)->next = temp;
 
             //Return the pointer
             return curr;
