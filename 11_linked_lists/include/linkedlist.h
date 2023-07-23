@@ -37,5 +37,7 @@ int deleteNode(struct Node **p, int pos);
 //Lesson 197
 void removeDuplicates(struct Node *p);
 
+//Lesson 201
+void reverseList(struct Node **p);
 
 #endif

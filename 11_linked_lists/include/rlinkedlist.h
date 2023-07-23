@@ -25,4 +25,7 @@ int maxNodeR(struct RNode *p);
 //Lesson 184
 struct RNode *searchNodeR(struct RNode *p, int key);
 
+//Lesson 201
+struct RNode *reverseListR(struct RNode *curr, struct RNode *next);
+
 #endif

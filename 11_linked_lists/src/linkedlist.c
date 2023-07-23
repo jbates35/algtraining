@@ -265,3 +265,23 @@ void removeDuplicates(struct Node *p)
         q = p->next;    
     }
 }
+
+void reverseList(struct Node **p)
+{
+    struct Node *prev=NULL; 
+    struct Node *curr=NULL; 
+    struct Node *next = *p;
+
+    while(next)
+    {
+        prev = curr;
+        curr = next;
+        next = next->next; //lol
+
+        curr->next = prev; // Link the pointer back
+    }
+
+    //Now we need the original pointer to link to our new first node
+    if(curr)
+        *p = curr;
+}

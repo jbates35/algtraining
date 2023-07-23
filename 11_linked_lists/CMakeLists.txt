@@ -10,6 +10,7 @@ add_subdirectory(184_search)
 add_subdirectory(191_insert)
 add_subdirectory(193_delete)
 add_subdirectory(197_removeDuplicates)
+add_subdirectory(201_reverseList)
 
 # Specify the include directories
 include_directories(include)
