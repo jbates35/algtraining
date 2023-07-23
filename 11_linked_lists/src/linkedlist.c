@@ -284,3 +284,18 @@ void reverseList(struct Node **p)
     if(curr)
         *p = curr;
 }
+
+void sortList(struct Node **p)
+{
+
+}
+
+void concatLists(struct Node *p, struct Node *q)
+{
+
+}
+
+struct Node *mergeLists(struct Node *p, struct Node *q)
+{
+
+}
