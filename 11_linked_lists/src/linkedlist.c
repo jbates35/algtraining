@@ -285,14 +285,59 @@ void reverseList(struct Node **p)
         *p = curr;
 }
 
+//Recursive function that wasn't taught, but I wanted something that could pull this off
 void sortList(struct Node **p)
 {
+    if(*p == NULL)
+        return;
 
+    int minVal = INT_MAX;
+
+    struct Node *q = *p;
+    struct Node *r = NULL, *curr = NULL, *prev = NULL;
+
+    while(q)
+    {
+        //Keep track of node which is lowest in val
+        if(q->val < minVal)
+        {
+            minVal = q->val;
+            curr = q;
+            prev = r;
+        }
+
+        //Advance list
+        r = q;
+        q = q->next;
+    }
+
+    //If the beginning of the list is the lowest val, then no need to change
+    if(curr != *p)
+    {
+        prev->next = curr->next;
+        curr->next = *p;
+        *p = curr;
+    }
+
+    sortList(&(*p)->next);
 }
 
-void concatLists(struct Node *p, struct Node *q)
+void concatLists(struct Node **p, struct Node **q)
 {
+    if(!*p) 
+    {
+        *p = *q;
+        *q = NULL;
+        return;
+    }  
 
+    struct Node *temp = *p;
+
+    while(temp->next)
+        temp = temp->next;
+    
+    temp->next = *q;
+    *q = NULL;
 }
 
 struct Node *mergeLists(struct Node *p, struct Node *q)

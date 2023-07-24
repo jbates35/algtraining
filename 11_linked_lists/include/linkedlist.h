@@ -42,6 +42,6 @@ void reverseList(struct Node **p);
 
 //Lesson 204
 void sortList(struct Node **p);
-void concatLists(struct Node *p, struct Node *q);
+void concatLists(struct Node **p, struct Node **q);
 struct Node *mergeLists(struct Node *p, struct Node *q);
 #endif
