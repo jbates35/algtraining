@@ -344,7 +344,6 @@ struct Node *mergeLists(struct Node **p, struct Node **q)
 {
     struct Node *r = NULL;
     struct Node *first = NULL;
-    struct Node *rPrev = NULL;
     struct Node *pCurr = NULL, *qCurr = NULL;
 
     if(*p == NULL)
