@@ -396,3 +396,185 @@ struct Node *mergeLists(struct Node **p, struct Node **q)
 
     return first;
 }
+
+void makeCircular(struct Node *p)
+{
+    struct Node *first = p;
+
+    if(p == NULL)
+        return;
+    
+    while(p->next)
+        p = p->next;
+    
+    p->next = first;
+}
+
+int checkCircular(struct Node *p)
+{
+    struct Node *p2xSpeed = p;
+    int isCircular = 0;
+
+    do
+    {
+        p = p->next;
+
+        p2xSpeed = p2xSpeed->next;
+        if(p2xSpeed)
+            p2xSpeed = p2xSpeed->next;
+
+        if(p == p2xSpeed)
+        {
+            isCircular = 1;
+            break;
+        }
+    } while (p2xSpeed);
+    
+    return isCircular;
+}
+
+void insertCircular(struct Node **p, int val, int pos)
+{
+    struct Node *newNode = (struct Node*) malloc(sizeof(struct Node));
+    newNode->val = val;
+    newNode->next = NULL;
+    
+    struct Node *curr = *p;
+    struct Node *first = *p;
+
+    //Couple possibilities
+    //Possibility 1: val inserted at beginning of list
+    if(pos == 0 || curr==NULL)
+    {
+        if(curr)
+            newNode->next = curr;
+
+        *p = newNode;
+
+        //Just make circular from here
+        while(curr->next && curr->next != first)
+            curr = curr->next;
+        curr->next = *p;
+
+        return;
+    }
+
+    struct Node *prev = NULL;
+
+    //Possibility 2&3: val inserted at end of list, or middle
+    int currPos = 0;
+    do
+    {
+        prev = curr;
+        curr = curr->next;
+        currPos++;
+    } 
+    while(currPos < pos && curr != first);
+
+    if(curr == first) 
+    {
+        newNode->next = first;
+        prev->next = newNode;
+    }
+    else
+    {
+        newNode->next = prev->next;
+        prev->next = newNode;
+    }
+}
+
+int deleteCircular(struct Node **p, int pos)
+{
+    int returnVal = 0;
+    
+    //Need a node to allow operations while also having the pointer to free
+    struct Node *q = *p, *qPrev;
+    struct Node *first = *p;
+
+    if(*p == NULL)
+    {
+        fflush(stdout);
+        fprintf(stderr, "\nError: in deleteNode, can't delete a null pointer");
+        return returnVal;            
+    }
+
+    if(pos==0)
+    {        
+        //Store the value, and change where the pointer points to
+        returnVal = q->val; 
+        *p = q->next;
+        
+        //Don't need entry anymore but need to clear from heap
+        free(q);
+
+        //Have to remake being circular from here
+        q = *p;
+        while(q->next && q->next != first)
+            q = q->next;
+        q->next = *p;   
+
+        return returnVal;
+    }
+
+    int currPos = 0;
+    do 
+    {  
+        qPrev = q;
+        q = q->next;
+        currPos++;
+    } while(currPos < pos && q != (*p));
+
+    //If a null pointer, well, obviously nothing to delete
+    if(!q || q == (*p))
+    {
+        fflush(stdout);
+        fprintf(stderr, "\nError: in deleteNode, position out of range");
+        return returnVal;
+    }
+
+    //Store value for return
+    returnVal = q->val;
+    
+    //Link the previous node to the next so we can clear memory
+    qPrev->next = q->next;
+    free(q);
+
+    return returnVal;
+}
+
+void displayCircular(struct Node *p)
+{
+    if(p == NULL)
+        return;
+    
+    struct Node *first = p;
+
+    printf("\n[ ");
+    do 
+    {
+        printf("%d ", p->val);
+        p = p->next;
+    } while(p != first);
+
+    printf("]");
+}
+
+void freeCircular(struct Node *p)
+{
+    struct Node *q;
+    struct Node *first = p;
+
+    if (p == NULL)
+        return;
+    
+    do
+    {
+        q = p->next;
+        
+        if (q == NULL)
+            break;
+
+        free(p);
+        p = q;
+    } while (p != first);    
+}

@@ -44,4 +44,12 @@ void reverseList(struct Node **p);
 void sortList(struct Node **p);
 void concatLists(struct Node **p, struct Node **q);
 struct Node *mergeLists(struct Node **p, struct Node **q);
+
+//Lesson 210
+void makeCircular(struct Node *p);
+int checkCircular(struct Node *p);
+void insertCircular(struct Node **p, int val, int pos);
+int deleteCircular(struct Node **p, int pos);
+void displayCircular(struct Node *p);
+void freeCircular(struct Node *p);
 #endif
