@@ -37,17 +37,14 @@ int main(int argc, char *argv[])
     struct Node *valList1 = NULL;
     struct Node *valList2 = NULL;
 
-    char str3[] = "1 3 6 2 9";
-    char str4[] = "2 6 19 2 5";
-
-    token = strtok(str3, s);
+    token = strtok(str1, s);
     while(token != NULL)
     {
         createNode(&valList1, atoi(token));
         token = strtok(NULL, s);
     }
 
-    token = strtok(str4, s);
+    token = strtok(str2, s);
     while(token != NULL)
     {
         createNode(&valList2, atoi(token));
@@ -79,7 +76,7 @@ int main(int argc, char *argv[])
     if(merge)
     {
         printf("\n\nMerging lists");
-        struct Node *valList3 = mergeLists(valList1, valList2);
+        struct Node *valList3 = mergeLists(&valList1, &valList2);
         printf("\nDisplaying merged list:");
         displayList(valList3);
     }

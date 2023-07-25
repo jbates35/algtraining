@@ -340,7 +340,60 @@ void concatLists(struct Node **p, struct Node **q)
     *q = NULL;
 }
 
-struct Node *mergeLists(struct Node *p, struct Node *q)
+struct Node *mergeLists(struct Node **p, struct Node **q)
 {
+    struct Node *r = NULL;
+    struct Node *first = NULL;
+    struct Node *rPrev = NULL;
+    struct Node *pCurr = NULL, *qCurr = NULL;
 
+    if(*p == NULL)
+        r = *q;
+    else if(*q == NULL)
+        r = *p;
+    else
+    {
+        pCurr = *p;
+        qCurr = *q;
+
+        if(pCurr->val < qCurr->val)
+        {
+            r = pCurr;
+            pCurr = pCurr->next;
+        }
+        else
+        {
+            r = qCurr;
+            qCurr = qCurr->next;
+        }
+
+        first = r;
+
+        while(pCurr && qCurr)
+        {
+            if(pCurr->val < qCurr->val)
+            {
+                r->next = pCurr;
+                pCurr = pCurr->next;
+            }
+            else
+            {
+                r->next = qCurr;
+                qCurr = qCurr->next;
+            }
+
+            //Following line prevents trying to assign r->next when we just started building our LL
+            r = r->next;
+        }
+
+        if(pCurr)
+            r->next = pCurr;
+        else
+            r->next = qCurr;
+    }
+    
+    *p = NULL;
+    *q = NULL;
+
+    return first;
 }
