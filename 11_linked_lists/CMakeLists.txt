@@ -13,10 +13,10 @@ add_subdirectory(197_removeDuplicates)
 add_subdirectory(201_reverseList)
 add_subdirectory(204_mergelists)
 add_subdirectory(210_circularlists)
-
+add_subdirectory(222_doublylinkedlist)
 
 # Specify the include directories
 include_directories(include)
 
 # Add the utility files to a library
-add_library(utils src/linkedlist.c)
+add_library(utils src/linkedlist.c src/rlinkedlist.c src/dlinkedlist.c)
