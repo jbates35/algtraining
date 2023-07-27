@@ -58,7 +58,12 @@ int main(int argc, char *argv[])
     appendNode(p, 9);
     displayList(p);
 
-    freeList(p);
+    // insertNode(p, 10, 0);
+    // insertNode(p, 13, 3);
+    // insertNode(p, 20, 10);
+    // displayList(p);
+
+    // freeList(p);
 }
 
 void create(DoublyLL *p)

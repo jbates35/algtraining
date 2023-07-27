@@ -4,7 +4,6 @@ void initList(DoublyLL **list)
 {
     *list = (DoublyLL*) malloc(sizeof(DoublyLL));
     (*list)->length=0;
-    (*list)->isCircular=0;
     (*list)->first = NULL;
     (*list)->last = NULL;
 }
@@ -24,14 +23,11 @@ void freeList(DoublyLL *list)
     if(p == NULL)
         return;
 
-    while(1)
+    while(p)
     {
         q = p;
         p = p->next;
         free(q);
-
-        if(!p || p == list->first)
-            break;
     }
 
     free(list);
@@ -70,10 +66,50 @@ void appendNode(DoublyLL *list, int val)
     
     p->next = new;
     new->prev = p; 
+
 }
 
 void insertNode(DoublyLL *list, int val, int pos)
 {
+    if(list == NULL)
+    {
+        fflush(stdout);
+        fprintf(stderr, "\nError: Null pointer in insertNode\n");
+        return;
+    }
+
+    struct DNode *new = (struct DNode*) malloc(sizeof(struct DNode));
+    new->val = val;
+    new->next = NULL;
+    new->prev = NULL;
+
+    struct DNode *p = list->first;
+
+    //If insert is in front of all the other nodes
+    if(pos == 0)
+    {
+        p->prev = new;
+        new->next = p;
+        list->first = new;
+
+        return;        
+    }
+
+    //Traverse array until position or end
+    for(int i = 0; i < pos-1 && p->next; i++)
+        p = p->next;
+    
+    //While we're here, if we reached end of list, we have a new last node
+    if(!p->next)
+        list->last = new;
+
+    if(p)
+        (p->next)->prev = new; 
+
+    new->next = p->next;
+    new->prev = p;   
+
+    p->next = new;
     
 }
 
@@ -93,15 +129,12 @@ void displayList(DoublyLL *list)
 
     DNode *p = list->first;
     
-    if(p == NULL)
-        return;
-    
     printf("[ ");
-    do
+    while(p);
     {   
         printf("%d ", p->val);
         p = p->next;
-    } while (p != NULL && p != list->first);
+    } 
     printf("]\n");
 }
 
@@ -109,14 +142,3 @@ void reverseList(DoublyLL *list)
 {
     
 }
-
-void makeCircular(DoublyLL *list)
-{
-    
-}
-
-void isCircular(DoublyLL *list)
-{
-    
-}
-

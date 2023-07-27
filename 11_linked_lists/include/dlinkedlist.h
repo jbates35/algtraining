@@ -14,7 +14,6 @@ struct DoublyLL {
     struct DNode *first;
     struct DNode *last;
     int length;
-    int isCircular;
 };
 
 typedef struct DNode DNode;
@@ -27,6 +26,4 @@ void insertNode(DoublyLL *list, int val, int pos);
 int deleteNode(DoublyLL *list, int pos);
 void displayList(DoublyLL *list);
 void reverseList(DoublyLL *list);
-void makeCircular(DoublyLL *list);
-
 #endif
