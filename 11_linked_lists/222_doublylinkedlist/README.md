@@ -21,6 +21,22 @@ $ ./doubly
 ```
 This will give you a result of:
 ```
+Please select options:
+
+        (1) Create list
+        (2) Display list
+        (3) Insert single node
+        (4) Delete single node
+        (5) Reverse list
+        (0) Quit
+
+Enter option: 1
+Enter values for entries separated by space. I.e. '1 3 1 6'
+1 3 2 6 9 4 10
+
+Entries added!
+Your list is:
+[ 1 3 2 6 9 4 10 ]
 ```
 Another note: If looking through code, the functions of interest are 
 ```c
