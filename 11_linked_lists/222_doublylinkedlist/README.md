@@ -40,5 +40,12 @@ Your list is:
 ```
 Another note: If looking through code, the functions of interest are 
 ```c
+void initList(DoublyLL **list);
+void freeList(DoublyLL *list);
+void appendNode(DoublyLL *list, int val);
+void insertNode(DoublyLL *list, int val, int pos);
+int deleteNode(DoublyLL *list, int pos);
+void displayList(DoublyLL *list);
+void reverseList(DoublyLL *list);
 ```
 This can be found in src/dlinkedlist.c. 
