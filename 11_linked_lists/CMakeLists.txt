@@ -15,6 +15,7 @@ add_subdirectory(204_mergelists)
 add_subdirectory(210_circularlists)
 add_subdirectory(222_doublylinkedlist)
 add_subdirectory(226_studentChallenge1_findMiddle)
+add_subdirectory(227_studentChallenge2_intersect)
 
 # Specify the include directories
 include_directories(include)

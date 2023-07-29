@@ -60,5 +60,5 @@ int main(int argc, char *argv[])
 
     printf("\n\n");
 
-    freeCircular(valList);
+    freeList(valList);
 }
