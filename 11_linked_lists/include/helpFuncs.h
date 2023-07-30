@@ -22,7 +22,7 @@ void funcTime(void (*fp)(struct Node **list), struct Node *lclList, char *funcNa
     clock_t start = clock();
     fp(&lclList);
     clock_t end = clock();
-    printf("\nTime taken to execute %s: %0.3f ms", funcName, (double) 1000 * (end-start)/CLOCKS_PER_SEC);
+    printf("\nTime taken to execute %s: %0.5f ms", funcName, (double) 1000 * (end-start)/CLOCKS_PER_SEC);
 }
 
 #endif

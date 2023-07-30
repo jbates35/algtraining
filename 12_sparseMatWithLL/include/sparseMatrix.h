@@ -13,7 +13,7 @@ struct MatrixEntry {
 
 struct SMNode {
     struct SMNode *next;
-    struct MatrixEntry val;
+    struct MatrixEntry entry;
 };
 
 struct SparseMatrix {
@@ -25,6 +25,9 @@ struct SparseMatrix {
 void initSparseMat(struct SparseMatrix **A, int rows, int cols);
 void freeSparseMat(struct SparseMatrix **A);
 void appendSparseMat(struct SparseMatrix *A, int val, int row, int col);
-void displaySparseMat(struct SparseMatrix *A);
+void printEntries(struct SparseMatrix *A);
+void displayMatrix(struct SparseMatrix *A);
+int isSortedMat(struct SparseMatrix *A);
+void mergeSortMat(struct SparseMatrix *A);
 
 #endif
