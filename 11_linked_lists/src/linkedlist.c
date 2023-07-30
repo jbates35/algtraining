@@ -1,5 +1,4 @@
 #include "linkedlist.h"
-#include "helpFuncs.h"
 
 void createNode(struct Node **p, int val)
 {
@@ -577,4 +576,70 @@ void freeCircular(struct Node *p)
         free(p);
         p = q;
     } while (p != first);    
+}
+
+void mergeSortList(struct Node **list)
+{
+    if((*list)==NULL || (*list)->next == NULL)
+        return;
+    
+    //to get halfway, q runs at double the speed as p
+    struct Node *p = *list;
+    struct Node *q = p;
+    int counter = 0; //helper for tracking list with modulus
+    
+    while(q)
+    {
+        q = q->next;
+        
+        if(!q)
+            break;
+            
+        if((counter++)%2 == 1)
+            p = p->next;
+    }
+
+    //Now break up list into two
+    q = p->next;
+    p->next = NULL;
+    p = *list;
+
+    mergeSortList(&p);
+    mergeSortList(&q);
+
+    struct Node *r;
+
+    //Wish this was more elegant, but need a way to deal with first node
+    if(p->val < q->val)
+    {
+        r = p;
+        p = p->next;
+    }
+    else
+    {
+        r = q;
+        q = q->next;
+    }
+    *list = r;
+
+    while(p && q)
+    {
+        if(p->val < q->val)
+        {
+            r->next = p;
+            p = p->next;
+        }
+        else
+        {
+            r->next = q;
+            q = q->next;
+        }
+
+        r = r->next;
+    }
+
+    if(p)
+        r->next = p;
+    else
+        r->next = q;
 }

@@ -52,4 +52,7 @@ void insertCircular(struct Node **p, int val, int pos);
 int deleteCircular(struct Node **p, int pos);
 void displayCircular(struct Node *p);
 void freeCircular(struct Node *p);
+
+//on my own
+void mergeSortList(struct Node **list);
 #endif
