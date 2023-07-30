@@ -7,12 +7,15 @@
 
 #include "linkedlist.h"
 #include "helpFuncs.h"
+#include "valList.h"
 
 int main(int argc, char *argv[])
 {
 
     struct Node *valList1 = NULL;
     struct Node *valList2 = NULL;
+    struct Node *valList3 = NULL;
+    struct Node *valList4 = NULL;
 
     char *token;
     const char s[2] = " ";
@@ -30,8 +33,7 @@ int main(int argc, char *argv[])
     printf("\nDisplaying list 1:");
     displayList(valList1);
 
-    // mergeSortList(&valList1);
-    funcTime(mergeSortList, valList1, "mergeSortList");
+    mergeSortList(&valList1);
 
     printf("\nDisplaying list after merge sort:");
     displayList(valList1);
@@ -44,8 +46,19 @@ int main(int argc, char *argv[])
     printf("\nDisplaying list after bubble sort:");
     displayList(valList2);
 
-    printf("\n\nNow timing it with list of size 1E7");
+    fflush(stdout);
 
+    for(int i = 0; i < 100000; i++)
+    {
+        createNode(&valList3, valArr[i]);
+        createNode(&valList4, valArr[i]);
+    }
+
+    printf("\n\nNow timing it with list of size 1E5");
+    funcTime(mergeSortList, valList3, "mergeSortList");
+    fflush(stdout);
+    funcTime(sortList, valList4, "sortList (bubble sort)");
+    fflush(stdout);
 
     printf("\n\n");
 

@@ -17,7 +17,7 @@ void swap(void *x, void *y, size_t size)
     free(temp);
 }
 
-void funcTime(int (*fp)(struct Node **list), struct Node *lclList, char *funcName)
+void funcTime(void (*fp)(struct Node **list), struct Node *lclList, char *funcName)
 {
     clock_t start = clock();
     fp(&lclList);
