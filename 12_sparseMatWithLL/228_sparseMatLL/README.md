@@ -70,6 +70,3 @@ Displaying matrix:
 0       1       0
 0       0       2
 ```
-This just mean that's it has detected the last four nodes as having common pointers between the two lists, which is true.
-
-I managed to use two array stacks and pop them until the lists don't match. This way, the problem was done with an O(n) solution instead of O(n^2). Though, this is more like O(4*n) lol. 

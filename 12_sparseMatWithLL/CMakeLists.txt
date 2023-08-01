@@ -3,9 +3,10 @@ project(sparsematsWithLL)
 
 # Add subdirectories for each sub-project
 add_subdirectory(228_sparseMatLL)
+add_subdirectory(229_polynomial)
 
 # Specify the include directories
 include_directories(include)
 
 # Add the utility files to a library
-add_library(utils src/sparseMatrix.c)
+add_library(utils src/sparseMatrix.c src/poly.c)
