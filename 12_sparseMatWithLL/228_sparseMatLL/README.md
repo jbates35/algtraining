@@ -16,13 +16,59 @@ $ ./sparseMatLL
 ```
 This will give you a result of:
 ```
-Displaying list 1:
-[ 1 3 6 2 10 14 152 193 ]
-Displaying list 2:
-[ 2 6 2 9 10 14 152 193 ]
 
-Intersecting nodes are:
-[ 10 14 152 193 ]
+Single matrix only.
+Enter number of rows:
+3
+
+Enter number of columns:
+3
+
+Enter number of entries. Note the bounds has to be between 1 and 9 (inclusive):
+3
+
+Great! Generating a sparse matrix of 3 rows and 3 columns.
+
+Please enter the information for 3 values:
+
+Enter row:
+1
+
+Enter column:
+1
+
+Enter value:
+1
+
+Appending matrix with entry for row 1, column 1, with value 1
+
+Enter row:
+2
+
+Enter column:
+2
+
+Enter value:
+2
+
+Appending matrix with entry for row 2, column 2, with value 2
+
+Enter row:
+0
+
+Enter column:
+0
+
+Enter value:
+3
+
+Appending matrix with entry for row 0, column 0, with value 3
+
+Displaying matrix:
+
+3       0       0
+0       1       0
+0       0       2
 ```
 This just mean that's it has detected the last four nodes as having common pointers between the two lists, which is true.
 

@@ -19,5 +19,6 @@ make
 Then to run a program, go:
 
 ```
-Reminder this needs to be done
+$ cd 228_sparseMatLL
+$ ./sparseMatLL
 ```
