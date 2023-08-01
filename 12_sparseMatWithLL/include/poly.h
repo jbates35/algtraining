@@ -1,14 +1,19 @@
 #ifndef POLY_H
 #define POLY_H
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <limits.h>
+
 typedef struct Term {
     struct Term *next;
     int deg;
+    int coef;
 } Term;
 
-appendTerm(Term **first, int deg);
-solvePoly(Term *first, int x);
-displayEq(Term *first);
-freeTerms(Term *first);
+void appendTerm(Term **first, int deg, int coef);
+double solvePoly(Term *t, double x);
+void displayEq(Term *t);
+void freeTerms(Term *t);
 
 #endif

@@ -14,4 +14,4 @@ add_executable(poly main.c)
 target_include_directories(poly PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 # Add the source files to your target
-target_sources(poly PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/sparseMatrix.c)
+target_sources(poly PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/poly.c)

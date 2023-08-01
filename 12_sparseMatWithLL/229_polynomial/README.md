@@ -14,9 +14,11 @@ Optargs are:
 -x value of x
 -c coefficients (from highest order to lowest)
 ```bash
-$ ./sparseMatLL -c "1 3 6 0 2" -x 5
+$ ./poly -x "2.3" -c "1 2 1"
 ```
 This will give you a result of:
 ```
-
+Showing equation:
+1x^2 + 2x + 1
+Solving this gives us 10.890
 ```
