@@ -4,18 +4,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define DEFAULT_STACK_SIZE 5
-
 struct stack 
 {
     int size;
     int top;
-    int *s;   
+    int *s;
 };
 
-void initStack(struct stack **st);
+void initStack(struct stack **st, int size);
 void freeStack(struct stack **st);
-void push(struct stack *st, int val);
+int push(struct stack *st, int val);
 int pop(struct stack *st);
 int peek(struct stack *st);
 int isFull(struct stack *st);

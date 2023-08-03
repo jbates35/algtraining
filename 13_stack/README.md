@@ -17,6 +17,6 @@ make
 Then to run a program, go:
 
 ```
-$ cd 
-$ ./sparseMatLL
+$ cd ./234_stackArray
+$ ./stackarr
 ```

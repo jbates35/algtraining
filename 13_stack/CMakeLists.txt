@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.6)
 project(stack)
 
 # Add subdirectories for each sub-project
+add_subdirectory(234_stackArray)
+
 # Specify the include directories
 include_directories(include)
 

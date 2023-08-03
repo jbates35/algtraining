@@ -1,9 +1,9 @@
 #include "stackarr.h"
 
-void initStack(struct stack **st)
+void initStack(struct stack **st, int size)
 {
     (*st) = (struct stack*) malloc(sizeof(struct stack));
-    (*st)->size = DEFAULT_STACK_SIZE;
+    (*st)->size = size;
     (*st)->s = (int*) malloc(sizeof(int) * (*st)->size);
     (*st)->top = -1; //Means empty
 }
@@ -16,24 +16,25 @@ void freeStack(struct stack **st)
         free(*st);
 }
 
-void push(struct stack *st, int val)
+int push(struct stack *st, int val)
 {
     //Check for null pointers so no undefined behaviour
     if(st==NULL || st->s == NULL) {
         fflush(stdout);
-        fprint(stderr, "\nError: Null pointer in push");
-        return;
+        fprintf(stderr, "\nError: Null pointer in push");
+        return -1;
     }
 
     //Make sure enough room is in stack
     if(isFull(st)) {
         fflush(stdout);
-        fprint(stderr, "\nWarning: Full stack, cannot push value %d", val);
-        return;
+        fprintf(stderr, "\nWarning: Full stack, cannot push value %d", val);
+        return -1;
     }
 
     //Finally, push the value onto stack and increment top
-    st->s[st->top++] = val;
+    st->s[++st->top] = val;
+    return 0;
 }
 
 int pop(struct stack *st)
@@ -41,14 +42,14 @@ int pop(struct stack *st)
     //Check for null pointers so no undefined behaviour
     if(st==NULL || st->s == NULL) {
         fflush(stdout);
-        fprint(stderr, "\nError: Null pointer in pop");
+        fprintf(stderr, "\nError: Null pointer in pop");
         return 0;
     }
 
     //Make sure there's something in the stack
     if(isEmpty(st)) {
         fflush(stdout);
-        fprint(stderr, "\nWarning: Empty stack, cannot pop");
+        fprintf(stderr, "\nWarning: Empty stack, cannot pop");
         return 0;
     }
 
@@ -62,14 +63,14 @@ int peek(struct stack *st)
     //Check for null pointers so no undefined behaviour
     if(st==NULL || st->s == NULL) {
         fflush(stdout);
-        fprint(stderr, "\nError: Null pointer in peek");
+        fprintf(stderr, "\nError: Null pointer in peek");
         return 0;
     }
 
     //Make sure there's something in the stack
     if(isEmpty(st)) {
         fflush(stdout);
-        fprint(stderr, "\nWarning: Empty stack, cannot peek");
+        fprintf(stderr, "\nWarning: Empty stack, cannot peek");
         return 0;
     }
 
