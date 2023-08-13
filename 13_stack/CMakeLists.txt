@@ -4,6 +4,7 @@ project(stack)
 # Add subdirectories for each sub-project
 add_subdirectory(234_stackArray)
 add_subdirectory(237_stackLL)
+add_subdirectory(241_parentheses)
 
 # Specify the include directories
 include_directories(include)
