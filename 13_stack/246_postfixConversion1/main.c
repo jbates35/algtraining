@@ -68,13 +68,14 @@ char *postfix(struct stack *st, char *infix)
         //Second is if addition or subtraction is found
         else if(!regexec(&reg1, outerTempStr, 0, NULL, 0)){
             
+            //Should empty stack as we came across a level 1
             while(!isEmpty(st))
                 postfixExpr[cnt++] = pop(st);
 
             push(st, infix[i]);
         }
 
-        //Otherwise, it's a variable
+        //Otherwise, it's a variable, so write it to the return string
         else 
             postfixExpr[cnt++] = infix[i];
     }
