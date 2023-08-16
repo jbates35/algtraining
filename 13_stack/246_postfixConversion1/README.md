@@ -28,5 +28,3 @@ If interested, the functions of note are located in 246_postfixConversion/main.c
 ```c
 int postfix(struct stack *st, char *infix);
 ```
-
-p.s. Kinda regret using regex. Used it so it could be more easily expandable in the future, but it's messy!

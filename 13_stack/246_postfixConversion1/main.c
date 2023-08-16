@@ -36,52 +36,55 @@ int main(int argc, char *argv[])
     freeStack(&st);
 }
 
-char *postfix(struct stack *st, char *infix)
-{
-    char *postfixExpr = (char*) malloc(50);
-    int cnt = 0;
-    
-    //Variables for creating regex and then storing value after using regex
-    regex_t reg1, reg2;
-    int value1 = regcomp(&reg1, "[-+]", REG_EXTENDED);
-    int value2 = regcomp(&reg2, "[*/]", REG_EXTENDED);
+//Some helper functions for postfix
+int level(char x) {
+    const char* lvl2 = "*/";
+    const char* lvl1 = "+-";
 
-    for(int i = 0; infix[i] != '\0'; i++) {
-
-        char outerTempStr[2] = {infix[i], '\0'};
-
-        //First is if multiplication or division is found
-        if(!regexec(&reg2, outerTempStr, 0, NULL, 0)) {
-                        
-            //Get value of last part of stack so we can check if to push it or add it to string
-            char innerTempStr[2] = {' ', '\0'};
-            if(!isEmpty(st))
-                innerTempStr[0] = peek(st) + '\0';
-
-            if(!regexec(&reg1, innerTempStr, 0, NULL, 0))
-                push(st, infix[i]);
-
-            else
-                postfixExpr[cnt++] = infix[i];
-        }
-
-        //Second is if addition or subtraction is found
-        else if(!regexec(&reg1, outerTempStr, 0, NULL, 0)){
-            
-            //Should empty stack as we came across a level 1
-            while(!isEmpty(st))
-                postfixExpr[cnt++] = pop(st);
-
-            push(st, infix[i]);
-        }
-
-        //Otherwise, it's a variable, so write it to the return string
-        else 
-            postfixExpr[cnt++] = infix[i];
+    for(int i = 0; lvl2[i] != '\0'; i++) {
+        if(x == lvl2[i])
+            return 2;
     }
 
-    regfree(&reg1);
-    regfree(&reg2);
+    for(int i = 0; lvl1[i] != '\0'; i++) {
+        if(x == lvl1[i])
+            return 1;
+    }
+
+    return 0;
+}
+
+/**
+ * char *postfix - This function uses a stack to re-order an
+ * infix expression into a postfix, leading to easier evaluation.
+*/
+char *postfix(struct stack *st, char *infix) {
+    
+    char *postfixExpr = (char*) malloc(50);
+    int cnt = 0;
+
+    for(int i = 0; infix[i] != '\0'; i++) {
+        char curr = infix[i];
+        int currLevel = level(curr);
+
+        if(currLevel == 0) {
+            postfixExpr[cnt++] = curr;
+            continue;
+        }
+
+        if(isEmpty(st)) {
+            push(st, curr);
+            continue;
+        }
+
+        char top = peek(st);
+        if(currLevel < level(top)) {
+            postfixExpr[cnt++] = pop(st);
+            postfixExpr[cnt++] = curr;
+        } else {
+            push(st, curr);
+        }
+    }
 
     while(!isEmpty(st))
         postfixExpr[cnt++] = pop(st);
