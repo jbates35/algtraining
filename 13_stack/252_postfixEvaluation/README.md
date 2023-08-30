@@ -14,10 +14,15 @@ $ cd 249_postfixConversion2
 ### Example:
 No optargs for this one, just run the program
 ```shell
-$ ./postfixsolve -x "10 5 3 * + 10 2 / -"
+$ ./postfixsolve -x "10 5 3 * + 10 2 / - 5 2 ^ +"
 ```
 This will give you a result of:
 ```
+Answer for expression:
+10 5 3 * + 10 2 / - 5 2 ^ +
+
+is:
+45
 ```
 
 If interested, the functions of note are located in 252_postfixEvaluation/main.c:

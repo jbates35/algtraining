@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
         }
     }
 
-    printf("%s\n", str);
+    printf("Answer for expression:\n%s\n", str);
     char expression[50][50];
 
     token = strtok(str, s);
@@ -42,20 +42,85 @@ int main(int argc, char *argv[])
     }
     expression[cnt][0] = '\0';
     
-    printf("Answer for expression:\n%s\n\nis:\n%d\n", str, solve(expression));
+    printf("\nis:\n%d\n", solve(expression));
     
 }
 
+int level(char x) {
+
+    if(x=='+') 
+        return 1;
+    if(x=='-') 
+        return 2;
+    if(x=='*') 
+        return 3;
+    if(x=='/') 
+        return 4;
+    if(x=='^')
+        return 5;
+    
+    return 0;
+}
+
+int add(int x, int y) {
+    return x + y;
+}
+
+int sub(int x, int y) {
+    return x - y;
+}
+
+int mult(int x, int y) {
+    return x * y;
+}
+
+int divide(int x, int y) {
+    return x / y;
+}
+
+int exponent(int x, int y) {
+    int retVal = 1;
+    for(int i = 0; i < y; i++)
+        retVal *= x;
+    return retVal;
+}
 
 /**
  * char *postfix - This function uses a stack to re-order an
  * infix expression into a postfix, leading to easier evaluation.
 */
-int solve (char exp[50][50]) {
-    
+int solve (char exp[50][50]) {    
     struct stack *st;
     int answer = 0;
     initStack(&st, 50);
+    
+    int (*fp[5])(int, int) = {
+        &add,
+        &sub,
+        &mult,
+        &divide,
+        &exponent
+    };
+
+    for(int i = 0; exp[i][0] != '\0'; i++) {
+
+        //If operator, do some math and return the val to the stack
+        if(level(exp[i][0])) {
+            int y = pop(st);
+            int x = pop(st);    
+
+            int val = fp[level(exp[i][0])-1](x, y);
+
+            push(st, val);
+            continue;
+        }
+
+        //Else, push value to stack
+        int val = atoi(exp[i]);
+        push(st, val);
+    }
+
+    answer = pop(st);
 
     freeStack(&st);
 
