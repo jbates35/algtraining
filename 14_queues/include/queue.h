@@ -8,9 +8,11 @@ typedef struct Queue {
     int *queue;
 } Queue;
 
-void init(Queue **q, int size);
-void free(Queue **q);
+void initQueue(Queue **q, int size);
+void freeQueue(Queue **q);
 void enqueue(Queue *q, int val);
 int dequeue(Queue *q);
+int queueReachedMax(Queue *q);
+int queueIsEmpty(Queue *q);
 
 #endif

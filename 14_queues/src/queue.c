@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void init(Queue **q, int size) {
+void initQueue(Queue **q, int size) {
     (*q) = (Queue*) malloc(sizeof(Queue));
     (*q)->size = size;
     (*q)->queue = (int*) malloc(sizeof(int) * (*q)->size);
@@ -11,25 +11,27 @@ void init(Queue **q, int size) {
     (*q)->rear = -1;
 }
 
-void free(Queue **q) {
-    if(q == NULL || (*q)->queue==NULL) {
-        fprintf(stderr, "ERROR: Null pointer in enqueue");
+void freeQueue(Queue **q) {
+    if((*q) == NULL || (*q)->queue==NULL) {
+        fflush(stdout);
+        fprintf(stderr, "\nERROR: Null pointer in enqueue");
         return;
     }
 
     free((*q)->queue);
-    free(q);
+    free(*q);
     q = NULL;
 }
 
 void enqueue(Queue *q, int val) {
     if(q == NULL) {
-        fprintf(stderr, "ERROR: Null pointer in enqueue");
+        fflush(stdout);
+        fprintf(stderr, "\nERROR: Null pointer in enqueue");
         return;
     }
     
-    if(q == q->size - 1) {
-        fprintf(stderr, "ERROR: No more space in queue");
+    if(queueReachedMax(q)) {
+        fprintf(stderr, "\nWarning: Could not add value %d to queue due to it being full", val);
         return;
     }
 
@@ -38,12 +40,14 @@ void enqueue(Queue *q, int val) {
 
 int dequeue(Queue *q) {
     if(q == NULL) {
-        fprintf(stderr, "ERROR: Null pointer in enqueue");
-        return;
+        fflush(stdout);
+        fprintf(stderr, "\nERROR: Null pointer in enqueue");
+        return -1;
     }
 
-    if(q->rear == q->front) {
-        fprintf(stderr, "ERROR: Queue is empty");
+    if(queueIsEmpty(q)) {
+        fflush(stdout);
+        fprintf(stderr, "\nWarning: Queue could not be dequeued as it is empty");
         return -1;
     }
 
@@ -51,3 +55,22 @@ int dequeue(Queue *q) {
     return ret;
 }
 
+int queueReachedMax(Queue *q) {
+    if(q == NULL) {
+        fflush(stdout);
+        fprintf(stderr, "\nERROR: Null pointer in queueIsEmpty");
+        return -1;
+    }
+
+    return q->rear >= q->size-1;
+}
+
+int queueIsEmpty(Queue *q) {
+    if(q == NULL) {
+        fflush(stdout);
+        fprintf(stderr, "\nERROR: Null pointer in queueIsEmpty");
+        return -1;
+    }
+
+    return q->front == q->rear;
+}

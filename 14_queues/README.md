@@ -6,7 +6,7 @@ Most of the functionality will be in the src/queue* and include/queue* files.
 ## Usage
 Much like the last few folders, this will have a root CMakeLists.txt that allows one to simply make a build folder and then make all the subprograms at once. I.e.:
 
-```
+```shell
 git clone https://github.com/jbates35/algtraining
 cd ./algtraining/13_stack
 mkdir build
@@ -18,5 +18,5 @@ Then to run a program, go:
 
 ```
 $ cd ./257_queue
-$ ./queue -x "1 3 5 1"
+$ ./queue -x "1 3 5 2 6 7" -s 5
 ```
