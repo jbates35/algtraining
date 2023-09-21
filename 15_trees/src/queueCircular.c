@@ -7,7 +7,7 @@ void initQueue(Queue **q, int size)
 {
     (*q) = (Queue *)malloc(sizeof(Queue));
     (*q)->size = size;
-    (*q)->queue = (int *)malloc(sizeof(int) * (*q)->size);
+    (*q)->queue = (BinNode**)malloc(sizeof(BinNode*) * (*q)->size);
     (*q)->front = -1;
     (*q)->rear = -1;
 }
@@ -26,7 +26,7 @@ void freeQueue(Queue **q)
     q = NULL;
 }
 
-void enqueue(Queue *q, int val)
+void enqueue(Queue *q, BinNode* Node)
 {
     if (q == NULL)
     {
@@ -37,28 +37,28 @@ void enqueue(Queue *q, int val)
 
     if (queueIsFull(q))
     {
-        fprintf(stderr, "\nWarning: Could not add value %d to queue due to it being full", val);
+        fprintf(stderr, "\nWarning: Could not add value to queue due to it being full");
         return;
     }
 
     q->rear = (q->rear + 1) % q->size;
-    q->queue[q->rear] = val;
+    q->queue[q->rear] = Node;
 }
 
-int dequeue(Queue *q)
+BinNode* dequeue(Queue *q)
 {
     if (q == NULL)
     {
         fflush(stdout);
         fprintf(stderr, "\nERROR: Null pointer in enqueue");
-        return -1;
+        return NULL;
     }
 
     if (queueIsEmpty(q))
     {
         fflush(stdout);
         fprintf(stderr, "\nWarning: Queue could not be dequeued as it is empty");
-        return -1;
+        return NULL;
     }
 
     q->front = (q->front + 1) % q->size;
