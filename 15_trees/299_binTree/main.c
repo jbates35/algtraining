@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     
     char str2[50] = "1 3 -1 4 6 -1 8 -1 4";
     
-    //We need 2^n - 1 elements in this array. Therefore,
+    //We could POSSIBLY need 2^n - 1 elements in this array. Therefore,
     //we need a binary integer which is all 1's
     int treeFull = 0;
 
