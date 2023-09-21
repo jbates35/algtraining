@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     int initarr[1] = {-1};
     initADT(&arr, initarr, 10, 0);
     
-    char str2[50] = "1 3 -1 4 6 -1 8 -1 4";
+    char str2[50] = "1 3 5 4 6 -1 -1 7 -1 8 4";
     
     //We could POSSIBLY need 2^n - 1 elements in this array. Therefore,
     //we need a binary integer which is all 1's
@@ -42,13 +42,19 @@ int main(int argc, char *argv[])
         appendADT(&arr, atoi(token));
         token = strtok(NULL, s);
     }
-
+    
     while(!isAllOnes(treeFull++))
         appendADT(&arr, -1);
 
+
     BinNode *binTree;
     bt_createTree(&binTree, arr.A, arr.length);
+
+    bt_preOrder(binTree);
+    bt_inOrder(binTree);
+    bt_levelOrder(binTree);
    
+    bt_free(&binTree);
     freeADT(&arr);
 }
 

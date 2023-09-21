@@ -1,5 +1,6 @@
 #include "binTree.h"
 #include "queueCircular.h"
+#include "stackarr.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -29,7 +30,7 @@ void bt_createTree(BinNode **rootNode, int* arr, int length) {
 
     BinNode *p;
 
-    while(!queueIsEmpty(q)) {
+    while(!queueIsEmpty(q) && cnt<length) {
         p = dequeue(q);
 
         int leftVal = arr[cnt++];
@@ -48,6 +49,88 @@ void bt_createTree(BinNode **rootNode, int* arr, int length) {
     
     //Then, add dem elements
     freeQueue(&q); 
+}
+
+//TODO: Do this later
+void bt_free(BinNode **rootNode) {
+
+}
+
+void bt_preOrder(BinNode *rootNode){
+    printf("Pre-order tree traversal: ");
+    
+    BinNode* p = rootNode;
+    //For stuffing pointers in
+    Stack *s;
+    initStack(&s, 1000);
+
+    while(p != NULL || !isEmpty(s)) {
+        if(p != NULL) {
+            printf("%d ", p->val);
+            push(s, p);
+            p = p->lchild;
+        } else {
+            p = pop(s);
+            p = p->rchild;
+        }
+    }
+
+    printf("\n");
+    freeStack(&s);
+}
+
+void bt_inOrder(BinNode *rootNode){
+    printf("In-order tree traversal: ");
+    
+    BinNode* p = rootNode;
+    //For stuffing pointers in
+    Stack *s;
+    initStack(&s, 1000);
+    
+    while(p != NULL || !isEmpty(s)) {
+        if(p != NULL) {
+            push(s, p);
+            p = p->lchild;
+        } else {
+            p = pop(s);
+            printf("%d ", p->val);
+            p = p->rchild;
+        }
+    }
+
+    printf("\n");
+    freeStack(&s);
+}
+
+void bt_levelOrder(BinNode *rootNode) {
+
+    printf("Level-order tree traversal: ");
+    
+    BinNode* p = rootNode;
+
+    //For stuffing pointers in
+    Queue *q;
+    initQueue(&q, 1000);
+    enqueue(q, p);
+
+    while(!queueIsEmpty(q)) {
+        p = dequeue(q);
+
+        printf("%d ", p->val);
+
+        if(p->lchild != NULL)
+            enqueue(q, p->lchild);
+
+        if(p->rchild != NULL)
+            enqueue(q, p->rchild);
+    }
+
+    printf("\n");
+    freeQueue(&q);
+}
+
+void bt_count(BinNode *rootNode) {
+    
 }
 
 //Create a single node with its parameters initialized
