@@ -44,14 +44,14 @@ BinNode* pop(struct stack *st)
     if(st==NULL || st->s == NULL) {
         fflush(stdout);
         fprintf(stderr, "\nError: Null pointer in pop");
-        return;
+        return NULL;
     }
 
     //Make sure there's something in the stack
     if(isEmpty(st)) {
         fflush(stdout);
         fprintf(stderr, "\nWarning: Empty stack, cannot pop");
-        return;
+        return NULL;
     }
 
     //Finally, take the value from the stack and decrement top

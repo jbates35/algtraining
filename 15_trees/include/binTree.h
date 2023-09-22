@@ -13,7 +13,9 @@ void bt_free(BinNode **rootNode);
 void bt_preOrder(BinNode *rootNode);
 void bt_inOrder(BinNode *rootNode);
 void bt_levelOrder(BinNode *rootNode);
-void bt_count(BinNode *rootNode);
+int bt_count(BinNode *rootNode);
+int bt_height(BinNode *rootNode);
+int student_challenge(BinNode *rootNode);
 
 //Create a single node with its parameters initialized
 BinNode* bt_createNode(int val);

@@ -29,14 +29,12 @@ int main(int argc, char *argv[])
     ArrayInt arr;
     int initarr[1] = {-1};
     initADT(&arr, initarr, 10, 0);
-    
-    char str2[50] = "1 3 5 4 6 -1 -1 7 -1 8 4";
-    
+        
     //We could POSSIBLY need 2^n - 1 elements in this array. Therefore,
     //we need a binary integer which is all 1's
     int treeFull = 0;
 
-    token = strtok(str2, s);
+    token = strtok(str, s);
     while(token != NULL) {
         treeFull++;
         appendADT(&arr, atoi(token));
@@ -54,6 +52,10 @@ int main(int argc, char *argv[])
     bt_inOrder(binTree);
     bt_levelOrder(binTree);
    
+    printf("Number of nodes is %d\n", bt_count(binTree));
+    printf("Height of tree is %d\n", bt_height(binTree));
+    printf("Number of leaf nodes is %d\n", student_challenge(binTree));
+
     bt_free(&binTree);
     freeADT(&arr);
 }

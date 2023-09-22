@@ -129,8 +129,80 @@ void bt_levelOrder(BinNode *rootNode) {
     freeQueue(&q);
 }
 
-void bt_count(BinNode *rootNode) {
+int bt_count(BinNode *rootNode) {
     
+    int count = 0;
+
+    BinNode* p = rootNode;
+
+    //For stuffing pointers in
+    Queue *q;
+    initQueue(&q, 1000);
+    enqueue(q, p);
+
+    while(!queueIsEmpty(q)) {
+        p = dequeue(q);
+        count++;
+
+        if(p->lchild != NULL)
+            enqueue(q, p->lchild);
+
+        if(p->rchild != NULL)
+            enqueue(q, p->rchild);
+    }
+
+    freeQueue(&q);
+
+    return count;
+}
+
+int bt_height(BinNode *rootNode) {
+    int x, y;
+    BinNode* p = rootNode;
+
+    if(p != NULL) {
+        x = bt_height(p->lchild);
+        y = bt_height(p->rchild);
+
+        if(x>y) 
+            return x + 1;
+        else
+            return y + 1;
+    }
+    return 0;
+}
+
+int student_challenge(BinNode *rootNode) {
+    //Count leaf nodes
+    //This can be done with stack or queue
+    //Or recursively
+    int leafCount = 0;
+
+    BinNode* p = rootNode;
+
+    //For stuffing pointers in
+    Queue *q;
+    initQueue(&q, 1000);
+    enqueue(q, p);
+
+    while(!queueIsEmpty(q)) {
+        p = dequeue(q);
+        
+        if(p->lchild==NULL && p->rchild==NULL) {
+            leafCount++;
+            continue;
+        }
+
+        if(p->lchild != NULL)
+            enqueue(q, p->lchild);
+
+        if(p->rchild != NULL)
+            enqueue(q, p->rchild);
+    }
+
+    freeQueue(&q);
+
+    return leafCount;  
 }
 
 //Create a single node with its parameters initialized
