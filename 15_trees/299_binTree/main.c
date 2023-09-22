@@ -50,6 +50,7 @@ int main(int argc, char *argv[])
 
     bt_preOrder(binTree);
     bt_inOrder(binTree);
+    bt_postOrder(binTree);
     bt_levelOrder(binTree);
    
     printf("Number of nodes is %d\n", bt_count(binTree));

@@ -102,6 +102,36 @@ void bt_inOrder(BinNode *rootNode){
     freeStack(&s);
 }
 
+void bt_postOrder(BinNode *rootNode){
+    printf("Post-order tree traversal: ");
+    
+    BinNode* p = rootNode;
+    BinNode* lastNode;
+    //For stuffing pointers in
+    Stack *s;
+    initStack(&s, 1000);
+    
+    while(p != NULL || !isEmpty(s)) {
+        if(p != NULL) {
+            push(s, p);
+            p = p->lchild;
+        } else {
+            BinNode *peeked = peek(s);
+            if(peeked->rchild != NULL && peeked->rchild != lastNode) {
+                p=peeked->rchild;
+            } else {
+                p = pop(s);
+                printf("%d ", p->val);
+                lastNode = p;
+                p = NULL;
+            }
+        }
+    }
+
+    printf("\n");
+    freeStack(&s);
+}
+
 void bt_levelOrder(BinNode *rootNode) {
 
     printf("Level-order tree traversal: ");

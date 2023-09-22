@@ -12,6 +12,7 @@ void bt_createTree(BinNode **rootNode, int* arr, int length);
 void bt_free(BinNode **rootNode);
 void bt_preOrder(BinNode *rootNode);
 void bt_inOrder(BinNode *rootNode);
+void bt_postOrder(BinNode *rootNode);
 void bt_levelOrder(BinNode *rootNode);
 int bt_count(BinNode *rootNode);
 int bt_height(BinNode *rootNode);
