@@ -3,6 +3,7 @@ project(bst)
 
 # Add subdirectories for each sub-project
 add_subdirectory(305_createBST)
+add_subdirectory(307_deleteNodesBST)
 
 # Specify the include directories
 include_directories(include)

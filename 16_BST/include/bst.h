@@ -4,5 +4,6 @@
 #include "binTree.h"
 
 void bst_createNode(BinNode** rootNode, int val);
+void bst_deleteNode(BinNode** rootNode, int val);
 
 #endif

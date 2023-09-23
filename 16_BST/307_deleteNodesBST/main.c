@@ -13,25 +13,34 @@ int main(int argc, char *argv[])
     char *token;
     const char s[2] = " ";
     int size=100;
+    int deleteKey = 0;
 
-    while ((c = getopt(argc, argv, "x:")) != -1) {
+    while ((c = getopt(argc, argv, "x:d:")) != -1) {
         switch (c) {
         case 'x':
             str = optarg;
+            break;
+        case 'd':
+            deleteKey = atoi(optarg);
             break;
         }
     }
 
     BinNode *bst = NULL;
-
+    
     token = strtok(str, s);
     while(token != NULL) {
         bst_createNode(&bst, atoi(token));
         token = strtok(NULL, s);
     }
 
-    bt_preOrder(bst);
-    bt_inOrder(bst);
-    bt_postOrder(bst);
+    printf("BEFORE DELETING:\n");
     bt_levelOrder(bst);
+    bt_inOrder(bst);
+
+    printf("\nDELETING NODE WITH KEY==%d\n", deleteKey);
+    bst_deleteNode(&bst, deleteKey);
+
+    bt_levelOrder(bst);
+    bt_inOrder(bst);
 }
