@@ -53,11 +53,43 @@ void bt_createTree(BinNode **rootNode, int* arr, int length) {
 
 //TODO: Do this later
 void bt_free(BinNode **rootNode) {
+    BinNode* p = *rootNode;
+    //For stuffing pointers in
+    Stack *s_deleteNodes;
+    initStack(&s_deleteNodes, 1000);
 
+    //For stuffing pointers in
+    Stack *s;
+    initStack(&s, 1000);
+
+    while(p != NULL || !isEmpty(s)) {
+        if(p != NULL) {
+            push(s_deleteNodes, p);
+            push(s, p);
+            p = p->lchild;
+        } else {
+            p = pop(s);
+            p = p->rchild;
+        }
+    } 
+
+    while(!isEmpty(s_deleteNodes)) {
+        p = pop(s_deleteNodes);
+        free(p);
+    }
+
+    freeStack(&s);
+    freeStack(&s_deleteNodes);
+    *rootNode = NULL;
 }
 
 void bt_preOrder(BinNode *rootNode){
     printf("Pre-order tree traversal: ");
+        
+    if(rootNode == NULL) {
+        printf("None\n");
+        return;
+    }
     
     BinNode* p = rootNode;
     //For stuffing pointers in
@@ -82,6 +114,11 @@ void bt_preOrder(BinNode *rootNode){
 void bt_inOrder(BinNode *rootNode){
     printf("In-order tree traversal: ");
     
+    if(rootNode == NULL) {
+        printf("None\n");
+        return;
+    }
+
     BinNode* p = rootNode;
     //For stuffing pointers in
     Stack *s;
@@ -104,7 +141,12 @@ void bt_inOrder(BinNode *rootNode){
 
 void bt_postOrder(BinNode *rootNode){
     printf("Post-order tree traversal: ");
-    
+       
+    if(rootNode == NULL) {
+        printf("None\n");
+        return;
+    }
+     
     BinNode* p = rootNode;
     BinNode* lastNode;
     //For stuffing pointers in
@@ -135,6 +177,11 @@ void bt_postOrder(BinNode *rootNode){
 void bt_levelOrder(BinNode *rootNode) {
 
     printf("Level-order tree traversal: ");
+        
+    if(rootNode == NULL) {
+        printf("None\n");
+        return;
+    }
     
     BinNode* p = rootNode;
 

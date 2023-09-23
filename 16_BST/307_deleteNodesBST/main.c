@@ -43,4 +43,6 @@ int main(int argc, char *argv[])
 
     bt_levelOrder(bst);
     bt_inOrder(bst);
+
+    bt_free(&bst);
 }
