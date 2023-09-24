@@ -4,6 +4,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+For reference, BinNode is:
+
+typedef struct BinNode {
+    int val;
+    struct BinNode *lchild;
+    struct BinNode *rchild;
+} BinNode;
+*/
 void bst_createNode(BinNode** rootNode, int val) {    
     //Create new node which will get assigned
     BinNode *newNode = bt_createNode(val);    
