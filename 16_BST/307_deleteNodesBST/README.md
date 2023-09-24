@@ -10,7 +10,7 @@ The way I thought to solve this was with the use of a stack and then re-building
 But when following the course, a better way was doing an in-order search from the node being deleted. and then taking the first node afterwards and attaching it to the previous node.
 ```shell
 $ git clone https://github.com/jbates35/algtraining
-$ cd ./algtraining/15_trees
+$ cd ./algtraining/16_BST
 $ mkdir build && cd build
 $ cmake .. && make
 $ cd 307_deleteNodesBST
