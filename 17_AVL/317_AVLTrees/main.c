@@ -30,5 +30,18 @@ int main(int argc, char *argv[])
         token = strtok(NULL, s);
     }
 
-    printf("Balance is ... %d\n", checkBSTBalance(avl));
+    printf("Before rotate:\n");
+    bt_levelOrder(avl);
+    bt_inOrder(avl);
+    printf("\nHeight of tree before:\n%d\n", bt_height(avl));
+
+    avl_rotateNode(&avl);
+
+    printf("\nAfter rotate\n");
+    bt_levelOrder(avl);
+    bt_inOrder(avl);
+
+    printf("\nHeight of tree after:\n%d\n", bt_height(avl));
+
+
 }

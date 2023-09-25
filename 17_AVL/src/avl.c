@@ -14,6 +14,14 @@ typedef struct BinNode {
 } BinNode;
 */
 
+//Functions interal to this file:
+int checkBSTBalance(BinNode* rootNode);
+void doNothing(BinNode **rootNode);
+void ll(BinNode **rootNode);
+void lr(BinNode **rootNode);
+void rl(BinNode **rootNode);
+void rr(BinNode **rootNode);
+
 void avl_createNode(BinNode** rootNode, int val) {    
     //Create new node which will get assigned
     BinNode *newNode = bt_createNode(val);    
@@ -154,9 +162,9 @@ void avl_fromPre(BinNode** rootNode, int *arr, int l) {
     freeStack(&st);
 }
 
-void avl_rotateNode(BinNode* rootNode) {
-    void (*rotate[4]) (BinNode *rootNode) = { doNothing, ll, lr, rl, rr };
-    (*rotate[checkBSTBalance(rootNode)])(rootNode);
+void avl_rotateNode(BinNode** rootNode) {
+    void (*rotate[5]) (BinNode **rootNode) = { doNothing, ll, lr, rl, rr };
+    (*rotate[checkBSTBalance(*rootNode)])(rootNode);
 }
 
 int checkBSTBalance(BinNode* rootNode) {
@@ -182,23 +190,43 @@ int checkBSTBalance(BinNode* rootNode) {
         int nextBalance = bt_height(nextNode->lchild) - bt_height(nextNode->rchild);
         return (nextBalance > 0) ? 3 : 4;
     }
+} 
+
+void doNothing(BinNode **rootNode) {
 }
 
-void doNothing(BinNode *rootNode) {
+void ll(BinNode **rootNode) { 
+    BinNode *prevRoot = *rootNode;
+
+    *rootNode = (*rootNode)->lchild;
+    prevRoot->lchild = (*rootNode)->rchild;
+    (*rootNode)->rchild = prevRoot;
 }
 
-void ll(BinNode *rootNode) {
-
+void lr(BinNode **rootNode) {
+    BinNode *prevRoot = *rootNode;
+    
+    *rootNode = (prevRoot->lchild)->rchild;
+    (prevRoot->lchild)->rchild = (*rootNode)->lchild;
+    (*rootNode)->lchild = prevRoot->lchild;
+    prevRoot->lchild = (*rootNode)->rchild;
+    (*rootNode)->rchild = prevRoot;
 }
 
-void lr(BinNode *rootNode) {
-
+void rl(BinNode **rootNode) {
+    BinNode *prevRoot = *rootNode;
+    
+    *rootNode = (prevRoot->rchild)->lchild;
+    (prevRoot->rchild)->lchild = (*rootNode)->rchild;
+    (*rootNode)->rchild = prevRoot->rchild;
+    prevRoot->rchild = (*rootNode)->lchild;
+    (*rootNode)->lchild = prevRoot;
 }
 
-void rl(BinNode *rootNode) {
+void rr(BinNode **rootNode) {
+    BinNode *prevRoot = *rootNode;
 
-}
-
-void rr(BinNode *rootNode) {
-
+    *rootNode = (*rootNode)->rchild;
+    prevRoot->rchild = (*rootNode)->lchild;
+    (*rootNode)->lchild = prevRoot;
 }

@@ -1,14 +1,14 @@
 # Trees
 ## Description:
-In this chapter, we will explore trees. This will be an interesting subject as trees start to get a little more complex and typically combine linked lists or array ADTs with queues.
+In this chapter, we will explore AVL trees. A modification of a BST tree, AVL tree allows for adjustment of height so it follows relatively close to the log_2(n) optimization that BST trees can have.
 ## Structure
-Most of the functionality will be in the src/queue* and include/queue* files. 
+Most of the functionality will be in the src/avl* and include/avl* files. 
 ## Usage
 Much like the last few folders, this will have a root CMakeLists.txt that allows one to simply make a build folder and then make all the subprograms at once. I.e.:
 
 ```shell
 git clone https://github.com/jbates35/algtraining
-cd ./algtraining/15_trees
+cd ./algtraining/17_AVL
 mkdir build
 cd build
 cmake ..
@@ -17,8 +17,8 @@ make
 Then to run a program, go:
 
 ```
-$ cd ./299_binTree
-$ ./binTree -x "1 3 -1 4 6 -1 8 -1 4"
+$ cd ./317_AVLTrees
+$ ./AVLTree -x "20 10 25 8 15 22 27 21 24 23"
 ```
 
 Note: This will only have one folder as all the lessons are somewhat needed to make each other work.
