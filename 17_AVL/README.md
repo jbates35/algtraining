@@ -18,7 +18,7 @@ Then to run a program, go:
 
 ```
 $ cd ./317_AVLTrees
-$ ./AVLTree -x "20 10 25 8 15 22 27 21 24 23"
+$ ./AVLTree
 ```
 
 Note: This will only have one folder as all the lessons are somewhat needed to make each other work.

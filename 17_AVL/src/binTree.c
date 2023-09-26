@@ -56,11 +56,11 @@ void bt_free(BinNode **rootNode) {
     BinNode* p = *rootNode;
     //For stuffing pointers in
     Stack *s_deleteNodes;
-    initStack(&s_deleteNodes, 1000);
+    initStack(&s_deleteNodes, 2000);
 
     //For stuffing pointers in
     Stack *s;
-    initStack(&s, 1000);
+    initStack(&s, 2000);
 
     while(p != NULL || !isEmpty(s)) {
         if(p != NULL) {
@@ -94,7 +94,7 @@ void bt_preOrder(BinNode *rootNode){
     BinNode* p = rootNode;
     //For stuffing pointers in
     Stack *s;
-    initStack(&s, 1000);
+    initStack(&s, 2000);
 
     while(p != NULL || !isEmpty(s)) {
         if(p != NULL) {
@@ -122,7 +122,7 @@ void bt_inOrder(BinNode *rootNode){
     BinNode* p = rootNode;
     //For stuffing pointers in
     Stack *s;
-    initStack(&s, 1000);
+    initStack(&s, 2000);
     
     while(p != NULL || !isEmpty(s)) {
         if(p != NULL) {
@@ -151,7 +151,7 @@ void bt_postOrder(BinNode *rootNode){
     BinNode* lastNode;
     //For stuffing pointers in
     Stack *s;
-    initStack(&s, 1000);
+    initStack(&s, 2000);
     
     while(p != NULL || !isEmpty(s)) {
         if(p != NULL) {
@@ -187,7 +187,7 @@ void bt_levelOrder(BinNode *rootNode) {
 
     //For stuffing pointers in
     Queue *q;
-    initQueue(&q, 1000);
+    initQueue(&q, 2000);
     enqueue(q, p);
 
     while(!queueIsEmpty(q)) {
@@ -214,7 +214,7 @@ int bt_count(BinNode *rootNode) {
 
     //For stuffing pointers in
     Queue *q;
-    initQueue(&q, 1000);
+    initQueue(&q, 2000);
     enqueue(q, p);
 
     while(!queueIsEmpty(q)) {

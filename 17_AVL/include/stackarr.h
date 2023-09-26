@@ -6,19 +6,34 @@
 
 #include "binTree.h"
 
-typedef struct stack 
+typedef struct Stack 
 {
     int size;
     int top;
     BinNode** s;
 } Stack;
 
-void initStack(struct stack **st, int size);
-void freeStack(struct stack **st);
-int push(struct stack *st, BinNode* Node);
-BinNode* pop(struct stack *st);
-BinNode* peek(struct stack *st);
-int isFull(struct stack *st);
-int isEmpty(struct stack *st);
+void initStack(Stack **st, int size);
+void freeStack(Stack **st);
+int push(Stack *st, BinNode* Node);
+BinNode* pop(Stack *st);
+BinNode* peek(Stack *st);
+int isFull(Stack *st);
+int isEmpty(Stack *st);
+
+typedef struct StackPtr
+{
+    int size;
+    int top;
+    BinNode*** s;
+} StackPtr;
+
+void sptr_init(StackPtr **st, int size);
+void sptr_free(StackPtr **st);
+int sptr_push(StackPtr *st, BinNode** NodePtr);
+BinNode** sptr_pop(StackPtr *st);
+BinNode** sptr_peek(StackPtr *st);
+int sptr_isFull(StackPtr *st);
+int sptr_isEmpty(StackPtr *st);
 
 #endif

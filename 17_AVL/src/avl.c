@@ -24,7 +24,7 @@ void rr(BinNode **rootNode);
 
 void avl_createNode(BinNode** rootNode, int val) {    
     //Create new node which will get assigned
-    BinNode *newNode = bt_createNode(val);    
+    BinNode *newNode = bt_createNode(val);  
 
     //If nodes doesn't exist, new node should be the first node in the tree
     if(*rootNode == NULL) {
@@ -36,42 +36,70 @@ void avl_createNode(BinNode** rootNode, int val) {
     BinNode *p = *rootNode;
     BinNode *pPrev;
 
+    StackPtr *s;
+    sptr_init(&s, 2000);
+    sptr_push(s, rootNode);
+
     //Now we have to compare the values until we get to the right spot
+    //Push the links between the nodes to alter them in sort
     while(1) {
-        if(newNode->val == p->val)
+        if(newNode->val == p->val) {
+            sptr_free(&s);
             return;
+        }
 
         if(newNode->val < p->val) {
             if(p->lchild == NULL) {
                 p->lchild = newNode;
-                return;
-            } 
-            else
+                break;
+            } else {
+                sptr_push(s, &p->lchild);
                 p = p->lchild;
+            }
         }
         else {
             if(p->rchild == NULL) {
                 p->rchild = newNode; 
-                return;
-            }
-            else
+                break;
+            } else {            
+                sptr_push(s, &p->rchild);
                 p = p->rchild;
+            }
         }    
     }
+
+    //Now sort the nodes in s:
+    while(!sptr_isEmpty(s)) {
+        BinNode **q = sptr_pop(s);
+        avl_rotateNode(q);
+    }
+    sptr_free(&s);
 } 
 
 void avl_deleteNode(BinNode** rootNode, int val) {
     BinNode *p = *rootNode;
 
+    if(*rootNode==NULL)
+        return;
+
+    StackPtr *s;
+    sptr_init(&s, 2000);
     int lastDir;    
+
+    
+    sptr_push(s, rootNode);
 
     //First find the node
     //For searching later - GOOD USE CASE OF DOUBLE POINTER
     while(p != NULL && p->val != val) {
+
+        //Push the node into the stack so we can sort later
         if(p->val > val) {
+            sptr_push(s, &p->lchild);
             rootNode = &p->lchild;
             p = p->lchild;
         } else {
+            sptr_push(s, &p->rchild);
             rootNode = &p->rchild;
             p = p->rchild;
         }
@@ -125,41 +153,14 @@ void avl_deleteNode(BinNode** rootNode, int val) {
     p->lchild=keyToDelete->lchild;
     free(keyToDelete);
     *rootNode = p;
-}
 
-void avl_fromPre(BinNode** rootNode, int *arr, int l) {    
-    if(l==0)
-        return;
-    
-    //Init stack for pushing previous nodes in
-    Stack *st;
-    initStack(&st, 1000);
-
-    //Stuff first node in
-    *rootNode = bt_createNode(arr[0]);
-    BinNode *p = *rootNode;
-
-    for(int i = 1; i < l; i++) {
-        BinNode *next = bt_createNode(arr[i]);
-
-        //If value is lower than previous val
-        if(next->val < p->val) {
-            p->lchild = next;
-            push(st, p);
-            p=next;
-            continue;
-        }
-
-        //Otherwise, value is higher than previous val
-        //But we have to see the correct place to assign rchild
-        while(!isEmpty(st) && !(p->val < next->val && next->val < peek(st)->val))
-            p = pop(st);
-
-        p->rchild = next;
-        p = next;
+    //Now sort the nodes in s:
+    while(!sptr_isEmpty(s)) {
+        BinNode **q = sptr_pop(s);
+        avl_rotateNode(q);
     }
 
-    freeStack(&st);
+    sptr_free(&s);
 }
 
 void avl_rotateNode(BinNode** rootNode) {
@@ -168,6 +169,9 @@ void avl_rotateNode(BinNode** rootNode) {
 }
 
 int checkBSTBalance(BinNode* rootNode) {
+    if(rootNode == NULL)
+        return 0;
+
     //0 means is balanced - do nothing
     //1 is LL means pos, pos
     //2 is LR means pos, neg

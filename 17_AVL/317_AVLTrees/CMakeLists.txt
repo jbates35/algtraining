@@ -14,4 +14,4 @@ add_executable(AVLTree main.c)
 target_include_directories(AVLTree PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 # Add the source files to your target
-target_sources(AVLTree PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/avl.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/queueCircular.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/arrayAdt.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/binTree.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/stackarr.c)
+target_sources(AVLTree PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/avl.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/bst.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/queueCircular.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/arrayAdt.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/binTree.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/stackarr.c)

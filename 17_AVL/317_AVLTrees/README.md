@@ -10,15 +10,38 @@ $ cmake .. && make
 $ cd 317_AVLTrees
 ```
 ### Example:
--x list of values you want in the BST
+Just run the command once built.
 ```bash
-$ ./createBST -x "10 6 5 7 10 13 12 14"
+$ ./AVLTree
 ```
 ```
+Height of tree for AVL after inserting all:
+13
+Height of tree for BST after inserting all:
+23
+
+Count of nodes for AVL after inserting all:
+1500
+Count of nodes for AVL after inserting all:
+1500
+
+Height of tree for AVL after deleting half the values:
+12
+
+Height of tree for BST after deleting half the values:
+19
+
+Count of nodes for AVL after deleting half the values:
+750
+Count of nodes for BST after deleting half the values:
+750
 ```
 If interested, the functions of note are located in src/bst.c:
 ```c
-
-
-
+void avl_createNode(BinNode** rootNode, int val);
+void avl_deleteNode(BinNode** rootNode, int val);
+void avl_rotateNode(BinNode** rootNode);
 ```
+This code is kinda garbage. Had to end up using a triple pointer to make my weird stack work while still being able to pull pointers from it that I could modify. If I were coding this for someone I'd definitely try to find some different way of doing this - perhaps wrapping the root node of the tree in a struct. Recursion would have made this code a lot cleaner (and would have been far easier to program) but I wanted a deterministic approach with iteration. 
+
+The avl_rotateNode function is fairly cool though.

@@ -1,47 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <getopt.h>
-#include <string.h>
 
 #include "avl.h"
+#include "bst.h"
+#include "arrayOfInts.h"
 
 int main(int argc, char *argv[])
 {
-    int c;
-    opterr = 0;
-    char *str;
-    char *token;
-    const char s[2] = " ";
-    int size=100;
-
-    while ((c = getopt(argc, argv, "x:")) != -1) {
-        switch (c) {
-        case 'x':
-            str = optarg;
-            break;
-        }
-    }
-
     BinNode *avl = NULL;
+    BinNode *bst = NULL;
 
-    token = strtok(str, s);
-    while(token != NULL) {
-        avl_createNode(&avl, atoi(token));
-        token = strtok(NULL, s);
+    //Make array
+    for(int i = 0; i < sizeof(intArray)/sizeof(int); i++) {
+        avl_createNode(&avl, intArray[i]);
+        bst_createNode(&bst, intArray[i]);
     }
 
-    printf("Before rotate:\n");
-    bt_levelOrder(avl);
-    bt_inOrder(avl);
-    printf("\nHeight of tree before:\n%d\n", bt_height(avl));
+    printf("Height of tree for AVL after inserting all:\n%d\n", bt_height(avl));
+    printf("Height of tree for BST after inserting all:\n%d\n", bt_height(bst));
 
-    avl_rotateNode(&avl);
+    printf("\nCount of nodes for AVL after inserting all:\n%d\n", bt_count(avl));
+    printf("Count of nodes for AVL after inserting all:\n%d\n", bt_count(bst));
 
-    printf("\nAfter rotate\n");
-    bt_levelOrder(avl);
-    bt_inOrder(avl);
+    //Make array
+    for(int i=0; i<sizeof(intArray)/sizeof(int); i=i+2) {
+        avl_deleteNode(&avl, intArray[i]);
+        bst_deleteNode(&bst, intArray[i]);
+    }
 
-    printf("\nHeight of tree after:\n%d\n", bt_height(avl));
+    printf("\nHeight of tree for AVL after deleting half the values:\n%d\n", bt_height(avl));
+    printf("\nHeight of tree for BST after deleting half the values:\n%d\n", bt_height(bst));
 
+    printf("\nCount of nodes for AVL after deleting half the values:\n%d\n", bt_count(avl));
+    printf("Count of nodes for BST after deleting half the values:\n%d\n", bt_count(bst));
 
+    bt_free(&bst);
+    bt_free(&avl);
 }
