@@ -22,8 +22,8 @@ typedef struct RBTree {
 #endif
 
 void rb_init(RBTree *tree);
-void free(RBTree *tree);
+void rb_free(RBTree *tree);
 
-void rb_appendNode(RBTree *tree, int val);
+void rb_insertNode(RBTree *tree, int val);
 void rb_deleteNode(RBTree *tree, int val);
 

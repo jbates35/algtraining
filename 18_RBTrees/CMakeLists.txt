@@ -8,4 +8,4 @@ add_subdirectory(326_RedBlackTrees)
 include_directories(include)
 
 # Add the utility files to a library
-add_library(utils src/redblack.src src/queueCircular.c src/arrayAdt.c src/stackarr.c)
+add_library(utils src/redblack.c src/queueCircular.c src/arrayAdt.c src/stackarr.c)
