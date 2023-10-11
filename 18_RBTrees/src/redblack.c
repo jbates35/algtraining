@@ -56,7 +56,46 @@ void rb_insertNode(RBTree *tree, int val) {
 
 void rb_deleteNode(RBTree *tree, int val) {}
 
-void switchColor(RBNode *rootNode) {}
+void sortNode(RBTree *tree, RBNode *rootNode) {
+  if (rootNode == NULL) {
+    fflush(stdout);
+    fprintf(stderr, "\nError in sortNode: Null pointer\n");
+    return;
+  }
+
+  RBNode *parent = rootNode->parent;
+  RBNode *uncle = NULL;
+
+  // Direction of uncle from grandparent - 0 is left, 1 is right
+  int uncle_direction = 0;
+
+  Color_t parent_color = BLACK;
+  Color_t uncle_color = BLACK;
+
+  if (parent != NULL) {
+    uncle = (parent->val < parent->parent->val) ? (parent->parent)->rchild
+                                                : (parent->parent)->lchild;
+    uncle_direction = (parent->val < (parent->parent)->val) ? 1 : 0;
+    parent_color = parent->color;
+  }
+
+  uncle_color = BLACK;
+  if (uncle != NULL)
+    uncle_color = uncle->color;
+
+  if (uncle_color == RED)
+    switchColor(rootNode);
+  else {
+    void (*fp[5])(RBNode **rootNode) = {doNothing, ll, lr, rl, rr};
+  }
+}
+
+void switchColor(RBNode *rootNode) {
+  RBNode *p = rootNode->parent;
+
+  if (rootNode->color == BLACK) {
+  }
+}
 
 /**
  * @brief Create a new node but only in the sense that it initializes the node
