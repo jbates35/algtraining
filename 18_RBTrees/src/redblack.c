@@ -9,11 +9,11 @@ RBNode *rb_createNode(int val);
 void sortNode(RBTree *tree, RBNode *root);
 void switchColor(RBNode *rootNode);
 void doNothing(RBTree *tree, RBNode *rootNode);
-void ll(RBTree *tree, RBNode *rootNode);
+/*void ll(RBTree *tree, RBNode *rootNode);
 void lr(RBTree *tree, RBNode *rootNode);
 void rl(RBTree *tree, RBNode *rootNode);
 void rr(RBTree *tree, RBNode *rootNode);
-
+*/
 void rb_init(RBTree *tree) {}
 
 void rb_free(RBTree *tree) {}
@@ -86,7 +86,7 @@ void sortNode(RBTree *tree, RBNode *rootNode) {
   if (uncle_color == RED)
     switchColor(rootNode);
   else {
-    void (*fp[5])(RBNode **rootNode) = {doNothing, ll, lr, rl, rr};
+    void (*fp[5])(RBTree *, RBNode *) = {doNothing, ll, lr, rl, rr};
   }
 }
 
@@ -116,7 +116,7 @@ RBNode *rb_createNode(int val) {
   return newNode;
 }
 
-void sortNode(RBTree *tree, RBNode *root) { return; }
+void doNothing(RBTree *tree, RBNode *node) {}
 
 void ll(RBTree *tree, RBNode *rootNode) {
   RBNode *prevRoot = rootNode;
@@ -132,6 +132,14 @@ void ll(RBTree *tree, RBNode *rootNode) {
 
   /// START FROM EHRE NOW - NEED TO REDESIGN FUNCTION SO PARENT NODES CAN
   /// RESPOND TO CHILD NODES
+  *pNodeLink = rootNode->lchild;
+  (*pNodeLink)->parent = parentNode;
+
+  prevRoot->lchild = (*pNodeLink)->rchild;
+  (*pNodeLink)->rchild = prevRoot;
+
+  prevRoot->parent = (*pNodeLink);
+  (prevRoot->lchild)->parent = prevRoot;
   /*
   rootNode = rootNode->lchild;
   prevRoot->lchild = rootNode->rchild;
@@ -140,6 +148,7 @@ void ll(RBTree *tree, RBNode *rootNode) {
 }
 
 void lr(RBTree *tree, RBNode *rootNode) {
+  /*
   RBNode *prevRoot = *rootNode;
 
   *rootNode = (prevRoot->lchild)->rchild;
@@ -147,22 +156,27 @@ void lr(RBTree *tree, RBNode *rootNode) {
   (*rootNode)->lchild = prevRoot->lchild;
   prevRoot->lchild = (*rootNode)->rchild;
   (*rootNode)->rchild = prevRoot;
+*/
 }
 
 void rl(RBTree *tree, RBNode *rootNode) {
-  RBNode *prevRoot = *rootNode;
+  /*
+   RBNode *prevRoot = *rootNode;
 
-  *rootNode = (prevRoot->rchild)->lchild;
-  (prevRoot->rchild)->lchild = (*rootNode)->rchild;
-  (*rootNode)->rchild = prevRoot->rchild;
-  prevRoot->rchild = (*rootNode)->lchild;
-  (*rootNode)->lchild = prevRoot;
+   *rootNode = (prevRoot->rchild)->lchild;
+   (prevRoot->rchild)->lchild = (*rootNode)->rchild;
+   (*rootNode)->rchild = prevRoot->rchild;
+   prevRoot->rchild = (*rootNode)->lchild;
+   (*rootNode)->lchild = prevRoot;
+   */
 }
 
 void rr(RBTree *tree, RBNode *rootNode) {
+  /*
   RBNode *prevRoot = *rootNode;
 
   *rootNode = (*rootNode)->rchild;
   prevRoot->rchild = (*rootNode)->lchild;
   (*rootNode)->lchild = prevRoot;
+*/
 }

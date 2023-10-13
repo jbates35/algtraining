@@ -44,4 +44,4 @@ void avl_rotateNode(BinNode** rootNode);
 ```
 This code is kinda garbage. Had to end up using a triple pointer to make my weird stack work while still being able to pull pointers from it that I could modify. If I were coding this for someone I'd definitely try to find some different way of doing this - perhaps wrapping the root node of the tree in a struct. Recursion would have made this code a lot cleaner (and would have been far easier to program) but I wanted a deterministic approach with iteration. 
 
-The avl_rotateNode function is fairly cool though.
+    The avl_rotateNode function is fairly cool though.

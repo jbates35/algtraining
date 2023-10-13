@@ -5,6 +5,5 @@
 
 void avl_createNode(BinNode** rootNode, int val);
 void avl_deleteNode(BinNode** rootNode, int val);
-void avl_fromPre(BinNode** rootNode, int *arr, int l);
 void avl_rotateNode(BinNode** rootNode);
 #endif
