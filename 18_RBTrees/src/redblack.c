@@ -72,9 +72,10 @@ void sortNode(RBTree *tree, RBNode *rootNode) {
   Color_t parent_color = BLACK;
   Color_t uncle_color = BLACK;
 
-  if (parent != NULL) {
+  if (parent != NULL && parent->parent != NULL) {
     uncle = (parent->val < parent->parent->val) ? (parent->parent)->rchild
                                                 : (parent->parent)->lchild;
+    // might not need this
     uncle_direction = (parent->val < (parent->parent)->val) ? 1 : 0;
     parent_color = parent->color;
   }
@@ -121,6 +122,8 @@ void doNothing(RBTree *tree, RBNode *node) {}
 void ll(RBTree *tree, RBNode *rootNode) {
   RBNode *prevRoot = rootNode;
 
+  printf("Hello???");
+
   RBNode *parentNode = rootNode->parent;
   RBNode **pNodeLink;
 
@@ -140,6 +143,7 @@ void ll(RBTree *tree, RBNode *rootNode) {
 
   prevRoot->parent = (*pNodeLink);
   (prevRoot->lchild)->parent = prevRoot;
+
   /*
   rootNode = rootNode->lchild;
   prevRoot->lchild = rootNode->rchild;

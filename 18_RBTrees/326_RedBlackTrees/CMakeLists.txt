@@ -7,8 +7,10 @@ set(CMAKE_C_STANDARD 99)
 # Allow vscode to find compile commands
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+set(CMAKE_BUILD_TYPE Debug)
 # Add executable target
 add_executable(RedBlackTree main.c)
+
 
 # Specify the include directories
 target_include_directories(RedBlackTree PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../include)
