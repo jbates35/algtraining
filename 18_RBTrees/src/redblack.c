@@ -50,6 +50,7 @@ void rb_insertNode(RBTree *tree, int val) {
   }
 
   *q_ptr = newNode;
+  tree->size++;
 
   sortNode(tree, newNode);
 }
@@ -122,13 +123,13 @@ void doNothing(RBTree *tree, RBNode *node) {}
 void ll(RBTree *tree, RBNode *rootNode) {
   RBNode *prevRoot = rootNode;
 
-  printf("Hello???");
-
   RBNode *parentNode = rootNode->parent;
   RBNode **pNodeLink;
 
-  if (parentNode == NULL)
+  if (parentNode == NULL) {
     pNodeLink = &tree->root;
+  }
+
   else
     pNodeLink = (rootNode->val < parentNode->val) ? &parentNode->lchild
                                                   : &parentNode->rchild;
@@ -136,13 +137,17 @@ void ll(RBTree *tree, RBNode *rootNode) {
   /// START FROM EHRE NOW - NEED TO REDESIGN FUNCTION SO PARENT NODES CAN
   /// RESPOND TO CHILD NODES
   *pNodeLink = rootNode->lchild;
-  (*pNodeLink)->parent = parentNode;
-
   prevRoot->lchild = (*pNodeLink)->rchild;
-  (*pNodeLink)->rchild = prevRoot;
+
+  if (*pNodeLink != NULL) {
+    (*pNodeLink)->parent = parentNode;
+    (*pNodeLink)->rchild = prevRoot;
+  }
 
   prevRoot->parent = (*pNodeLink);
-  (prevRoot->lchild)->parent = prevRoot;
+
+  if (prevRoot->lchild != NULL)
+    (prevRoot->lchild)->parent = prevRoot;
 
   /*
   rootNode = rootNode->lchild;
