@@ -172,13 +172,15 @@ void lr(RBTree *tree, RBNode *rootNode) {
   (*pNodeLink)->parent = parentNode;
 
   (rootNode->lchild)->rchild = (*pNodeLink)->lchild;
-  (*pNodeLink)->lchild->parent = rootNode->lchild;
+  if((*pNodeLink)->lchild!=NULL)
+    (*pNodeLink)->lchild->parent = rootNode->lchild;
 
   (*pNodeLink)->lchild = rootNode->lchild;
   rootNode->lchild->parent = (*pNodeLink);
 
   rootNode->lchild = (*pNodeLink)->rchild;
-  (*pNodeLink)->rchild->parent = rootNode;
+  if((*pNodeLink)->rchild != NULL)
+    (*pNodeLink)->rchild->parent = rootNode;
 
   (*pNodeLink)->rchild = rootNode;
   rootNode->parent = (*pNodeLink);
@@ -209,13 +211,15 @@ void rl(RBTree *tree, RBNode *rootNode) {
   (*pNodeLink)->parent = parentNode;
 
   (rootNode->rchild)->lchild = (*pNodeLink)->rchild;
-  (*pNodeLink)->rchild->parent = rootNode->rchild;
+  if((*pNodeLink)->rchild != NULL)
+    (*pNodeLink)->rchild->parent = rootNode->rchild;
 
   (*pNodeLink)->rchild = rootNode->rchild;
   rootNode->rchild->parent = (*pNodeLink);
 
   rootNode->rchild = (*pNodeLink)->lchild;
-  (*pNodeLink)->lchild->parent = rootNode;
+  if((*pNodeLink)->lchild != NULL)
+    (*pNodeLink)->lchild->parent = rootNode;
 
   (*pNodeLink)->lchild = rootNode;
   rootNode->parent = (*pNodeLink);
@@ -231,8 +235,7 @@ void rl(RBTree *tree, RBNode *rootNode) {
 }
 
 void rr(RBTree *tree, RBNode *rootNode) {
-  /*
-  RBNode *prevRoot = *rootNode;
+  RBNode *prevRoot = rootNode;
 
   RBNode *parentNode = rootNode->parent;
   RBNode **pNodeLink;
