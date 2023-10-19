@@ -157,6 +157,31 @@ void ll(RBTree *tree, RBNode *rootNode) {
 }
 
 void lr(RBTree *tree, RBNode *rootNode) {
+  RBNode *prevRoot = rootNode;
+
+  RBNode *parentNode = rootNode->parent;
+  RBNode **pNodeLink;
+
+  if (parentNode == NULL)
+    pNodeLink = &tree->root;
+  else
+    pNodeLink = (rootNode->val < parentNode->val) ? &parentNode->lchild
+                                                  : &parentNode->rchild;
+
+  (*pNodeLink) = (rootNode->lchild)->rchild;
+  (*pNodeLink)->parent = parentNode;
+
+  (rootNode->lchild)->rchild = (*pNodeLink)->lchild;
+  (*pNodeLink)->lchild->parent = rootNode->lchild;
+
+  (*pNodeLink)->lchild = rootNode->lchild;
+  rootNode->lchild->parent = (*pNodeLink);
+
+  rootNode->lchild = (*pNodeLink)->rchild;
+  (*pNodeLink)->rchild->parent = rootNode;
+
+  (*pNodeLink)->rchild = rootNode;
+  rootNode->parent = (*pNodeLink);
   /*
   RBNode *prevRoot = *rootNode;
 
@@ -169,6 +194,31 @@ void lr(RBTree *tree, RBNode *rootNode) {
 }
 
 void rl(RBTree *tree, RBNode *rootNode) {
+  RBNode *prevRoot = rootNode;
+
+  RBNode *parentNode = rootNode->parent;
+  RBNode **pNodeLink;
+
+  if (parentNode == NULL)
+    pNodeLink = &tree->root;
+  else
+    pNodeLink = (rootNode->val < parentNode->val) ? &parentNode->lchild
+                                                  : &parentNode->rchild;
+
+  (*pNodeLink) = (rootNode->rchild)->lchild;
+  (*pNodeLink)->parent = parentNode;
+
+  (rootNode->rchild)->lchild = (*pNodeLink)->rchild;
+  (*pNodeLink)->rchild->parent = rootNode->rchild;
+
+  (*pNodeLink)->rchild = rootNode->rchild;
+  rootNode->rchild->parent = (*pNodeLink);
+
+  rootNode->rchild = (*pNodeLink)->lchild;
+  (*pNodeLink)->lchild->parent = rootNode;
+
+  (*pNodeLink)->lchild = rootNode;
+  rootNode->parent = (*pNodeLink);
   /*
    RBNode *prevRoot = *rootNode;
 
@@ -184,8 +234,27 @@ void rr(RBTree *tree, RBNode *rootNode) {
   /*
   RBNode *prevRoot = *rootNode;
 
-  *rootNode = (*rootNode)->rchild;
-  prevRoot->rchild = (*rootNode)->lchild;
-  (*rootNode)->lchild = prevRoot;
-*/
+  RBNode *parentNode = rootNode->parent;
+  RBNode **pNodeLink;
+
+  if (parentNode == NULL)
+    pNodeLink = &tree->root;
+  else
+    pNodeLink = (rootNode->val < parentNode->val) ? &parentNode->lchild
+                                                  : &parentNode->rchild;
+
+  /// START FROM EHRE NOW - NEED TO REDESIGN FUNCTION SO PARENT NODES CAN
+  /// RESPOND TO CHILD NODES
+  *pNodeLink = rootNode->rchild;
+  prevRoot->rchild = (*pNodeLink)->lchild;
+
+  if (*pNodeLink != NULL) {
+    (*pNodeLink)->parent = parentNode;
+    (*pNodeLink)->lchild = prevRoot;
+  }
+
+  prevRoot->parent = (*pNodeLink);
+
+  if (prevRoot->rchild != NULL)
+    (prevRoot->rchild)->parent = prevRoot;
 }
