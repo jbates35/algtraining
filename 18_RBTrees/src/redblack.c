@@ -8,6 +8,7 @@ RBNode *rb_createNode(int val);
 // Local functions
 void sortNode(RBTree *tree, RBNode *root);
 void switchColor(RBNode *rootNode);
+int findRotate(RBNode *rootNode);
 void doNothing(RBTree *tree, RBNode *rootNode);
 void ll(RBTree *tree, RBNode *rootNode);
 void lr(RBTree *tree, RBNode *rootNode);
@@ -89,6 +90,7 @@ void sortNode(RBTree *tree, RBNode *rootNode) {
     switchColor(rootNode);
   else {
     void (*fp[5])(RBTree *, RBNode *) = {doNothing, ll, lr, rl, rr};
+    (*fp[findRotate(rootNode)])(tree, rootNode); 
   }
 
   tree->root->color = BLACK;
@@ -103,7 +105,8 @@ void switchColor(RBNode *rootNode) {
 
   parent->color = BLACK;
   grandparent->color = RED;
-  uncle->color = BLACK;
+  if(uncle != NULL)
+    uncle->color = BLACK;
 
   //Make sure that tree starts with blk clr
   if(grandparent->parent == NULL)
@@ -131,6 +134,24 @@ RBNode *rb_createNode(int val) {
   newNode->parent = NULL;
 
   return newNode;
+}
+
+int findRotate(RBNode *rootNode) {
+  RBNode *parent = rootNode->parent;
+  if(parent==NULL)
+    return 0;
+
+  RBNode *grandparent = parent->parent;
+  if(grandparent == NULL)
+    return 0;
+
+  int returnVal = 0;
+  if(parent->val > grandparent->val)
+    returnVal = rootNode->val > parent->val ? 1 : 2; 
+  else 
+    returnVal = rootNode->val > parent->val ? 3 : 4;
+
+  return returnVal;
 }
 
 void doNothing(RBTree *tree, RBNode *node) {}
