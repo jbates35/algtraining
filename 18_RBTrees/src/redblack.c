@@ -90,13 +90,28 @@ void sortNode(RBTree *tree, RBNode *rootNode) {
   else {
     void (*fp[5])(RBTree *, RBNode *) = {doNothing, ll, lr, rl, rr};
   }
+
+  tree->root->color = BLACK;
 }
 
 void switchColor(RBNode *rootNode) {
-  RBNode *p = rootNode->parent;
+  //Add some protection against uncle being null - esp for recursive call
+  RBNode *parent = rootNode->parent;
+  RBNode *grandparent = parent->parent;
+  RBNode *uncle = (parent->val < parent->parent->val) ? parent->parent->rchild 
+                                                      : parent->parent->lchild;
 
-  if (rootNode->color == BLACK) {
-  }
+  parent->color = BLACK;
+  grandparent->color = RED;
+  uncle->color = BLACK;
+
+  //Make sure that tree starts with blk clr
+  if(grandparent->parent == NULL)
+    grandparent->color = BLACK;
+
+  //Make sure we don't have two consecutive reds
+  else if(grandparent->parent->color == RED)
+    switchColor(parent);
 }
 
 /**
