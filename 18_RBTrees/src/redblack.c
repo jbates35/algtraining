@@ -66,6 +66,10 @@ void sortNode(RBTree *tree, RBNode *rootNode) {
   }
 
   RBNode *parent = rootNode->parent;
+
+  if(parent->color==BLACK) 
+    return;
+
   RBNode *uncle = NULL;
 
   // Direction of uncle from grandparent - 0 is left, 1 is right
