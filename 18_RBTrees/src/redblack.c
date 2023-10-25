@@ -10,10 +10,10 @@ void sortNode(RBTree *tree, RBNode *root);
 void switchColor(RBNode *rootNode);
 int findRotate(RBNode *rootNode);
 void doNothing(RBTree *tree, RBNode *rootNode);
-void ll(RBTree *tree, RBNode *rootNode);
-void lr(RBTree *tree, RBNode *rootNode);
-void rl(RBTree *tree, RBNode *rootNode);
-void rr(RBTree *tree, RBNode *rootNode);
+void ll(RBTree *tree, RBNode *newNode);
+void lr(RBTree *tree, RBNode *newNode);
+void rl(RBTree *tree, RBNode *newNode);
+void rr(RBTree *tree, RBNode *newNode);
 
 void rb_init(RBTree *tree) {}
 
@@ -160,7 +160,31 @@ int findRotate(RBNode *rootNode) {
 
 void doNothing(RBTree *tree, RBNode *node) {}
 
-void ll(RBTree *tree, RBNode *rootNode) {
+void ll(RBTree *tree, RBNode *newNode) {
+  RBNode *parent = newNode->parent;
+  RBNode *grandparent = parent->parent;
+
+  RBNode **newRootLink; 
+  RBNode *ggrandparent = grandparent->parent;
+
+  if(ggrandparent == NULL) 
+    newRootLink = &tree->root;
+  else 
+    newRootLink = grandparent->val < ggrandparent->val ? &ggrandparent->lchild : &ggrandparent->rchild;
+  
+  *newRootLink = parent; 
+  parent->parent = ggrandparent;
+
+  parent->lchild = grandparent;
+  grandparent->parent = parent;
+
+  grandparent->rchild = NULL; //this might have to get fixed
+
+  parent->color = BLACK;
+  grandparent->color = RED;
+
+
+  /*
   RBNode *prevRoot = rootNode;
 
   RBNode *parentNode = rootNode->parent;
@@ -184,9 +208,35 @@ void ll(RBTree *tree, RBNode *rootNode) {
 
   if (prevRoot->lchild != NULL)
     (prevRoot->lchild)->parent = prevRoot;
+    */
 }
 
-void lr(RBTree *tree, RBNode *rootNode) {
+void lr(RBTree *tree, RBNode *newNode) {
+  RBNode *parent = newNode->parent;
+  RBNode *grandparent = parent->parent;
+
+  RBNode **newRootLink; 
+  RBNode *ggrandparent = grandparent->parent;
+
+  if(ggrandparent == NULL) 
+    newRootLink = &tree->root;
+  else 
+    newRootLink = grandparent->val < ggrandparent->val ? &ggrandparent->lchild : &ggrandparent->rchild;
+  
+  *newRootLink = newNode;
+  newNode->parent = ggrandparent;
+
+  newNode->lchild = grandparent;
+  newNode->rchild = parent;
+  parent->parent = newNode;
+  grandparent->parent = newNode;
+
+  parent->lchild = NULL; //This might have to be fixed
+  grandparent->rchild = NULL; //This might also have to get fixed
+
+  newNode->color = BLACK;
+  grandparent->color = RED;
+/*
   RBNode *prevRoot = rootNode;
 
   RBNode *parentNode = rootNode->parent;
@@ -214,7 +264,9 @@ void lr(RBTree *tree, RBNode *rootNode) {
 
   (*pNodeLink)->rchild = rootNode;
   rootNode->parent = (*pNodeLink);
+  */
 }
+
 
 void rl(RBTree *tree, RBNode *rootNode) {
   RBNode *prevRoot = rootNode;
