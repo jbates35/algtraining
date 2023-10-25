@@ -10,11 +10,12 @@ void sortNode(RBTree *tree, RBNode *root);
 void switchColor(RBNode *rootNode);
 int findRotate(RBNode *rootNode);
 void doNothing(RBTree *tree, RBNode *rootNode);
+/*
 void ll(RBTree *tree, RBNode *newNode);
 void lr(RBTree *tree, RBNode *newNode);
 void rl(RBTree *tree, RBNode *newNode);
 void rr(RBTree *tree, RBNode *newNode);
-
+*/
 void rb_init(RBTree *tree) {}
 
 void rb_free(RBTree *tree) {}
@@ -268,7 +269,8 @@ void lr(RBTree *tree, RBNode *newNode) {
 }
 
 
-void rl(RBTree *tree, RBNode *rootNode) {
+void rl(RBTree *tree, RBNode *newNode) {
+  /*
   RBNode *prevRoot = rootNode;
 
   RBNode *parentNode = rootNode->parent;
@@ -296,9 +298,11 @@ void rl(RBTree *tree, RBNode *rootNode) {
 
   (*pNodeLink)->lchild = rootNode;
   rootNode->parent = (*pNodeLink);
+*/
 }
 
-void rr(RBTree *tree, RBNode *rootNode) {
+void rr(RBTree *tree, RBNode *newNode) {
+  /*
   RBNode *prevRoot = rootNode;
 
   RBNode *parentNode = rootNode->parent;
@@ -322,4 +326,5 @@ void rr(RBTree *tree, RBNode *rootNode) {
 
   if (prevRoot->rchild != NULL)
     (prevRoot->rchild)->parent = prevRoot;
+    */
 }
