@@ -54,7 +54,7 @@ void rb_insertNode(RBTree *tree, int val) {
   *q_ptr = newNode;
   tree->size++;
 
-  sortNode(tree, newNode);
+ // sortNode(tree, newNode);
 }
 
 void rb_deleteNode(RBTree *tree, int val) {}
@@ -176,10 +176,10 @@ void ll(RBTree *tree, RBNode *newNode) {
   *newRootLink = parent; 
   parent->parent = ggrandparent;
 
-  parent->lchild = grandparent;
+  parent->rchild = grandparent;
   grandparent->parent = parent;
 
-  grandparent->rchild = NULL; //this might have to get fixed
+  grandparent->lchild = NULL; //this might have to get fixed
 
   parent->color = BLACK;
   grandparent->color = RED;
@@ -227,13 +227,13 @@ void lr(RBTree *tree, RBNode *newNode) {
   *newRootLink = newNode;
   newNode->parent = ggrandparent;
 
-  newNode->lchild = grandparent;
-  newNode->rchild = parent;
+  newNode->rchild = grandparent;
+  newNode->lchild = parent;
   parent->parent = newNode;
   grandparent->parent = newNode;
 
-  parent->lchild = NULL; //This might have to be fixed
-  grandparent->rchild = NULL; //This might also have to get fixed
+  parent->rchild = NULL; //This might have to be fixed
+  grandparent->lchild = NULL; //This might also have to get fixed
 
   newNode->color = BLACK;
   grandparent->color = RED;
@@ -270,6 +270,30 @@ void lr(RBTree *tree, RBNode *newNode) {
 
 
 void rl(RBTree *tree, RBNode *newNode) {
+  RBNode *parent = newNode->parent;
+  RBNode *grandparent = parent->parent;
+
+  RBNode **newRootLink; 
+  RBNode *ggrandparent = grandparent->parent;
+
+  if(ggrandparent == NULL) 
+    newRootLink = &tree->root;
+  else 
+    newRootLink = grandparent->val < ggrandparent->val ? &ggrandparent->lchild : &ggrandparent->rchild;
+  
+  *newRootLink = newNode;
+  newNode->parent = ggrandparent;
+
+  newNode->lchild = grandparent;
+  newNode->rchild = parent;
+  parent->parent = newNode;
+  grandparent->parent = newNode;
+
+  parent->lchild = NULL; //This might have to be fixed
+  grandparent->rchild = NULL; //This might also have to get fixed
+
+  newNode->color = BLACK;
+  grandparent->color = RED;
   /*
   RBNode *prevRoot = rootNode;
 
@@ -302,6 +326,27 @@ void rl(RBTree *tree, RBNode *newNode) {
 }
 
 void rr(RBTree *tree, RBNode *newNode) {
+  RBNode *parent = newNode->parent;
+  RBNode *grandparent = parent->parent;
+
+  RBNode **newRootLink; 
+  RBNode *ggrandparent = grandparent->parent;
+
+  if(ggrandparent == NULL) 
+    newRootLink = &tree->root;
+  else 
+    newRootLink = grandparent->val < ggrandparent->val ? &ggrandparent->lchild : &ggrandparent->rchild;
+  
+  *newRootLink = parent; 
+  parent->parent = ggrandparent;
+
+  parent->lchild = grandparent;
+  grandparent->parent = parent;
+
+  grandparent->rchild = NULL; //this might have to get fixed
+
+  parent->color = BLACK;
+  grandparent->color = RED;
   /*
   RBNode *prevRoot = rootNode;
 
