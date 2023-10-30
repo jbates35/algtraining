@@ -23,9 +23,3 @@ void rb_free(RBTree *tree);
 
 void rb_insertNode(RBTree *tree, int val);
 void rb_deleteNode(RBTree *tree, int val);
-
-void ll(RBTree *tree, RBNode *newNode);
-void lr(RBTree *tree, RBNode *newNode);
-void rl(RBTree *tree, RBNode *newNode);
-void rr(RBTree *tree, RBNode *newNode);
-

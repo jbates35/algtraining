@@ -7,15 +7,15 @@ RBNode *rb_createNode(int val);
 
 // Local functions
 void sortNode(RBTree *tree, RBNode *root);
-void switchColor(RBNode *rootNode);
+void switchColor(RBTree *tree, RBNode *rootNode);
 int findRotate(RBNode *rootNode);
 void doNothing(RBTree *tree, RBNode *rootNode);
-/*
+
 void ll(RBTree *tree, RBNode *newNode);
 void lr(RBTree *tree, RBNode *newNode);
 void rl(RBTree *tree, RBNode *newNode);
 void rr(RBTree *tree, RBNode *newNode);
-*/
+
 void rb_init(RBTree *tree) {}
 
 void rb_free(RBTree *tree) {}
@@ -54,7 +54,7 @@ void rb_insertNode(RBTree *tree, int val) {
   *q_ptr = newNode;
   tree->size++;
 
- // sortNode(tree, newNode);
+  sortNode(tree, newNode);
 }
 
 void rb_deleteNode(RBTree *tree, int val) {}
@@ -92,16 +92,15 @@ void sortNode(RBTree *tree, RBNode *rootNode) {
     uncle_color = uncle->color;
 
   if (uncle_color == RED)
-    switchColor(rootNode);
+    switchColor(tree, rootNode);
   else {
     void (*fp[5])(RBTree *, RBNode *) = {doNothing, ll, lr, rl, rr};
     (*fp[findRotate(rootNode)])(tree, rootNode); 
+    tree->root->color = BLACK;
   }
-
-  tree->root->color = BLACK;
 }
 
-void switchColor(RBNode *rootNode) {
+void switchColor(RBTree *tree, RBNode *rootNode) {
   //Add some protection against uncle being null - esp for recursive call
   RBNode *parent = rootNode->parent;
   RBNode *grandparent = parent->parent;
@@ -118,8 +117,10 @@ void switchColor(RBNode *rootNode) {
     grandparent->color = BLACK;
 
   //Make sure we don't have two consecutive reds
-  else if(grandparent->parent->color == RED)
-    switchColor(parent);
+  else if(grandparent->parent->color == RED) {
+    printf("redredconflict\n");
+    sortNode(tree, grandparent);
+  }
 }
 
 /**
@@ -151,10 +152,10 @@ int findRotate(RBNode *rootNode) {
     return 0;
 
   int returnVal = 0;
-  if(parent->val > grandparent->val)
-    returnVal = rootNode->val > parent->val ? 1 : 2; 
+  if(parent->val < grandparent->val)
+    returnVal = rootNode->val < parent->val ? 1 : 2; 
   else 
-    returnVal = rootNode->val > parent->val ? 3 : 4;
+    returnVal = rootNode->val < parent->val ? 3 : 4;
 
   return returnVal;
 }
@@ -162,6 +163,8 @@ int findRotate(RBNode *rootNode) {
 void doNothing(RBTree *tree, RBNode *node) {}
 
 void ll(RBTree *tree, RBNode *newNode) {
+  printf("In ll\n");
+  
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -176,11 +179,14 @@ void ll(RBTree *tree, RBNode *newNode) {
   *newRootLink = parent; 
   parent->parent = ggrandparent;
 
+
+  grandparent->lchild = parent->rchild;
+  if(grandparent->lchild)
+    grandparent->lchild->parent = grandparent;
+    
   parent->rchild = grandparent;
   grandparent->parent = parent;
-
-  grandparent->lchild = NULL; //this might have to get fixed
-
+  
   parent->color = BLACK;
   grandparent->color = RED;
 
@@ -213,6 +219,8 @@ void ll(RBTree *tree, RBNode *newNode) {
 }
 
 void lr(RBTree *tree, RBNode *newNode) {
+  printf("In lr\n");
+
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -270,6 +278,8 @@ void lr(RBTree *tree, RBNode *newNode) {
 
 
 void rl(RBTree *tree, RBNode *newNode) {
+  printf("In rl\n");
+  
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -326,6 +336,8 @@ void rl(RBTree *tree, RBNode *newNode) {
 }
 
 void rr(RBTree *tree, RBNode *newNode) {
+  printf("In rr\n");
+  
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -340,10 +352,12 @@ void rr(RBTree *tree, RBNode *newNode) {
   *newRootLink = parent; 
   parent->parent = ggrandparent;
 
+  grandparent->rchild = parent->lchild;
+  if(grandparent->rchild) 
+    grandparent->rchild->parent = grandparent;
+
   parent->lchild = grandparent;
   grandparent->parent = parent;
-
-  grandparent->rchild = NULL; //this might have to get fixed
 
   parent->color = BLACK;
   grandparent->color = RED;
