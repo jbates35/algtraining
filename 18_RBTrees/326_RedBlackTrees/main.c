@@ -9,10 +9,8 @@ int main(int argc, char *argv[]) {
   rb_tree.root = NULL;
 
   int vars[] = {10, 20, 30, 50, 40, 60, 70, 80, 4, 8};
-  for (int i = 0; i < sizeof(vars) / sizeof(int); i++) {
-    printf("Printing %d\n", vars[i]);
+  for (int i = 0; i < sizeof(vars) / sizeof(int); i++)
     rb_insertNode(&rb_tree, vars[i]);
-    int asdf = 0;
-  }
+  
   return 0;
 }

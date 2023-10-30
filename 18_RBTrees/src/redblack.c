@@ -117,10 +117,8 @@ void switchColor(RBTree *tree, RBNode *rootNode) {
     grandparent->color = BLACK;
 
   //Make sure we don't have two consecutive reds
-  else if(grandparent->parent->color == RED) {
-    printf("redredconflict\n");
+  else if(grandparent->parent->color == RED) 
     sortNode(tree, grandparent);
-  }
 }
 
 /**
@@ -163,8 +161,6 @@ int findRotate(RBNode *rootNode) {
 void doNothing(RBTree *tree, RBNode *node) {}
 
 void ll(RBTree *tree, RBNode *newNode) {
-  printf("In ll\n");
-  
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -186,41 +182,13 @@ void ll(RBTree *tree, RBNode *newNode) {
     
   parent->rchild = grandparent;
   grandparent->parent = parent;
-  
+
   parent->color = BLACK;
   grandparent->color = RED;
 
-
-  /*
-  RBNode *prevRoot = rootNode;
-
-  RBNode *parentNode = rootNode->parent;
-  RBNode **pNodeLink;
-
-  if (parentNode == NULL) 
-    pNodeLink = &tree->root;
-  else
-    pNodeLink = (rootNode->val < parentNode->val) ? &parentNode->lchild
-                                                  : &parentNode->rchild;
-
-  *pNodeLink = rootNode->lchild;
-  prevRoot->lchild = (*pNodeLink)->rchild;
-
-  if (*pNodeLink != NULL) {
-    (*pNodeLink)->parent = parentNode;
-    (*pNodeLink)->rchild = prevRoot;
-  }
-
-  prevRoot->parent = (*pNodeLink);
-
-  if (prevRoot->lchild != NULL)
-    (prevRoot->lchild)->parent = prevRoot;
-    */
 }
 
 void lr(RBTree *tree, RBNode *newNode) {
-  printf("In lr\n");
-
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -234,52 +202,26 @@ void lr(RBTree *tree, RBNode *newNode) {
   
   *newRootLink = newNode;
   newNode->parent = ggrandparent;
+
+  grandparent->lchild = newNode->rchild;
+  if(grandparent->lchild) 
+    grandparent->lchild->parent = grandparent;
+
+  parent->rchild = newNode->lchild;
+  if(parent->rchild) 
+    parent->rchild->parent = parent;
 
   newNode->rchild = grandparent;
   newNode->lchild = parent;
   parent->parent = newNode;
   grandparent->parent = newNode;
 
-  parent->rchild = NULL; //This might have to be fixed
-  grandparent->lchild = NULL; //This might also have to get fixed
-
   newNode->color = BLACK;
   grandparent->color = RED;
-/*
-  RBNode *prevRoot = rootNode;
-
-  RBNode *parentNode = rootNode->parent;
-  RBNode **pNodeLink;
-
-  if (parentNode == NULL)
-    pNodeLink = &tree->root;
-  else
-    pNodeLink = (rootNode->val < parentNode->val) ? &parentNode->lchild
-                                                  : &parentNode->rchild;
-
-  (*pNodeLink) = (rootNode->lchild)->rchild;
-  (*pNodeLink)->parent = parentNode;
-
-  (rootNode->lchild)->rchild = (*pNodeLink)->lchild;
-  if((*pNodeLink)->lchild!=NULL)
-    (*pNodeLink)->lchild->parent = rootNode->lchild;
-
-  (*pNodeLink)->lchild = rootNode->lchild;
-  rootNode->lchild->parent = (*pNodeLink);
-
-  rootNode->lchild = (*pNodeLink)->rchild;
-  if((*pNodeLink)->rchild != NULL)
-    (*pNodeLink)->rchild->parent = rootNode;
-
-  (*pNodeLink)->rchild = rootNode;
-  rootNode->parent = (*pNodeLink);
-  */
 }
 
 
 void rl(RBTree *tree, RBNode *newNode) {
-  printf("In rl\n");
-  
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -294,50 +236,24 @@ void rl(RBTree *tree, RBNode *newNode) {
   *newRootLink = newNode;
   newNode->parent = ggrandparent;
 
+  grandparent->rchild = newNode->lchild;
+  if(grandparent->rchild) 
+    grandparent->rchild->parent = grandparent;
+
+  parent->lchild = newNode->rchild;
+  if(parent->lchild) 
+    parent->lchild->parent = parent;
+
   newNode->lchild = grandparent;
   newNode->rchild = parent;
   parent->parent = newNode;
   grandparent->parent = newNode;
 
-  parent->lchild = NULL; //This might have to be fixed
-  grandparent->rchild = NULL; //This might also have to get fixed
-
   newNode->color = BLACK;
   grandparent->color = RED;
-  /*
-  RBNode *prevRoot = rootNode;
-
-  RBNode *parentNode = rootNode->parent;
-  RBNode **pNodeLink;
-
-  if (parentNode == NULL)
-    pNodeLink = &tree->root;
-  else
-    pNodeLink = (rootNode->val < parentNode->val) ? &parentNode->lchild
-                                                  : &parentNode->rchild;
-
-  (*pNodeLink) = (rootNode->rchild)->lchild;
-  (*pNodeLink)->parent = parentNode;
-
-  (rootNode->rchild)->lchild = (*pNodeLink)->rchild;
-  if((*pNodeLink)->rchild != NULL)
-    (*pNodeLink)->rchild->parent = rootNode->rchild;
-
-  (*pNodeLink)->rchild = rootNode->rchild;
-  rootNode->rchild->parent = (*pNodeLink);
-
-  rootNode->rchild = (*pNodeLink)->lchild;
-  if((*pNodeLink)->lchild != NULL)
-    (*pNodeLink)->lchild->parent = rootNode;
-
-  (*pNodeLink)->lchild = rootNode;
-  rootNode->parent = (*pNodeLink);
-*/
 }
 
 void rr(RBTree *tree, RBNode *newNode) {
-  printf("In rr\n");
-  
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -361,29 +277,4 @@ void rr(RBTree *tree, RBNode *newNode) {
 
   parent->color = BLACK;
   grandparent->color = RED;
-  /*
-  RBNode *prevRoot = rootNode;
-
-  RBNode *parentNode = rootNode->parent;
-  RBNode **pNodeLink;
-
-  if (parentNode == NULL)
-    pNodeLink = &tree->root;
-  else
-    pNodeLink = (rootNode->val < parentNode->val) ? &parentNode->lchild
-                                                  : &parentNode->rchild;
-
-  *pNodeLink = rootNode->rchild;
-  prevRoot->rchild = (*pNodeLink)->lchild;
-
-  if (*pNodeLink != NULL) {
-    (*pNodeLink)->parent = parentNode;
-    (*pNodeLink)->lchild = prevRoot;
-  }
-
-  prevRoot->parent = (*pNodeLink);
-
-  if (prevRoot->rchild != NULL)
-    (prevRoot->rchild)->parent = prevRoot;
-    */
 }
