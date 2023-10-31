@@ -80,14 +80,21 @@ void rb_deleteNode(RBTree *tree, int val) {
   if (newNode->color == RED) {
     RBNode *replaceNode = NULL;
     RBNode **replaceNodeParent = NULL;
+
     if (newNode->lchild && newNode->rchild) {
       // This is where red node has both childs
+      RBNode *lchild=NULL;
+      RBNode *rchild = newNode->rchild;
+
       replaceNode = newNode->lchild;
       replaceNodeParent = &newNode->lchild;
       while (replaceNode->rchild) {
         replaceNode = newNode->rchild;
         replaceNodeParent = &newNode->rchild;
+        lchild = newNode->lchild;
       }
+      replaceNode->lchild = lchild;
+      replaceNode->rchild = rchild;
     } else if (newNode->lchild || newNode->rchild) {
       // This is where only one exists
       replaceNode = newNode->lchild ? newNode->lchild : newNode->rchild;
@@ -96,8 +103,13 @@ void rb_deleteNode(RBTree *tree, int val) {
 
     *replaceNodeParent = NULL;
     *parentLink = replaceNode;
+    replaceNode->color=RED;
     free(newNode);
+
+
+  
   }
+
 
   //  deleteSortNode(tree, newNode);
 }
