@@ -77,22 +77,38 @@ void rb_deleteNode(RBTree *tree, int val) {
   if (node == NULL)
     return;
 
+  // Can dump this into a function which returns an int
+  // for instance, if the node is red in this scenario, we can return 0 for
+  // doNothing
   RBNode *delNode = node;
 
   if (node->lchild != NULL && node->rchild != NULL) {
     delNode = node->lchild;
     parentLink_ptr = &node->lchild;
 
-    while (node->rchild != NULL) {
-      delNode = node->rchild;
-      parentLink_ptr = &node->rchild;
+    while (delNode->rchild != NULL) {
+      delNode = delNode->rchild;
+      parentLink_ptr = &delNode->rchild;
     }
+
+    (*parentLink_ptr) = delNode->lchild;
+    if ((*parentLink_ptr) != NULL)
+      (*parentLink_ptr)->parent = delNode->parent;
+
   } else if (node->lchild != NULL || node->rchild != NULL) {
     delNode = node->lchild != NULL ? node->lchild : node->rchild;
-    parentLink_ptr = node->lchild != NULL ? &node->lchild : &node->rchild;
+
+    node->lchild = delNode->lchild;
+    if (node->lchild)
+      node->lchild->parent = node;
+
+    node->rchild = delNode->rchild;
+    if (node->rchild)
+      node->rchild->parent = node;
   }
 
   node->val = delNode->val;
+  free(delNode);
 
   /*
     // Node is red, can delete and find in-order left, and all the way right
