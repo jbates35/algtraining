@@ -11,6 +11,8 @@ int main(int argc, char *argv[]) {
   int vars[] = {10, 20, 30, 50, 40, 60, 70, 80, 4, 8};
   for (int i = 0; i < sizeof(vars) / sizeof(int); i++)
     rb_insertNode(&rb_tree, vars[i]);
-  
+  int asdf = 1;
+  rb_deleteNode(&rb_tree, 20);
+  asdf = 2;
   return 0;
 }

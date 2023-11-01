@@ -6,17 +6,18 @@
 RBNode *rb_createNode(int val);
 
 // Local functions
-void insertSortNode(RBTree *tree, RBNode *root);
-void deleteSortNode(RBTree *tree, RBNode *root);
-void switchColor(RBTree *tree, RBNode *rootNode);
-int insertFindRotate(RBNode *rootNode);
-int deleteFindRotate(RBNode *rootNode);
-void doNothing(RBTree *tree, RBNode *rootNode);
+void insertSortNode(RBTree *tree, RBNode *node);
+void deleteSortNode(RBTree *tree, RBNode *node);
 
+int insertFindRotate(RBNode *node);
+int deleteFindRotate(RBNode *node);
+
+void doNothing(RBTree *tree, RBNode *newNode);
 void ll(RBTree *tree, RBNode *newNode);
 void lr(RBTree *tree, RBNode *newNode);
 void rl(RBTree *tree, RBNode *newNode);
 void rr(RBTree *tree, RBNode *newNode);
+void switchColor(RBTree *tree, RBNode *newNode);
 
 void rb_init(RBTree *tree) {}
 
@@ -66,58 +67,80 @@ void rb_deleteNode(RBTree *tree, int val) {
     return;
   }
 
-  RBNode *newNode = tree->root;
-  RBNode **parentLink;
+  RBNode *node = tree->root;
+  RBNode **parentLink_ptr;
 
-  while (newNode != NULL && newNode->val != val) {
-    newNode = newNode->val > val ? newNode->lchild : newNode->rchild;
-    parentLink = newNode->val > val ? &newNode->lchild : &newNode->rchild;
+  while (node != NULL && node->val != val) {
+    node = node->val > val ? node->lchild : node->rchild;
+    parentLink_ptr = node->val > val ? &node->lchild : &node->rchild;
   }
-  if (newNode == NULL)
+  if (node == NULL)
     return;
 
-  // Node is red, can delete and find in-order left, and all the way right
-  if (newNode->color == RED) {
-    RBNode *replaceNode = NULL;
-    RBNode **replaceNodeParent = NULL;
+  RBNode *delNode = node;
 
-    if (newNode->lchild && newNode->rchild) {
-      // This is where red node has both childs
-      RBNode *lchild = NULL;
-      RBNode *rchild = newNode->rchild;
+  if (node->lchild != NULL && node->rchild != NULL) {
+    delNode = node->lchild;
+    parentLink_ptr = &node->lchild;
 
-      replaceNode = newNode->lchild;
-      replaceNodeParent = &newNode->lchild;
-      while (replaceNode->rchild) {
-        replaceNode = newNode->rchild;
-        replaceNodeParent = &newNode->rchild;
-        lchild = newNode->lchild;
-      }
-      replaceNode->lchild = lchild;
-      replaceNode->rchild = rchild;
-    } else if (newNode->lchild || newNode->rchild) {
-      // This is where only one exists
-      replaceNode = newNode->lchild ? newNode->lchild : newNode->rchild;
-      replaceNodeParent = newNode->lchild ? &newNode->lchild : &newNode->rchild;
+    while (node->rchild != NULL) {
+      delNode = node->rchild;
+      parentLink_ptr = &node->rchild;
     }
-
-    *replaceNodeParent = NULL;
-    *parentLink = replaceNode;
-    replaceNode->color = RED;
-    free(newNode);
+  } else if (node->lchild != NULL || node->rchild != NULL) {
+    delNode = node->lchild != NULL ? node->lchild : node->rchild;
+    parentLink_ptr = node->lchild != NULL ? &node->lchild : &node->rchild;
   }
 
-  //  deleteSortNode(tree, newNode);
+  node->val = delNode->val;
+
+  /*
+    // Node is red, can delete and find in-order left, and all the way right
+    if (node->color == RED) {
+
+      // If node has no children, just delete node
+      if (node->lchild == NULL && node->rchild == NULL) {
+        *parentLink = NULL;
+        free(node);
+        return;
+        // If node has one child, change parent/child and delete node
+      } else if (node->lchild == NULL || node->rchild == NULL) {
+        *parentLink = node->lchild == NULL ? node->rchild : node->lchild;
+        (*parentLink)->parent = node->parent;
+        free(node);
+        return;
+      } else {
+        // This is now when there are two childnodes
+        RBNode *replaceNode = node->lchild;
+
+        if (replaceNode->rchild != NULL) {
+          node->lchild = replaceNode->lchild;
+          node->lchild->parent = node;
+          node->lchild->color = BLACK; } else {
+          while (replaceNode->rchild != NULL)
+            replaceNode = replaceNode->rchild;
+          replaceNode->parent->rchild = replaceNode->lchild;
+          if (replaceNode->lchild)
+            replaceNode->lchild->parent = replaceNode->parent;
+        }
+
+        node->val = replaceNode->val;
+        free(replaceNode);
+        return;
+      }
+    }
+    */
+  //  deleteSortNode(tree, node);
 }
 
-void insertSortNode(RBTree *tree, RBNode *rootNode) {
-  if (rootNode == NULL) {
+void insertSortNode(RBTree *tree, RBNode *node) {
+  if (node == NULL) {
     fflush(stdout);
     fprintf(stderr, "\nError in insertSortNode: Null pointer\n");
     return;
   }
 
-  RBNode *parent = rootNode->parent;
+  RBNode *parent = node->parent;
 
   if (parent->color == BLACK)
     return;
@@ -143,48 +166,28 @@ void insertSortNode(RBTree *tree, RBNode *rootNode) {
     uncle_color = uncle->color;
 
   if (uncle_color == RED)
-    switchColor(tree, rootNode);
+    switchColor(tree, node);
   else {
     void (*fp[5])(RBTree *, RBNode *) = {doNothing, ll, lr, rl, rr};
-    (*fp[insertFindRotate(rootNode)])(tree, rootNode);
+    (*fp[insertFindRotate(node)])(tree, node);
     tree->root->color = BLACK;
   }
 }
 
-void deleteSortNode(RBTree *tree, RBNode *rootNode) {
-  if (rootNode == NULL) {
+void deleteSortNode(RBTree *tree, RBNode *node) {
+  if (node == NULL) {
     fflush(stdout);
     fprintf(stderr, "\nError in insertSortNode: Null pointer\n");
     return;
   }
 }
 
-void switchColor(RBTree *tree, RBNode *rootNode) {
-  // Add some protection against uncle being null - esp for recursive call
-  RBNode *parent = rootNode->parent;
-  RBNode *grandparent = parent->parent;
-  RBNode *uncle = (parent->val < parent->parent->val) ? parent->parent->rchild
-                                                      : parent->parent->lchild;
-
-  parent->color = BLACK;
-  grandparent->color = RED;
-  if (uncle != NULL)
-    uncle->color = BLACK;
-
-  // Make sure that tree starts with blk clr
-  if (grandparent->parent == NULL)
-    grandparent->color = BLACK;
-
-  // Make sure we don't have two consecutive reds
-  else if (grandparent->parent->color == RED)
-    insertSortNode(tree, grandparent);
-}
-
 /**
  * @brief Create a new node but only in the sense that it initializes the node
  *
  * @param val Value the node to represent
- * @return RBNode* Pointer of node which can be used for further implementation
+ * @return RBNode* Pointer of node which can be used for further
+ * implementation
  */
 RBNode *rb_createNode(int val) {
   RBNode *newNode = (RBNode *)malloc(sizeof(RBNode));
@@ -217,7 +220,7 @@ int insertFindRotate(RBNode *rootNode) {
   return returnVal;
 }
 
-void doNothing(RBTree *tree, RBNode *node) {}
+void doNothing(RBTree *tree, RBNode *newNode) {}
 
 void ll(RBTree *tree, RBNode *newNode) {
   RBNode *parent = newNode->parent;
@@ -337,4 +340,25 @@ void rr(RBTree *tree, RBNode *newNode) {
 
   parent->color = BLACK;
   grandparent->color = RED;
+}
+
+void switchColor(RBTree *tree, RBNode *newNode) {
+  // Add some protection against uncle being null - esp for recursive call
+  RBNode *parent = newNode->parent;
+  RBNode *grandparent = parent->parent;
+  RBNode *uncle = (parent->val < parent->parent->val) ? parent->parent->rchild
+                                                      : parent->parent->lchild;
+
+  parent->color = BLACK;
+  grandparent->color = RED;
+  if (uncle != NULL)
+    uncle->color = BLACK;
+
+  // Make sure that tree starts with blk clr
+  if (grandparent->parent == NULL)
+    grandparent->color = BLACK;
+
+  // Make sure we don't have two consecutive reds
+  else if (grandparent->parent->color == RED)
+    insertSortNode(tree, grandparent);
 }
