@@ -71,8 +71,8 @@ void rb_deleteNode(RBTree *tree, int val) {
   RBNode **parentLink_ptr;
 
   while (node != NULL && node->val != val) {
-    node = node->val > val ? node->lchild : node->rchild;
     parentLink_ptr = node->val > val ? &node->lchild : &node->rchild;
+    node = node->val > val ? node->lchild : node->rchild;
   }
   if (node == NULL)
     return;
@@ -83,15 +83,19 @@ void rb_deleteNode(RBTree *tree, int val) {
   RBNode *delNode = node;
 
   if (node->lchild != NULL && node->rchild != NULL) {
-    delNode = node->lchild;
     parentLink_ptr = &node->lchild;
+    delNode = node->lchild;
+
+    int affaf = 4;
 
     while (delNode->rchild != NULL) {
-      delNode = delNode->rchild;
       parentLink_ptr = &delNode->rchild;
+      delNode = delNode->rchild;
     }
 
+    int ajffk = 4;
     (*parentLink_ptr) = delNode->lchild;
+    int afsdf = 2;
     if ((*parentLink_ptr) != NULL)
       (*parentLink_ptr)->parent = delNode->parent;
 
@@ -105,6 +109,8 @@ void rb_deleteNode(RBTree *tree, int val) {
     node->rchild = delNode->rchild;
     if (node->rchild)
       node->rchild->parent = node;
+  } else {
+    (*parentLink_ptr) = NULL;
   }
 
   node->val = delNode->val;
