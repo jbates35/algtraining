@@ -86,16 +86,12 @@ void rb_deleteNode(RBTree *tree, int val) {
     parentLink_ptr = &node->lchild;
     delNode = node->lchild;
 
-    int affaf = 4;
-
     while (delNode->rchild != NULL) {
       parentLink_ptr = &delNode->rchild;
       delNode = delNode->rchild;
     }
 
-    int ajffk = 4;
     (*parentLink_ptr) = delNode->lchild;
-    int afsdf = 2;
     if ((*parentLink_ptr) != NULL)
       (*parentLink_ptr)->parent = delNode->parent;
 
@@ -114,7 +110,9 @@ void rb_deleteNode(RBTree *tree, int val) {
   }
 
   node->val = delNode->val;
-  free(delNode);
+  // free(delNode);
+
+  deleteSortNode(tree, node);
 
   /*
     // Node is red, can delete and find in-order left, and all the way right
@@ -201,6 +199,33 @@ void deleteSortNode(RBTree *tree, RBNode *node) {
     fflush(stdout);
     fprintf(stderr, "\nError in insertSortNode: Null pointer\n");
     return;
+  }
+
+  RBNode *parent = node->parent;
+  RBNode *sibling = node->val < parent->val ? parent->rchild : parent->lchild;
+
+  free(node);
+
+  if (node->color == RED || sibling == NULL)
+    return;
+
+  if (sibling->color == RED) {
+    RBNode *neph = sibling->lchild != NULL ? sibling->lchild : sibling->rchild;
+    void (*fp[5])(RBTree *, RBNode *) = {doNothing, ll, lr, rl, rr};
+    (*fp[insertFindRotate(node)])(tree, node);
+    tree->root->color = BLACK;
+    return;
+  }
+
+  // Sibling color must be black, then
+  Color_t nephClr = BLACK;
+  if (sibling->lchild && sibling->lchild->color == RED)
+    nephClr = RED;
+  if (sibling->rchild && sibling->rchild->color == RED)
+    nephClr = RED;
+
+  if (nephClr == BLACK) {
+    parent->color = BLACK;
   }
 }
 
