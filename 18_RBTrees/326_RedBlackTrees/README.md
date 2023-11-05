@@ -14,6 +14,7 @@ Just run the command once built.
 ```bash
 $ ./RedBlackTrees
 ```
+Oh man. Can take a look at this code. It works, try running it sure. But it is ugly. So much effort was put into making this that I didn't bother with proving it works. Just use a debugger if you're that keen.
 ```
 
 ```
