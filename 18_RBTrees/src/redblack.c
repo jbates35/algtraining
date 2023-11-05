@@ -81,8 +81,11 @@ void rb_deleteNode(RBTree *tree, int val) {
   // for instance, if the node is red in this scenario, we can return 0 for
   // doNothing
   RBNode *delNode = node;
+  ChildState_t childState = NONE;
 
   if (node->lchild != NULL && node->rchild != NULL) {
+    childState = BOTH;
+
     parentLink_ptr = &node->lchild;
     delNode = node->lchild;
 
@@ -91,11 +94,11 @@ void rb_deleteNode(RBTree *tree, int val) {
       delNode = delNode->rchild;
     }
 
-    (*parentLink_ptr) = delNode->lchild;
-    if ((*parentLink_ptr) != NULL)
-      (*parentLink_ptr)->parent = delNode->parent;
+
 
   } else if (node->lchild != NULL || node->rchild != NULL) {
+    childState = ONE;
+
     delNode = node->lchild != NULL ? node->lchild : node->rchild;
 
     node->lchild = delNode->lchild;
@@ -105,52 +108,20 @@ void rb_deleteNode(RBTree *tree, int val) {
     node->rchild = delNode->rchild;
     if (node->rchild)
       node->rchild->parent = node;
-  } else {
-    (*parentLink_ptr) = NULL;
   }
 
   node->val = delNode->val;
-  // free(delNode);
 
-  deleteSortNode(tree, node);
+  if(childState == BOTH) {
+    (*parentLink_ptr) = delNode->lchild;
+    if ((*parentLink_ptr) != NULL)
+      (*parentLink_ptr)->parent = delNode->parent;
+  } else if (childState == NONE) {
+    (*parentLink_ptr) = NULL;
+  }
+  
+  deleteSortNode(tree, delNode);
 
-  /*
-    // Node is red, can delete and find in-order left, and all the way right
-    if (node->color == RED) {
-
-      // If node has no children, just delete node
-      if (node->lchild == NULL && node->rchild == NULL) {
-        *parentLink = NULL;
-        free(node);
-        return;
-        // If node has one child, change parent/child and delete node
-      } else if (node->lchild == NULL || node->rchild == NULL) {
-        *parentLink = node->lchild == NULL ? node->rchild : node->lchild;
-        (*parentLink)->parent = node->parent;
-        free(node);
-        return;
-      } else {
-        // This is now when there are two childnodes
-        RBNode *replaceNode = node->lchild;
-
-        if (replaceNode->rchild != NULL) {
-          node->lchild = replaceNode->lchild;
-          node->lchild->parent = node;
-          node->lchild->color = BLACK; } else {
-          while (replaceNode->rchild != NULL)
-            replaceNode = replaceNode->rchild;
-          replaceNode->parent->rchild = replaceNode->lchild;
-          if (replaceNode->lchild)
-            replaceNode->lchild->parent = replaceNode->parent;
-        }
-
-        node->val = replaceNode->val;
-        free(replaceNode);
-        return;
-      }
-    }
-    */
-  //  deleteSortNode(tree, node);
 }
 
 void insertSortNode(RBTree *tree, RBNode *node) {
@@ -212,7 +183,7 @@ void deleteSortNode(RBTree *tree, RBNode *node) {
   if (sibling->color == RED) {
     RBNode *neph = sibling->lchild != NULL ? sibling->lchild : sibling->rchild;
     void (*fp[5])(RBTree *, RBNode *) = {doNothing, ll, lr, rl, rr};
-    (*fp[insertFindRotate(node)])(tree, node);
+    (*fp[insertFindRotate(neph)])(tree, neph);
     tree->root->color = BLACK;
     return;
   }
@@ -226,7 +197,15 @@ void deleteSortNode(RBTree *tree, RBNode *node) {
 
   if (nephClr == BLACK) {
     parent->color = BLACK;
+    sibling->color = RED;
+    return;
   }
+
+  // Otherwise, last case:
+  RBNode *neph = sibling->lchild != NULL ? sibling->lchild : sibling->rchild;
+  void (*fp[5])(RBTree *, RBNode *) = {doNothing, ll, lr, rl, rr};
+  (*fp[insertFindRotate(neph)])(tree, neph);
+  tree->root->color = BLACK;
 }
 
 /**

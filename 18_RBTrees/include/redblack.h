@@ -2,6 +2,7 @@
 #define RED_BLACK_H
 
 typedef enum { BLACK, RED } Color_t;
+typedef enum { BOTH, ONE, NONE } ChildState_t;
 
 typedef struct RBNode {
   int val;
