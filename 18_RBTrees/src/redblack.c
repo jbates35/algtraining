@@ -9,15 +9,15 @@ RBNode *rb_createNode(int val);
 void insertSortNode(RBTree *tree, RBNode *node);
 void deleteSortNode(RBTree *tree, RBNode *node);
 
-int insertFindRotate(RBNode *node);
+int findRotate(RBNode *node);
 int deleteFindRotate(RBNode *node);
 
-void doNothing(RBTree *tree, RBNode *newNode);
-void ll(RBTree *tree, RBNode *newNode);
-void lr(RBTree *tree, RBNode *newNode);
-void rl(RBTree *tree, RBNode *newNode);
-void rr(RBTree *tree, RBNode *newNode);
-void switchColor(RBTree *tree, RBNode *newNode);
+void doNothing(RBTree *tree, RBNode *newNode, Mode_t mode);
+void ll(RBTree *tree, RBNode *newNode, Mode_t mode);
+void lr(RBTree *tree, RBNode *newNode, Mode_t mode);
+void rl(RBTree *tree, RBNode *newNode, Mode_t mode);
+void rr(RBTree *tree, RBNode *newNode, Mode_t mode);
+void switchColor(RBTree *tree, RBNode *newNode, Mode_t mode);
 
 void rb_init(RBTree *tree) {}
 
@@ -81,7 +81,7 @@ void rb_deleteNode(RBTree *tree, int val) {
   // for instance, if the node is red in this scenario, we can return 0 for
   // doNothing
   RBNode *delNode = node;
-  ChildState_t childState = NONE;
+  ChildState_t childState = NOCHILD;
 
   if (node->lchild != NULL && node->rchild != NULL) {
     childState = BOTH;
@@ -93,9 +93,6 @@ void rb_deleteNode(RBTree *tree, int val) {
       parentLink_ptr = &delNode->rchild;
       delNode = delNode->rchild;
     }
-
-
-
   } else if (node->lchild != NULL || node->rchild != NULL) {
     childState = ONE;
 
@@ -114,9 +111,10 @@ void rb_deleteNode(RBTree *tree, int val) {
 
   if(childState == BOTH) {
     (*parentLink_ptr) = delNode->lchild;
-    if ((*parentLink_ptr) != NULL)
+    if ((*parentLink_ptr) != NULL) {
       (*parentLink_ptr)->parent = delNode->parent;
-  } else if (childState == NONE) {
+    }
+  } else if (childState == NOCHILD) {
     (*parentLink_ptr) = NULL;
   }
   
@@ -132,6 +130,7 @@ void insertSortNode(RBTree *tree, RBNode *node) {
   }
 
   RBNode *parent = node->parent;
+  Mode_t mode = INSERT;
 
   if (parent->color == BLACK)
     return;
@@ -157,10 +156,10 @@ void insertSortNode(RBTree *tree, RBNode *node) {
     uncle_color = uncle->color;
 
   if (uncle_color == RED)
-    switchColor(tree, node);
+    switchColor(tree, node, mode);
   else {
-    void (*fp[5])(RBTree *, RBNode *) = {doNothing, ll, lr, rl, rr};
-    (*fp[insertFindRotate(node)])(tree, node);
+    void (*fp[5])(RBTree *, RBNode *, Mode_t) = {doNothing, ll, lr, rl, rr};
+    (*fp[findRotate(node)])(tree, node, mode);
     tree->root->color = BLACK;
   }
 }
@@ -172,9 +171,11 @@ void deleteSortNode(RBTree *tree, RBNode *node) {
     return;
   }
 
+  Mode_t mode = DELETE;
+
   RBNode *parent = node->parent;
   RBNode *sibling = node->val < parent->val ? parent->rchild : parent->lchild;
-
+  
   free(node);
 
   if (node->color == RED || sibling == NULL)
@@ -182,8 +183,8 @@ void deleteSortNode(RBTree *tree, RBNode *node) {
 
   if (sibling->color == RED) {
     RBNode *neph = sibling->lchild != NULL ? sibling->lchild : sibling->rchild;
-    void (*fp[5])(RBTree *, RBNode *) = {doNothing, ll, lr, rl, rr};
-    (*fp[insertFindRotate(neph)])(tree, neph);
+    void (*fp[5])(RBTree *, RBNode *, Mode_t) = {doNothing, ll, lr, rl, rr};
+    (*fp[findRotate(neph)])(tree, neph, mode);
     tree->root->color = BLACK;
     return;
   }
@@ -203,8 +204,8 @@ void deleteSortNode(RBTree *tree, RBNode *node) {
 
   // Otherwise, last case:
   RBNode *neph = sibling->lchild != NULL ? sibling->lchild : sibling->rchild;
-  void (*fp[5])(RBTree *, RBNode *) = {doNothing, ll, lr, rl, rr};
-  (*fp[insertFindRotate(neph)])(tree, neph);
+  void (*fp[5])(RBTree *, RBNode *, Mode_t) = {doNothing, ll, lr, rl, rr};
+  (*fp[findRotate(neph)])(tree, neph, mode);
   tree->root->color = BLACK;
 }
 
@@ -228,7 +229,7 @@ RBNode *rb_createNode(int val) {
   return newNode;
 }
 
-int insertFindRotate(RBNode *rootNode) {
+int findRotate(RBNode *rootNode) {
   RBNode *parent = rootNode->parent;
   if (parent == NULL)
     return 0;
@@ -246,9 +247,9 @@ int insertFindRotate(RBNode *rootNode) {
   return returnVal;
 }
 
-void doNothing(RBTree *tree, RBNode *newNode) {}
+void doNothing(RBTree *tree, RBNode *newNode, Mode_t mode) {}
 
-void ll(RBTree *tree, RBNode *newNode) {
+void ll(RBTree *tree, RBNode *newNode, Mode_t mode) {
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -271,11 +272,30 @@ void ll(RBTree *tree, RBNode *newNode) {
   parent->rchild = grandparent;
   grandparent->parent = parent;
 
-  parent->color = BLACK;
-  grandparent->color = RED;
+  if(mode == INSERT) {
+    parent->color = BLACK;
+    grandparent->color = RED;
+  } else if(mode == DELETE && grandparent->lchild) {
+    grandparent->lchild->color=RED;  
+    int changed = 0;
+    
+    mode_t newMode = NOMODE;
+
+    if(grandparent->lchild->lchild && grandparent->lchild->lchild->color == RED) {
+      ll(tree, grandparent->lchild->lchild, newMode);
+      grandparent->color = RED;
+      grandparent->parent->color = BLACK;
+      grandparent->parent->rchild->color = RED;
+    } else if(grandparent->lchild->rchild && grandparent->lchild->rchild->color == RED){
+      lr(tree, grandparent->lchild->rchild, newMode);
+      grandparent->color = RED;
+      grandparent->parent->color = BLACK;
+      grandparent->parent->lchild->color = RED;
+    }
+  }
 }
 
-void lr(RBTree *tree, RBNode *newNode) {
+void lr(RBTree *tree, RBNode *newNode, Mode_t mode) {
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -304,11 +324,29 @@ void lr(RBTree *tree, RBNode *newNode) {
   parent->parent = newNode;
   grandparent->parent = newNode;
 
-  newNode->color = BLACK;
-  grandparent->color = RED;
+  if(mode == INSERT) {
+    parent->color = BLACK;
+    grandparent->color = RED;
+  } else if(grandparent->lchild) {
+    grandparent->lchild->color = RED;
+    
+    mode_t newMode = NOMODE;
+
+    if(grandparent->lchild->lchild && grandparent->lchild->lchild->color == RED) {
+      ll(tree, grandparent->lchild->lchild, newMode);
+      grandparent->color = RED;
+      grandparent->parent->color = BLACK;
+      grandparent->parent->rchild->color = RED;
+    } else if(grandparent->lchild->rchild && grandparent->lchild->rchild->color == RED){
+      lr(tree, grandparent->lchild->rchild, newMode);
+      grandparent->color = RED;
+      grandparent->parent->color = BLACK;
+      grandparent->parent->lchild->color = RED;
+    }
+  }
 }
 
-void rl(RBTree *tree, RBNode *newNode) {
+void rl(RBTree *tree, RBNode *newNode, Mode_t mode) {
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -337,11 +375,29 @@ void rl(RBTree *tree, RBNode *newNode) {
   parent->parent = newNode;
   grandparent->parent = newNode;
 
-  newNode->color = BLACK;
-  grandparent->color = RED;
+  if(mode == INSERT) {
+    parent->color = BLACK;
+    grandparent->color = RED;
+  } else if(grandparent->rchild) {
+    grandparent->rchild->color = RED;
+
+    mode_t newMode = NOMODE;
+
+    if(grandparent->rchild->lchild && grandparent->rchild->lchild->color == RED) {
+      rl(tree, grandparent->rchild->lchild, newMode);
+      grandparent->color = RED;
+      grandparent->parent->color = BLACK;
+      grandparent->parent->lchild->color = RED;
+    } else if(grandparent->rchild->rchild && grandparent->rchild->rchild->color == RED){
+      rr(tree, grandparent->rchild->rchild, newMode);
+      grandparent->color = RED;
+      grandparent->parent->color = BLACK;
+      grandparent->parent->rchild->color = RED;
+    }
+  }
 }
 
-void rr(RBTree *tree, RBNode *newNode) {
+void rr(RBTree *tree, RBNode *newNode, Mode_t mode) {
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
 
@@ -364,17 +420,34 @@ void rr(RBTree *tree, RBNode *newNode) {
   parent->lchild = grandparent;
   grandparent->parent = parent;
 
-  parent->color = BLACK;
-  grandparent->color = RED;
+  if(mode == INSERT) {
+    parent->color = BLACK;
+    grandparent->color = RED;
+  } else if(grandparent->rchild) {
+    grandparent->rchild->color=RED;
+
+    mode_t newMode = NOMODE;
+
+    if(grandparent->rchild->lchild && grandparent->rchild->lchild->color == RED) {
+      rl(tree, grandparent->rchild->lchild, newMode);
+      grandparent->color = RED;
+      grandparent->parent->color = BLACK;
+      grandparent->parent->lchild->color = RED;
+    } else if(grandparent->rchild->rchild && grandparent->rchild->rchild->color == RED){
+      rr(tree, grandparent->rchild->rchild, newMode);
+      grandparent->color = RED;
+      grandparent->parent->color = BLACK;
+      grandparent->parent->rchild->color = RED;
+    }
+  }
 }
 
-void switchColor(RBTree *tree, RBNode *newNode) {
+void switchColor(RBTree *tree, RBNode *newNode, Mode_t mode) {
   // Add some protection against uncle being null - esp for recursive call
   RBNode *parent = newNode->parent;
   RBNode *grandparent = parent->parent;
   RBNode *uncle = (parent->val < parent->parent->val) ? parent->parent->rchild
                                                       : parent->parent->lchild;
-
   parent->color = BLACK;
   grandparent->color = RED;
   if (uncle != NULL)
@@ -385,6 +458,6 @@ void switchColor(RBTree *tree, RBNode *newNode) {
     grandparent->color = BLACK;
 
   // Make sure we don't have two consecutive reds
-  else if (grandparent->parent->color == RED)
+  else if (grandparent->parent->color == RED && mode==INSERT)
     insertSortNode(tree, grandparent);
 }
