@@ -6,6 +6,7 @@
 RBNode *rb_createNode(int val);
 
 // Local functions
+void rb_free_node(RBNode *node);
 void insertSortNode(RBTree *tree, RBNode *node);
 void deleteSortNode(RBTree *tree, RBNode *node);
 
@@ -21,7 +22,19 @@ void switchColor(RBTree *tree, RBNode *newNode, Mode_t mode);
 
 void rb_init(RBTree *tree) {}
 
-void rb_free(RBTree *tree) {}
+void rb_free(RBTree *tree) {
+  rb_free_node(tree->root);
+}
+
+void rb_free_node(RBNode *node) {
+  if(node==NULL) 
+    return;
+
+  rb_free_node(node->lchild);
+  rb_free_node(node->rchild);
+
+  free(node);
+}
 
 void rb_insertNode(RBTree *tree, int val) {
   if (tree == NULL) {
@@ -119,6 +132,7 @@ void rb_deleteNode(RBTree *tree, int val) {
   }
   
   deleteSortNode(tree, delNode);
+  tree->size--;
 
 }
 

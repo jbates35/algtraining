@@ -21,5 +21,7 @@ int main(int argc, char *argv[]) {
   asdf = 1;
   rb_deleteNode(&rb_tree, 90);
   asdf = 1;
+
+  rb_free(&rb_tree);
   return 0;
 }
