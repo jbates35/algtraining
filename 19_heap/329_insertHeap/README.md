@@ -7,7 +7,7 @@ $ git clone https://github.com/jbates35/algtraining
 $ cd ./algtraining/18_RBTrees
 $ mkdir build && cd build
 $ cmake .. && make
-$ cd 326_RedBlackTrees
+$ cd 329_insertHeap 
 ```
 ### Example:
 Just run the command once built.
