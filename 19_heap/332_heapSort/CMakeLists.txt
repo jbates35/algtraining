@@ -16,4 +16,4 @@ add_executable(HeapInsert main.c)
 target_include_directories(HeapInsert PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 # Add the source files to your target
-target_sources(HeapInsert PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/heapADT.c)
+target_sources(HeapInsert PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/heap.c)

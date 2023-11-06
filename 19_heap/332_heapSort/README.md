@@ -49,10 +49,10 @@ Heap: 16 , 15 9 , 10 14 2 3 , 1 6 4
 ```
 This is what's expected. The way I set this up is 15 and 9 would be under 16, 10 14 would be under 15, 1 6 would be under 10, so on and so forth.
 
-If interested, the functions of note are located in src/heapADT.c:
+If interested, the functions of note are located in src/heap.c:
 ```c
-void heapADT_init(HeapArray *heap, int size);
-void heapADT_free(HeapArray *heap);
-void heapADT_print(HeapArray *heap);
-void heapADT_insert(HeapArray *heap, int val);
+void heap_init(HeapArray *heap, int size);
+void heap_free(HeapArray *heap);
+void heap_print(HeapArray *heap);
+void heap_insert(HeapArray *heap, int val);
 ```

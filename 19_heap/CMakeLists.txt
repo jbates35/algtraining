@@ -8,4 +8,4 @@ add_subdirectory(329_insertHeap)
 include_directories(include)
 
 # Add the utility files to a library
-add_library(utils src/heap.c)
+add_library(utils src/heapADT.c)
