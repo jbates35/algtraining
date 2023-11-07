@@ -3,7 +3,6 @@
 #include <memory.h>
 
 void swap(void *x, void *y, size_t varSize);
-
 int isMarsenne(int x);
 
 void heapADT_init(HeapArray *heap, int size) {
