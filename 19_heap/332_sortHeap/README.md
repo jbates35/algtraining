@@ -16,9 +16,13 @@ $ ./HeapSort
 ```
 This should give you:
 ```
-
+Sorting heap with vals:
+1 3 5 7 9 10 8 6 4 2 
+1 2 3 4 5 6 7 8 9 10 
 ```
+Should be roughly O(nlogn) for time complexity. Space complexity is O(1) :)
 
 If interested, the functions of note are located in src/heap.c:
 ```c
+void heap_sort(int A[], int N);
 ```

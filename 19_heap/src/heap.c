@@ -12,17 +12,14 @@ int isMarsenne(int x);
 void heap_print(int A[], int N) {
   for (int i = 0; i < N; i++) {
     printf("%d ", A[i]);
-    if (isMarsenne(i + 1))
-      printf(", ");
   }
   printf("\n");
 }
 
 void heap_sort(int A[], int N) {
   heap_create(A, N);
-  for (int i = 0; i < N; i++) {
-    heap_delete(A, N - i);
-  }
+  for (int i = 0; i < N - 1; i++)
+    heap_delete(A, N - i - 1);
 }
 
 // From perspective of heapify
@@ -45,11 +42,11 @@ void heap_delete(int A[], int m) {
   int n = 0;
 
   swap(&A[n], &A[m], sizeof(int));
-
-  while (n < (m + 1) / 2) {
+  int asdf = 0;
+  while (n < m / 2) {
     int compareInd = (n + 1) * 2 - 1;
     int compareVal = A[compareInd];
-    if ((compareInd + 1) < (m + 1) && A[compareInd + 1] > compareVal) {
+    if ((compareInd + 1) < m && A[compareInd + 1] > compareVal) {
       compareInd++;
       compareVal = A[compareInd];
     }
