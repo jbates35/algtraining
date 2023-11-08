@@ -6,11 +6,11 @@
 void printArr(int A[], int N);
 
 int main(int argc, char *argv[]) {
-  int vals[] = {2, 50, 20, 40, 5, 25, 15, 45};
+  int vals[] = {50, 20, 40, 5, 25, 15, 45};
   // int vals[] = {1, 3, 5, 9, 11, 13, 15, 17, 19};
   int N = sizeof(vals) / sizeof(int);
 
-  algs_bubbleSort(vals, N);
+  algs_insertionSort(vals, N);
   printArr(vals, N);
 }
 

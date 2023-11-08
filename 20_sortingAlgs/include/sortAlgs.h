@@ -5,5 +5,6 @@
 #include <stdlib.h>
 
 void algs_bubbleSort(int *A, int N);
+void algs_insertionSort(int *A, int N);
 
 #endif
