@@ -1,4 +1,7 @@
 #include "sortAlgs.h"
+#include "helpFuncs.h"
+
+#include <math.h>
 
 void algs_bubbleSort(int *A, int N) {
   if (A == NULL) {
@@ -7,9 +10,16 @@ void algs_bubbleSort(int *A, int N) {
     return;
   }
 
-  for (int i = 0; i < N - 1; i++) {
-    for (int j = i; j < N - 1; j++) {
-      return;
+  for (int i = N - 1; i > 0; i--) {
+    int maxVal = (1 << 31);
+    int maxValInd = 0;
+
+    for (int j = 0; j <= i; j++) {
+      if (maxVal < A[j]) {
+        maxVal = A[j];
+        maxValInd = j;
+      }
     }
+    swap(&A[i], &A[maxValInd], sizeof(int));
   }
 }
