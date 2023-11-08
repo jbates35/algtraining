@@ -18,5 +18,6 @@ This should give you:
 ```
 ```
 If interested, the functions of note are located in src/sortAlgs.c:
+
 ```c
 ```

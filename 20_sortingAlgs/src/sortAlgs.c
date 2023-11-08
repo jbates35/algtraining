@@ -13,11 +13,3 @@ void algs_bubbleSort(int *A, int N) {
     }
   }
 }
-
-void swap(void *x, void *y, size_t varSize) {
-  void *temp = malloc(varSize);
-  memcpy(temp, y, varSize);
-  memcpy(y, x, varSize);
-  memcpy(x, temp, varSize);
-  free(temp);
-}
