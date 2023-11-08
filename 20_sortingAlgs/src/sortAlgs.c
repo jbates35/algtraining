@@ -11,15 +11,22 @@ void algs_bubbleSort(int *A, int N) {
   }
 
   for (int i = N - 1; i > 0; i--) {
-    int maxVal = (1 << 31);
+    int maxVal = A[0];
     int maxValInd = 0;
+    int isSorted = 1;
 
-    for (int j = 0; j <= i; j++) {
+    for (int j = 1; j <= i; j++) {
       if (maxVal < A[j]) {
         maxVal = A[j];
         maxValInd = j;
+      } else {
+        isSorted = 0;
       }
     }
+
+    if (isSorted)
+      return;
+
     swap(&A[i], &A[maxValInd], sizeof(int));
   }
 }
