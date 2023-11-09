@@ -33,15 +33,13 @@ void algs_insertionSort(int *A, int N) {
   }
 
   for (int i = 1; i < N; i++) {
-    int insInd = 0;
-    int newVal = A[N - 1];
-    for (; insInd < i; insInd++) {
-      if (newVal < A[insInd])
-        break;
-    }
-    for (int j = N - 1; j > insInd; j--)
-      A[j] = A[j - 1];
-    A[insInd] = newVal;
+    int newVal = A[i];
+    int j = i - 1;
+
+    for (; j != -1 && A[j] > newVal; j--)
+      A[j + 1] = A[j];
+
+    A[j + 1] = newVal;
   }
 }
 
@@ -65,4 +63,21 @@ void algs_selectionSort(int *A, int N) {
 
     swap(&A[i], &A[k], sizeof(int));
   }
+}
+
+void quickSortR(int *A, int m, int n);
+void algs_quickSort(int *A, int N) {
+  if (A == NULL) {
+    fflush(stdout);
+    fprintf(stderr, "\nError: Null pointer in algs_quickSort\n");
+    return;
+  }
+
+  if (N > 0)
+    quickSortR(A, 0, N);
+}
+
+void quickSortR(int *A, int m, int n) {
+  if (n - m <= 1)
+    return;
 }

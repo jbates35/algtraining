@@ -7,5 +7,6 @@
 void algs_bubbleSort(int *A, int N);
 void algs_insertionSort(int *A, int N);
 void algs_selectionSort(int *A, int N);
+void algs_quickSort(int *A, int N);
 
 #endif
