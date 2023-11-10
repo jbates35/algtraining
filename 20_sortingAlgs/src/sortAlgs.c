@@ -81,6 +81,20 @@ void quickSortR(int *A, int m, int n) {
   if (n - m <= 1)
     return;
 
+  // Use medians of three approach for finding pivot
+  int SortA[3] = {A[m], A[(m + n - 1) / 2], A[n - 1]};
+  int Inds[3] = {m, (m + n - 1) / 2, n - 1};
+  for (int i = 2; i > 0; i--) {
+    for (int j = 0; j < i - 1; j++) {
+      if (SortA[j] > SortA[j + 1]) {
+        swap(&SortA[j], &SortA[j + 1], sizeof(int));
+        swap(&Inds[j], &Inds[j + 1], sizeof(int));
+      }
+    }
+  }
+
+  swap(&A[m], &A[Inds[1]], sizeof(int));
+
   int pivot = A[m];
 
   int i = m + 1;
