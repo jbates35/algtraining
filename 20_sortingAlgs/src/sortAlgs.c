@@ -80,4 +80,22 @@ void algs_quickSort(int *A, int N) {
 void quickSortR(int *A, int m, int n) {
   if (n - m <= 1)
     return;
+
+  int pivot = A[m];
+
+  m++;
+  n--;
+  do {
+    if (A[m] <= pivot)
+      m++;
+    if (A[n] > pivot)
+      n--;
+
+    if (A[m] > pivot && A[n] <= pivot)
+      swap(&A[m], &A[n], sizeof(int));
+
+  } while (m <= n);
+
+  printf("m: %d\nn: %d\n", m, n);
+  swap(&pivot, &A[n], sizeof(int));
 }
