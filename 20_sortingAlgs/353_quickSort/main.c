@@ -8,6 +8,7 @@ void printArr(int A[], int N);
 int main(int argc, char *argv[]) {
   int vals[] = {50, 20, 40, 5, 25, 15, 45};
   // int vals[] = {1, 3, 5, 9, 11, 13, 15, 17, 19};
+  // int vals[] = {50, 70, 60, 90, 40, 80, 10, 20, 30};
   int N = sizeof(vals) / sizeof(int);
 
   algs_quickSort(vals, N);

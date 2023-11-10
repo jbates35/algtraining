@@ -83,19 +83,21 @@ void quickSortR(int *A, int m, int n) {
 
   int pivot = A[m];
 
-  m++;
-  n--;
+  int i = m + 1;
+  int j = n - 1;
+
   do {
-    if (A[m] <= pivot)
-      m++;
-    if (A[n] > pivot)
-      n--;
+    if (A[i] > pivot && A[j] <= pivot)
+      swap(&A[i], &A[j], sizeof(int));
 
-    if (A[m] > pivot && A[n] <= pivot)
-      swap(&A[m], &A[n], sizeof(int));
+    if (A[i] <= pivot)
+      i++;
+    if (A[j] > pivot)
+      j--;
+  } while (i <= j);
 
-  } while (m <= n);
+  swap(&A[m], &A[j], sizeof(int));
 
-  printf("m: %d\nn: %d\n", m, n);
-  swap(&pivot, &A[n], sizeof(int));
+  quickSortR(A, m, j);
+  quickSortR(A, i, n);
 }
