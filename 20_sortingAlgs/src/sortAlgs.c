@@ -120,3 +120,11 @@ int findMiddle(int *A, int m, int n) {
   }
   return Inds[1];
 }
+
+void algs_mergeSortI(int *A, int N) {
+  if (A == NULL) {
+    fflush(stdout);
+    fprintf(stderr, "\nError: Null pointer in algs_mergeSortI\n");
+    return;
+  }
+}
