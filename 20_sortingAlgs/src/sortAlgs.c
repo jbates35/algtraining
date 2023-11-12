@@ -121,7 +121,7 @@ int findMiddle(int *A, int m, int n) {
   return Inds[1];
 }
 
-void merge(int *A, int lo, int mid, int hi);
+void mergeWhileSorting(int *A, int lo, int mid, int hi);
 
 void algs_mergeSortI(int *A, int N) {
   if (A == NULL) {
@@ -130,16 +130,30 @@ void algs_mergeSortI(int *A, int N) {
     return;
   }
 
-  int vars[] = {1, 2, 6, 5, 7, 10, 11};
-  merge(vars, 0, 2, 6);
+  int multx = 2;
+  int i = 0;
 
-  printf("\n\nPrinting array in mergeSortI as test\n");
-  for (int x = 0; x < 7; x++)
-    printf("%d ", vars[x]);
-  printf("\n\n");
+  while (multx < N * 2) {
+    int lo = i;
+    int hi = i + multx - 1;
+
+    if (hi >= N) {
+      hi = N - 1;
+    }
+
+    int mid = (hi - lo) / 2 + lo;
+
+    mergeWhileSorting(A, lo, mid, hi);
+
+    i += multx;
+    if (i >= N) {
+      i = 0;
+      multx *= 2;
+    }
+  }
 }
 
-void merge(int *A, int lo, int mid, int hi) {
+void mergeWhileSorting(int *A, int lo, int mid, int hi) {
   int i = lo, j = mid + 1, k = 0;
   int *B = (int *)malloc(sizeof(int) * (hi - lo + 1));
 
