@@ -121,7 +121,7 @@ int findMiddle(int *A, int m, int n) {
   return Inds[1];
 }
 
-void merge(int *out, int *A, int *B, int M, int N);
+void merge(int *A, int lo, int mid, int hi);
 
 void algs_mergeSortI(int *A, int N) {
   if (A == NULL) {
@@ -130,34 +130,33 @@ void algs_mergeSortI(int *A, int N) {
     return;
   }
 
-  int vars1[] = {4, 5, 9};
-  int i = 3;
-  int vars2[] = {2, 6, 7, 10, 11};
-  int j = 5;
-  int *vars3 = (int *)malloc(sizeof(int) * (i + j));
-
-  merge(vars3, vars1, vars2, i, j);
+  int vars[] = {1, 2, 6, 5, 7, 10, 11};
+  merge(vars, 0, 2, 6);
 
   printf("\n\nPrinting array in mergeSortI as test\n");
-  for (int x = 0; x < (i + j); x++)
-    printf("%d ", vars3[x]);
+  for (int x = 0; x < 7; x++)
+    printf("%d ", vars[x]);
   printf("\n\n");
-
-  free(vars3);
 }
 
-void merge(int *out, int *A, int *B, int M, int N) {
-  int i = 0, j = 0, k = 0;
+void merge(int *A, int lo, int mid, int hi) {
+  int i = lo, j = mid + 1, k = 0;
+  int *B = (int *)malloc(sizeof(int) * (hi - lo + 1));
 
-  while (i < M && j < N) {
-    if (A[i] > B[j])
-      out[k++] = B[j++];
+  while (i <= mid && j <= hi) {
+    if (A[i] < A[j])
+      B[k++] = A[i++];
     else
-      out[k++] = A[i++];
+      B[k++] = A[j++];
   }
 
-  while (i < M)
-    out[k++] = A[i++];
-  while (j < N)
-    out[k++] = B[j++];
+  while (i <= mid)
+    B[k++] = A[i++];
+  while (j <= hi)
+    B[k++] = A[j++];
+
+  for (i = 0, j = lo; i < k; i++, j++)
+    A[j] = B[i];
+
+  free(B);
 }
