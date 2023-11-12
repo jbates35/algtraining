@@ -129,6 +129,35 @@ void algs_mergeSortI(int *A, int N) {
     fprintf(stderr, "\nError: Null pointer in algs_mergeSortI\n");
     return;
   }
+
+  int vars1[] = {4, 5, 9};
+  int i = 3;
+  int vars2[] = {2, 6, 7, 10, 11};
+  int j = 5;
+  int *vars3 = (int *)malloc(sizeof(int) * (i + j));
+
+  merge(vars3, vars1, vars2, i, j);
+
+  printf("\n\nPrinting array in mergeSortI as test\n");
+  for (int x = 0; x < (i + j); x++)
+    printf("%d ", vars3[x]);
+  printf("\n\n");
+
+  free(vars3);
 }
 
-void merge(int *out, int *A, int *B, int M, int N) {}
+void merge(int *out, int *A, int *B, int M, int N) {
+  int i = 0, j = 0, k = 0;
+
+  while (i < M && j < N) {
+    if (A[i] > B[j])
+      out[k++] = B[j++];
+    else
+      out[k++] = A[i++];
+  }
+
+  while (i < M)
+    out[k++] = A[i++];
+  while (j < N)
+    out[k++] = B[j++];
+}
