@@ -121,6 +121,8 @@ int findMiddle(int *A, int m, int n) {
   return Inds[1];
 }
 
+int *merge(int *A, int *B, int M, int N);
+
 void algs_mergeSortI(int *A, int N) {
   if (A == NULL) {
     fflush(stdout);
@@ -128,3 +130,5 @@ void algs_mergeSortI(int *A, int N) {
     return;
   }
 }
+
+int *merge(int *A, int *B, int M, int N) {}
