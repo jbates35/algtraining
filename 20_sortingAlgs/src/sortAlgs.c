@@ -207,27 +207,19 @@ void algs_countSort(int *A, int N) {
   if (N == 0)
     return;
 
-  int tmpArrSize = A[0] + 1;
-  int *tmpArr = calloc(tmpArrSize, sizeof(int));
-  tmpArr[A[0]]++;
-
+  int maxVal = A[0];
   for (int i = 1; i < N; i++) {
-    if (A[i] + 1 > tmpArrSize) {
-      int *rtmp = realloc(tmpArr, sizeof(int) * (A[i] + 1));
-      if (rtmp == NULL) {
-        free(tmpArr);
-        return;
-      }
-      tmpArr = rtmp;
-      for (int j = tmpArrSize; j <= A[i]; j++)
-        tmpArr[j] = 0;
-      tmpArrSize = A[i] + 1;
-    }
-    tmpArr[A[i]]++;
+    if (maxVal < A[i])
+      maxVal = A[i];
   }
 
+  int *tmpArr = calloc(maxVal + 1, sizeof(int));
+
+  for (int i = 0; i < N; i++)
+    tmpArr[A[i]]++;
+
   int newInd = 0;
-  for (int i = 0; i < tmpArrSize; i++) {
+  for (int i = 0; i < maxVal + 1; i++) {
     while (tmpArr[i] != 0) {
       A[newInd++] = i;
       tmpArr[i]--;
