@@ -228,3 +228,81 @@ void algs_countSort(int *A, int N) {
 
   free(tmpArr);
 }
+
+/**** Start of RADIX SORT *****/
+typedef struct Bin {
+  struct Bin *next;
+  int val;
+} Bin;
+
+Bin *makeBin(int val);
+void addBin(Bin **rootPtr, int val);
+int delBin(Bin **rootPtr);
+
+void algs_radixSort(int *A, int N) {
+  if (A == NULL) {
+    fflush(stdout);
+    fprintf(stderr, "\nError: Null pointer in algs_radixSort\n");
+    return;
+  }
+
+  int maxVal = A[0];
+  for (int i = 1; i < N; i++) {
+    if (maxVal < A[i])
+      maxVal = A[i];
+  }
+
+  Bin *bins[16] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                   NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+
+  for (int bitsh = 0; (maxVal >> bitsh) != 0; bitsh += 4) {
+    // First sort array values into the bins
+    for (int i = 0; i < N; i++)
+      addBin(&bins[(A[i] >> bitsh) & 0xF], A[i]);
+
+    // Now pop the bins in order back into the array
+    int aInd = 0;
+    for (int i = 0; i < 16; i++) {
+      while (bins[i] != NULL)
+        A[aInd++] = delBin(&bins[i]);
+    }
+  }
+}
+
+Bin *makeBin(int val) {
+  Bin *retBin = malloc(sizeof(Bin));
+  retBin->next = NULL;
+  retBin->val = val;
+  return retBin;
+}
+
+void addBin(Bin **rootPtr, int val) {
+  Bin *newBin = makeBin(val);
+
+  if (*rootPtr == NULL) {
+    *rootPtr = newBin;
+    return;
+  }
+
+  Bin *rootBin = *rootPtr;
+  while (rootBin->next != NULL)
+    rootBin = rootBin->next;
+
+  rootBin->next = newBin;
+}
+
+int delBin(Bin **rootPtr) {
+  // It's better to delete the first bin and reattach the ptr then go to end of
+  // linked list and pop last value
+  if (rootPtr == NULL || *rootPtr == NULL)
+    return -1;
+
+  Bin *rootBin = *rootPtr;
+  Bin *nextBin = rootBin->next;
+
+  int retVal = rootBin->val;
+
+  free(rootBin);
+  *rootPtr = nextBin;
+  return retVal;
+}
