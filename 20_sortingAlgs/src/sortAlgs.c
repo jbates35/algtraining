@@ -196,3 +196,43 @@ void mergeSortR(int *A, int m, int n) {
 
   mergeWhileSorting(A, m, mid, n);
 }
+
+void algs_countSort(int *A, int N) {
+  if (A == NULL) {
+    fflush(stdout);
+    fprintf(stderr, "\nError: Null pointer in algs_countSort\n");
+    return;
+  }
+
+  if (N == 0)
+    return;
+
+  int tmpArrSize = A[0] + 1;
+  int *tmpArr = calloc(tmpArrSize, sizeof(int));
+  tmpArr[A[0]]++;
+
+  for (int i = 1; i < N; i++) {
+    if (A[i] + 1 > tmpArrSize) {
+      int *rtmp = realloc(tmpArr, sizeof(int) * (A[i] + 1));
+      if (rtmp == NULL) {
+        free(tmpArr);
+        return;
+      }
+      tmpArr = rtmp;
+      for (int j = tmpArrSize; j <= A[i]; j++)
+        tmpArr[j] = 0;
+      tmpArrSize = A[i] + 1;
+    }
+    tmpArr[A[i]]++;
+  }
+
+  int newInd = 0;
+  for (int i = 0; i < tmpArrSize; i++) {
+    while (tmpArr[i] != 0) {
+      A[newInd++] = i;
+      tmpArr[i]--;
+    }
+  }
+
+  free(tmpArr);
+}
