@@ -7,6 +7,7 @@ add_subdirectory(341_insertionSort)
 add_subdirectory(348_selectionSort)
 add_subdirectory(353_quickSort)
 add_subdirectory(356_mergeSortI)
+add_subdirectory(358_mergeSortR)
 
 # Specify the include directories
 include_directories(include)

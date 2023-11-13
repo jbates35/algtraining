@@ -174,3 +174,25 @@ void mergeWhileSorting(int *A, int lo, int mid, int hi) {
 
   free(B);
 }
+
+void mergeSortR(int *A, int m, int n);
+void algs_mergeSortR(int *A, int N) {
+  if (A == NULL) {
+    fflush(stdout);
+    fprintf(stderr, "\nError: Null pointer in algs_mergeSortR\n");
+    return;
+  }
+
+  mergeSortR(A, 0, N - 1);
+}
+
+void mergeSortR(int *A, int m, int n) {
+  if (n - m < 1)
+    return;
+
+  int mid = (n - m) / 2 + m;
+  mergeSortR(A, m, mid);
+  mergeSortR(A, mid + 1, n);
+
+  mergeWhileSorting(A, m, mid, n);
+}
