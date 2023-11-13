@@ -257,7 +257,7 @@ void algs_radixSort(int *A, int N) {
 
   for (int bitsh = 0; (maxVal >> bitsh) != 0; bitsh += 4) {
     // First sort array values into the bins
-    for (int i = 0; i < N; i++)
+    for (int i = N - 1; i >= 0; i--)
       addBin(&bins[(A[i] >> bitsh) & 0xF], A[i]);
 
     // Now pop the bins in order back into the array
@@ -278,17 +278,8 @@ Bin *makeBin(int val) {
 
 void addBin(Bin **rootPtr, int val) {
   Bin *newBin = makeBin(val);
-
-  if (*rootPtr == NULL) {
-    *rootPtr = newBin;
-    return;
-  }
-
-  Bin *rootBin = *rootPtr;
-  while (rootBin->next != NULL)
-    rootBin = rootBin->next;
-
-  rootBin->next = newBin;
+  newBin->next = (*rootPtr);
+  (*rootPtr) = newBin;
 }
 
 int delBin(Bin **rootPtr) {
