@@ -306,4 +306,13 @@ void algs_shellSort(int *A, int N) {
     return;
   }
 
+  for (int gap = N / 2; gap > 0; gap /= 2) {
+    for (int start = gap; start < N; start++) {
+      int i = start;
+      while ((i - gap) >= 0 && A[i] < A[i - gap]) {
+        swap(&A[i], &A[i - gap], sizeof(int));
+        i -= gap;
+      }
+    }
+  }
 }
