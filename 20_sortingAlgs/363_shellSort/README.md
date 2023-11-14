@@ -17,6 +17,9 @@ $ ./ShellSort
 ```
 This should give you:
 ```
+Printing array...
+2 3 4 5 6 8 9 10 12 13 16 
+
 ```
 If interested, the functions of note are located in src/sortAlgs.c:
 
