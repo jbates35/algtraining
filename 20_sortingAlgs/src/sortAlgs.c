@@ -297,3 +297,13 @@ int delBin(Bin **rootPtr) {
   *rootPtr = nextBin;
   return retVal;
 }
+
+/***** Start of SHELL SORT *********/
+void algs_shellSort(int *A, int N) {
+  if (A == NULL) {
+    fflush(stdout);
+    fprintf(stderr, "\nError: Null pointer in algs_shellSort\n");
+    return;
+  }
+
+}

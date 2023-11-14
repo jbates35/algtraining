@@ -12,5 +12,6 @@ void algs_mergeSortI(int *A, int N);
 void algs_mergeSortR(int *A, int N);
 void algs_countSort(int *A, int N);
 void algs_radixSort(int *A, int N);
+void algs_shellSort(int *A, int N);
 
 #endif
