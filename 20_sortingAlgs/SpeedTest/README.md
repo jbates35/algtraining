@@ -1,4 +1,4 @@
-#Extracurricular - Speed Test
+# Extracurricular - Speed Test
 ## Speed tests with each algorithm from this chapter on an array of 50,000 entries 
 ### Description:
 Per my curiosity, I wanted to see how fast each algorithm is. I designed a speed test which I could use to test each algorithm.
