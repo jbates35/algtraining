@@ -11,6 +11,7 @@ add_subdirectory(358_mergeSortR)
 add_subdirectory(360_countSort)
 add_subdirectory(362_radixSort)
 add_subdirectory(363_shellSort)
+add_subdirectory(SpeedTest)
 
 # Specify the include directories
 include_directories(include)

@@ -298,6 +298,67 @@ int delBin(Bin **rootPtr) {
   return retVal;
 }
 
+/***** Diff radix sort *********/
+typedef struct ArrADT {
+  int *A;
+  int size;
+  int l;
+} ArrADT;
+
+void addBinArr(ArrADT *arr, int val);
+
+void algs_radixSort_altered(int *A, int N) {
+  if (A == NULL) {
+    fflush(stdout);
+    fprintf(stderr, "\nError: Null pointer in algs_radixSort\n");
+    return;
+  }
+
+  int maxVal = A[0];
+  for (int i = 1; i < N; i++) {
+    if (maxVal < A[i])
+      maxVal = A[i];
+  }
+
+  ArrADT *bins[16] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+                      NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+
+  for (int i = 0; i < 16; i++) {
+    bins[i] = malloc(sizeof(ArrADT));
+    bins[i]->size = 100;
+    bins[i]->A = malloc(sizeof(int) * bins[i]->size);
+    bins[i]->l = 0;
+  }
+
+  for (int bitsh = 0; (maxVal >> bitsh) != 0; bitsh += 4) {
+    // First sort array values into the bins
+    for (int i = 0; i < N; i++)
+      addBinArr(bins[(A[i] >> bitsh) & 0xF], A[i]);
+
+    // Now pop the bins in order back into the array
+    int aInd = 0;
+    for (int i = 0; i < 16; i++) {
+      for (int j = 0; j < bins[i]->l; j++)
+        A[aInd++] = bins[i]->A[j];
+      bins[i]->l = 0;
+    }
+  }
+
+  for (int i = 0; i < 16; i++) {
+    free(bins[i]->A);
+    free(bins[i]);
+  }
+}
+
+void addBinArr(ArrADT *arr, int val) {
+  arr->l++;
+  if (arr->l >= arr->size) {
+    arr->size *= 2;
+    arr->A = realloc(arr->A, sizeof(int) * arr->size);
+  }
+  arr->A[arr->l - 1] = val;
+}
+
 /***** Start of SHELL SORT *********/
 void algs_shellSort(int *A, int N) {
   if (A == NULL) {
