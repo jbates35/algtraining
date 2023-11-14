@@ -19,25 +19,25 @@ $ ./SpeedTest
 ```
 This should give you:
 ```
-Bubble Sort: 9583259.000000 us
+Bubble Sort: 3756979.000000 us
 Is sorted? Yes
-Insertion Sort: 514789.000000 us
+Insertion Sort: 534768.000000 us
 Is sorted? Yes
-Selection Sort: 612223.000000 us
+Selection Sort: 606474.000000 us
 Is sorted? Yes
-Quick Sort: 6183.000000 us
+Quick Sort: 3799.000000 us
 Is sorted? Yes
-Merge Sort I: 4467.000000 us
+Merge Sort I: 4343.000000 us
 Is sorted? No
-Merge Sort R: 4656.000000 us
+Merge Sort R: 4597.000000 us
 Is sorted? Yes
-Count Sort: 2676.000000 us
+Count Sort: 2324.000000 us
 Is sorted? Yes
-Radix Sort: 5431.000000 us
+Radix Sort: 5425.000000 us
 Is sorted? Yes
-Radix Sort Alt: 952.000000 us
+Radix Sort Alt: 945.000000 us
 Is sorted? Yes
-Shell Sort: 18241.000000 us
+Shell Sort: 6923.000000 us
 Is sorted? Yes
 
 ```
