@@ -6,11 +6,11 @@
 Hashnode *makeNode(int key, int val);
 void freeNode(Hashnode *node);
 
-void chain_init(Chainhash *hashMap) {
-  hashMap = (Chainhash *)malloc(sizeof(Chainhash));
-  hashMap->size = 16;
-  for (int i = 0; i < hashMap->size; i++) {
-    hashMap->map[i] = (Hashnode *)malloc(sizeof(Hashnode));
+void chain_init(Chainhash **hashMap) {
+  *hashMap = (Chainhash *)malloc(sizeof(Chainhash));
+  (*hashMap)->size = 16;
+  for (int i = 0; i < (*hashMap)->size; i++) {
+    (*hashMap)->map[i] = (Hashnode *)malloc(sizeof(Hashnode));
   }
 }
 
@@ -47,7 +47,7 @@ void chain_add(Chainhash *hashMap, int key, int val) {
     node = node->next;
   }
 
-  node->next = node;
+  node->next = newNode;
 }
 
 int chain_get(Chainhash *hashMap, int key, int *val) {

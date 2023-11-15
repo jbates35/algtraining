@@ -5,8 +5,9 @@
 
 int main(int argc, char *argv[]) {
   Chainhash *map;
-  chain_init(map);
-
+  int asdf = 0;
+  chain_init(&map);
+  asdf = 2;
   // Make a set of 20 random keys
   int keys[20] = {30, 20, 59, 2,  95, 23, 25, 29, 21, 12,
                   67, 56, 70, 15, 66, 42, 7,  77, 24, 53};
@@ -17,10 +18,10 @@ int main(int argc, char *argv[]) {
   for (int i = 0; i < 20; i++)
     chain_add(map, keys[i], vals[i]);
 
-  // int sampleKeys[4] = {20, 2, 95, 23};
-  // for (int i = 0; i < 4; i++) {
-  //   int val;
-  //   chain_get(map, sampleKeys[i], &val);
-  //   printf("Value for key %d is:\t%d\n", sampleKeys[i], val);
-  // }
+  int sampleKeys[4] = {20, 2, 95, 23};
+  for (int i = 0; i < 4; i++) {
+    int val;
+    chain_get(map, sampleKeys[i], &val);
+    printf("Value for key %d is:\t%d\n", sampleKeys[i], val);
+  }
 }
