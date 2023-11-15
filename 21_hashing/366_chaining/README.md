@@ -17,7 +17,7 @@ $ ./Chaining
 This should give you:
 ```
 ```
-If interested, the functions of note are located in src/Chaining.c:
+If interested, the functions of note are located in src/chainhash.c:
 
 ```c
 ```

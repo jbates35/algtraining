@@ -16,4 +16,4 @@ add_executable(Chaining main.c)
 target_include_directories(Chaining PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 # Add the source files to your target
-target_sources(Chaining PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/hashing.c)
+target_sources(Chaining PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/chainhash.c)

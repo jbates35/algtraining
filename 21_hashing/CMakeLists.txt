@@ -8,4 +8,4 @@ add_subdirectory(366_chaining)
 include_directories(include)
 
 # Add the utility files to a library
-add_library(utils src/hashing.c) 
+add_library(utils src/chainhash.c) 
