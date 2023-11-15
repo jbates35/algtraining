@@ -16,8 +16,18 @@ $ ./Chaining
 ```
 This should give you:
 ```
+Value for key 20 is:	523
+Value for key 2 is:	153
+Value for key 95 is:	262
+Value for key 23 is:	193
+Value for key 66 is:	193
+Unable to get key 66
 ```
 If interested, the functions of note are located in src/chainhash.c:
-
 ```c
+void chain_init(Chainhash **hashMap);
+void chain_free(Chainhash *hashMap);
+void chain_add(Chainhash *hashMap, int key, int val);
+int chain_get(Chainhash *hashMap, int key, int *val);
+int chain_del(Chainhash *hashMap, int key);
 ```
