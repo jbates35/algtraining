@@ -24,4 +24,17 @@ int main(int argc, char *argv[]) {
     chain_get(map, sampleKeys[i], &val);
     printf("Value for key %d is:\t%d\n", sampleKeys[i], val);
   }
+
+  int val;
+  printf("Value for key 66 is:\t%d\n", val);
+
+  if (!chain_del(map, 66))
+    printf("Deleting key 66 unsuccessful\n");
+
+  if (!chain_get(map, 66, &val))
+    printf("Unable to get key 66\n");
+  else
+    printf("Value for key 66 is:\t%d\n", val);
+
+  chain_free(map);
 }
