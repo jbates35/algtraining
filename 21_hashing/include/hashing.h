@@ -16,5 +16,6 @@ typedef struct Chainhash {
 void chain_init(Chainhash *hashmap);
 void chain_free(Chainhash *hashmap);
 void chain_add(Chainhash *hashmap, int key, int val);
+int chain_get(Chainhash *hashmap, int key);
 
 #endif
