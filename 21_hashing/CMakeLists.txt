@@ -3,6 +3,7 @@ project(hashing)
 
 # Add subdirectories for each sub-project
 add_subdirectory(366_chaining)
+add_subdirectory(369_linprobing)
 
 # Specify the include directories
 include_directories(include)

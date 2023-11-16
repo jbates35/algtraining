@@ -4,8 +4,6 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-  Chainhash *map;
-  chain_init(&map);
   // Make a set of 20 random keys
   int keys[20] = {30, 20, 59, 2,  95, 23, 25, 29, 21, 12,
                   67, 56, 70, 15, 66, 42, 7,  77, 24, 53};
