@@ -3,29 +3,49 @@
 #include <stdlib.h>
 
 Hashnode makeNode(int key, int val);
-int linprobe_add(Linhash *map, int key, int val) {
-  if (map == NULL) {
+int linprobe_add(Linhash *hashmap, int key, int val) {
+  if (hashmap == NULL) {
     fflush(stdout);
     fprintf(stderr, "Error: Null pointer in linprobe_add\n");
     return -1;
   }
 
-  int mapInd = key & 0xF;
+  int mapInd = key % hashmap->size;
+
+  for (int i = 0; i < hashmap->size; i++) {
+    int entryBit = (1 << (mapInd + i) % hashmap->size |
+                    1 >> (hashmap->size - mapInd - i) % hashmap->size);
+
+    if ((hashmap->entries & entryBit) != 0 &&
+        hashmap->map[(mapInd + i) % hashmap->size].key != key)
+      continue;
+
+    hashmap->map[(mapInd + i) % hashmap->size] = makeNode(key, val);
+    hashmap->entries |= entryBit;
+    printf("TESTING: Entry added at %d\n", (mapInd + i) % hashmap->size);
+    return 1;
+  }
+  fflush(stdout);
+  fprintf(stderr, "Error: Hashmap is full (in linprobe_add)\n");
+  return 0;
 }
 
-int linprobe_del(Linhash *map, int key, int val) {
-  if (map == NULL) {
+int linprobe_del(Linhash *hashmap, int key) {
+  if (hashmap == NULL) {
     fflush(stdout);
     fprintf(stderr, "Error: Null pointer in linprobe_del\n");
     return -1;
   }
+
+  return 0;
 }
-int linprobe_get(Linhash *map, int key, int *val) {
-  if (map == NULL) {
+int linprobe_get(Linhash *hashmap, int key, int *val) {
+  if (hashmap == NULL) {
     fflush(stdout);
     fprintf(stderr, "Error: Null pointer in linprobe_get\n");
     return -1;
   }
+  return 0;
 }
 
 Hashnode makeNode(int key, int val) {

@@ -8,12 +8,13 @@ typedef struct Hashnode {
 } Hashnode;
 
 typedef struct Linhash {
-  Hashnode map[16];
+  Hashnode map[100];
+  int entries;
   int size;
 } Linhash;
 
-int linprobe_add(Linhash *map, int key, int val);
-int linprobe_del(Linhash *map, int key, int val);
-int linprobe_get(Linhash *map, int key, int *val);
+int linprobe_add(Linhash *hashmap, int key, int val);
+int linprobe_del(Linhash *hashmap, int key);
+int linprobe_get(Linhash *hashmap, int key, int *val);
 
 #endif
