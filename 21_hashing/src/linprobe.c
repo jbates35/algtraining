@@ -37,6 +37,16 @@ int linprobe_del(Linhash *hashmap, int key) {
     return -1;
   }
 
+  int mapInd = key % hashmap->size;
+
+  for (int i = 0; i < hashmap->size; i++) {
+    if (hashmap->map[(mapInd + i) % hashmap->size].key != key)
+      continue;
+
+    hashmap->map[(mapInd + i) % hashmap->size].cleared = 1;
+    return 1;
+  }
+
   return 0;
 }
 int linprobe_get(Linhash *hashmap, int key, int *val) {
@@ -44,6 +54,18 @@ int linprobe_get(Linhash *hashmap, int key, int *val) {
     fflush(stdout);
     fprintf(stderr, "Error: Null pointer in linprobe_get\n");
     return -1;
+  }
+
+  int mapInd = key % hashmap->size;
+
+  for (int i = 0; i < hashmap->size; i++) {
+    int ind = (mapInd + i) % hashmap->size;
+
+    if (hashmap->map[ind].cleared == 1 || hashmap->map[ind].key != key)
+      continue;
+
+    *val = hashmap->map[ind].val;
+    return 1;
   }
   return 0;
 }

@@ -9,12 +9,26 @@ int main(int argc, char *argv[]) {
   map.entries = 0;
 
   // Make a set of 20 random keys
-  int keys[17] = {0x4,  0x14, 0x24, 0x34, 0x44, 0x54, 0x64, 0x74, 0x84,
-                  0x94, 0xA4, 0xB4, 0xC4, 0xD4, 0xE4, 0xF4, 0x104};
-  // Make a set of 20 random values
-  int vals[17] = {102, 523, 643, 153, 262, 193, 253, 206, 234,
-                  156, 142, 523, 364, 153, 253, 162, 623};
+  int keys[10] = {0x4,  0x14, 0x24, 0x34, 0x44, 0x54,
+                  0x64, 0x74, 0x84, 0x94}; // Make a set of 20 random values
+  int vals[10] = {102, 523, 643, 153, 262, 193, 253, 206, 234, 392};
 
-  for (int i = 0; i < 17; i++)
+  printf("Adding 7 key/vals into a hashmap of size 5...");
+  for (int i = 0; i < 7; i++)
     linprobe_add(&map, keys[i], vals[i]);
+
+  int val;
+
+  if (linprobe_get(&map, 0x14, &val) == 1)
+    printf("Showing value for key 0x14: \t%d\n", val);
+  else
+    printf("Key 0x14 does not exist.\n");
+
+  printf("Now deleting val for key 0x14\n");
+  linprobe_del(&map, 0x14);
+
+  if (linprobe_get(&map, 0x14, &val) == 1)
+    printf("Showing value for key 0x14: \t%d\n", val);
+  else
+    printf("Key 0x14 does not exist.\n");
 }
