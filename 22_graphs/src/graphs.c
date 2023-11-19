@@ -11,34 +11,32 @@ int graphs_BFS(int **graph, int M, int N, int startVal, int *arr, int *L) {
     return -1;
   }
 
+  int *visited = calloc(M, sizeof(int));
+
   Queue *q;
   initQueue(&q, M);
 
   enqueue(q, startVal);
   arr[0] = startVal;
-
+  visited[startVal] = 1;
   *L = 1;
 
   while (!queueIsEmpty(q)) {
     int nextVal = dequeue(q);
 
     for (int i = 0; i < N; i++) {
-      int isValid = 1;
-      for (int j = 0; j < *L; j++) {
-        if (graph[nextVal][i] == 0 || i == arr[j]) {
-          isValid = 0;
-          break;
-        }
-      }
-      if (isValid) {
-        enqueue(q, i);
-        arr[*L] = i;
-        (*L)++;
-      }
+      if (graph[nextVal][i] == 0 || visited[i] == 1)
+        continue;
+
+      enqueue(q, i);
+      arr[*L] = i;
+      visited[i] = 1;
+      (*L)++;
     }
   }
 
   freeQueue(&q);
+  free(visited);
 
   return 0;
 }
