@@ -4,12 +4,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct stack 
-{
-    int size;
-    int top;
-    int *s;
-};
+typedef struct stack {
+  int size;
+  int top;
+  int *s;
+} Stack;
 
 void initStack(struct stack **st, int size);
 void freeStack(struct stack **st);
