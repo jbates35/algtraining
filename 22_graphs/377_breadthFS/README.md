@@ -1,7 +1,7 @@
 # Lesson 377 - Breadth First Search
 ## Creating breadth first search from graph
 ### Description:
-
+Breadth first search. Much like a level-order tree.
 ```shell
 $ git clone https://github.com/jbates35/algtraining
 $ cd ./algtraining/22_graphs

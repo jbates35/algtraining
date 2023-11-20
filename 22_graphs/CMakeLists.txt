@@ -3,9 +3,10 @@ project(graphs)
 
 # Add subdirectories for each sub-project
 add_subdirectory(377_breadthFS)
+add_subdirectory(379_depthFS)
 
 # Specify the include directories
 include_directories(include)
 
 # Add the utility files to a library
-add_library(utils src/queueCircular.c src/graphs.c)
+add_library(utils src/queueCircular.c src/stackarr.c src/graphs.c)

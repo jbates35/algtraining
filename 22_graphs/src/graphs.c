@@ -1,5 +1,6 @@
 #include "graphs.h"
 #include "queueCircular.h"
+#include "stackarr.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -37,6 +38,16 @@ int graphs_BFS(int **graph, int M, int N, int startVal, int *arr, int *L) {
 
   freeQueue(&q);
   free(visited);
+
+  return 0;
+}
+
+int graphs_DFS(int **graph, int M, int N, int startVal, int *arr, int *L) {
+  if (graph == NULL) {
+    fflush(stdout);
+    fprintf(stderr, "Error: null ptr in graphs_DFS\n");
+    return -1;
+  }
 
   return 0;
 }
