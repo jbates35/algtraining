@@ -59,13 +59,18 @@ int graphs_DFS(int **graph, int M, int N, int startVal, int *arr, int *L) {
   visited[startVal] = 1;
   *L = 1;
 
+  int nextVal = startVal;
+
   while (!isEmpty(s)) {
-    int nextVal = pop(s);
+    int i = 1;
+    for (; i < N; i++) {
+      if (graph[nextVal][i] == 1 && visited[i] == 0)
+        break;
+    }
 
-    for (int i = 0; i < N; i++) {
-      if (graph[nextVal][i] == 0 || visited[i] == 1)
-        continue;
-
+    if (i == N) {
+      nextVal = pop(s);
+    } else {
       push(s, i);
       arr[*L] = i;
       visited[i] = 1;
