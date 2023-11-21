@@ -29,6 +29,7 @@ int graphs_BFS(int **graph, int M, int N, int startVal, int *arr, int *L) {
       if (graph[nextVal][i] == 0 || visited[i] == 1)
         continue;
 
+      printf("From %d to %d\n", nextVal, i);
       enqueue(q, i);
       arr[*L] = i;
       visited[i] = 1;
@@ -71,10 +72,12 @@ int graphs_DFS(int **graph, int M, int N, int startVal, int *arr, int *L) {
     if (i == N) {
       nextVal = pop(s);
     } else {
-      push(s, i);
+      printf("From %d to %d\n", nextVal, i);
+      push(s, nextVal);
       arr[*L] = i;
       visited[i] = 1;
       (*L)++;
+      nextVal = i;
     }
   }
 

@@ -18,8 +18,7 @@ int main(int argc, char *argv[]) {
   int A[100];
   int L = 0;
 
-  for (int start = 1; start < 8; start++) {
-
+  for (int start = 5; start < 6; start++) {
     printf("Breadth first search for starting value %d is:\n", start);
 
     graphs_BFS(graph, 8, 8, start, A, &L);

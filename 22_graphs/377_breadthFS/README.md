@@ -17,19 +17,13 @@ $ ./BFS
 This should give you:
 ```
 Breadth first search for starting value 1 is:
+From 1 to 2
+From 1 to 3
+From 1 to 4
+From 3 to 5
+From 5 to 6
+From 5 to 7
 1 2 3 4 5 6 7 
-Breadth first search for starting value 2 is:
-2 1 3 4 5 6 7 
-Breadth first search for starting value 3 is:
-3 1 2 4 5 6 7 
-Breadth first search for starting value 4 is:
-4 1 3 5 2 6 7 
-Breadth first search for starting value 5 is:
-5 3 4 6 7 1 2 
-Breadth first search for starting value 6 is:
-6 3 5 1 2 4 7 
-Breadth first search for starting value 7 is:
-7 5 3 4 6 1 2 
 ```
 If interested, the functions of note are located in src/chainhash.c:
 ```c
