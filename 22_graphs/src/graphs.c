@@ -87,13 +87,8 @@ int graphs_DFS(int **graph, int M, int N, int startVal, int *arr, int *L) {
   return 0;
 }
 
-typedef struct Link {
-  int i;
-  int j;
-} Link;
-
-int findMin(int A[], int M, int N);
-
+int findMinInd(int A[], int M, int N);
+int findMinArr(int in[], int M, int N, int out, int L);
 int graph_prims(int **graph, int M, int N, int startVal, int *arr, int *L) {
   if (graph == NULL) {
     fflush(stdout);
@@ -131,13 +126,4 @@ int findMinInd(int A[], int M, int N) {
   return minInd;
 }
 
-int findMinArr(int A[], int M, int N, j) {
-  int minInd = M;
-
-  for (int i = M + 1; i < N; i++) {
-    if (A[i] < A[minInd])
-      minInd = i;
-  }
-
-  return;
-}
+int findMinArr(int in[], int M, int N, int out, int L) {}
