@@ -87,4 +87,57 @@ int graphs_DFS(int **graph, int M, int N, int startVal, int *arr, int *L) {
   return 0;
 }
 
-int graph_prims(int **graph, int M, int N, int startVal, int *arr, int *L) {}
+typedef struct Link {
+  int i;
+  int j;
+} Link;
+
+int findMin(int A[], int M, int N);
+
+int graph_prims(int **graph, int M, int N, int startVal, int *arr, int *L) {
+  if (graph == NULL) {
+    fflush(stdout);
+    fprintf(stderr, "Error: null ptr in graphs_DFS\n");
+    return -1;
+  }
+
+  int minVal = 0;
+  int minInd = 0;
+
+  int *nearest = malloc(sizeof(int) * M);
+
+  arr[0] = startVal;
+  arr[1] = findMinInd(graph[startVal], 1, N);
+
+  for (int i = 1; i < N; i++) {
+  }
+
+  free(nearest);
+  return 0;
+}
+
+/**
+ * findMin finds the min index from pos M, to pos N,
+ * note that these are absolute values
+ * */
+int findMinInd(int A[], int M, int N) {
+  int minInd = N - 1;
+
+  for (int i = M; i < N - 1; i++) {
+    if (A[i] < A[minInd])
+      minInd = i;
+  }
+
+  return minInd;
+}
+
+int findMinArr(int A[], int M, int N, j) {
+  int minInd = M;
+
+  for (int i = M + 1; i < N; i++) {
+    if (A[i] < A[minInd])
+      minInd = i;
+  }
+
+  return;
+}
