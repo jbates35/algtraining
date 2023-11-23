@@ -4,27 +4,15 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-
-  int tempGraph[8][8] = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 1, 1, 1, 0, 0, 0},
-                         {0, 1, 0, 1, 0, 0, 0, 0}, {0, 1, 1, 0, 1, 1, 0, 0},
-                         {0, 1, 0, 1, 0, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 1, 1},
-                         {0, 0, 0, 1, 0, 1, 0, 0}, {0, 0, 0, 0, 0, 1, 0, 0}};
-
-  int *graph[8];
-
-  for (int i = 0; i < 8; i++)
+  const int F = ~(1 << 31);
+  int tempGraph[8][8] = {
+      {F, F, F, F, F, F, F, F},    {F, F, 25, F, F, F, 5, F},
+      {F, 25, 12, F, F, F, F, 10}, {F, F, 12, F, 8, F, F, F},
+      {F, F, F, 8, F, 16, F, 18},  {F, F, F, F, 16, F, 20, 18},
+      {F, 5, F, F, F, 20, F, F},   {F, F, 10, F, 14, 18, F, F}};
+  int **graph;
+  for (int i = 0; i < sizeof(tempGraph) / sizeof(tempGraph[0]); i++)
     graph[i] = tempGraph[i];
 
-  int A[100];
-  int L = 0;
-
-  for (int start = 5; start < 6; start++) {
-    printf("Depth first search for starting value %d is:\n", start);
-
-    graphs_DFS(graph, 8, 8, start, A, &L);
-
-    for (int i = 0; i < L; i++)
-      printf("%d ", A[i]);
-    printf("\n");
-  }
+  return 0;
 }
