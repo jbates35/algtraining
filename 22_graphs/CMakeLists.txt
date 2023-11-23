@@ -4,6 +4,7 @@ project(graphs)
 # Add subdirectories for each sub-project
 add_subdirectory(377_breadthFS)
 add_subdirectory(379_depthFS)
+add_subdirectory(384_prims)
 
 # Specify the include directories
 include_directories(include)

@@ -25,7 +25,7 @@ From 5 to 6
 From 5 to 7
 1 2 3 4 5 6 7 
 ```
-If interested, the functions of note are located in src/chainhash.c:
+If interested, the functions of note are located in src/graphs.c:
 ```c
 int graphs_BFS(int **graph, int M, int N, int startVal, int *arr, int *L);
 ```

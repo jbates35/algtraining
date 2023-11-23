@@ -1,31 +1,22 @@
-# Lesson 379 - Depth First Search
+# Lesson 384 - Prims program
 ## Creating depth first search from graph
 ### Description:
-Depth first search on graphs. Much like a pre-order tree.
+Prims program is a way of finding a minimum cost spanning tree
 ```shell
 $ git clone https://github.com/jbates35/algtraining
 $ cd ./algtraining/22_graphs
 $ mkdir build && cd build
 $ cmake .. && make
-$ cd build/379_depthFS
+$ cd build/384_prims
 ```
 ### Example:
 Just run the command once built.
 ```bash
-$ ./BFS
+$ ./prims
 ```
 This should give you:
 ```
-Breadth first search for starting value 5 is:
-From 5 to 3
-From 5 to 4
-From 5 to 6
-From 5 to 7
-From 3 to 1
-From 3 to 2
-5 3 4 6 7 1 2 
 ```
 If interested, the functions of note are located in src/graphs.c:
 ```c
-int graphs_DFS(int **graph, int M, int N, int startVal, int *arr, int *L);
 ```
