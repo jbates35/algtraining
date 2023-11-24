@@ -2,6 +2,7 @@
 #include "queueCircular.h"
 #include "stackarr.h"
 
+#include <bits/pthreadtypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -87,9 +88,22 @@ int graphs_DFS(int **graph, int M, int N, int startVal, int *arr, int *L) {
   return 0;
 }
 
+typedef struct nearestVal {
+  int val;
+  int to;
+  int from;
+} NearestVal;
+
+NearestVal makeNearestVal(int val, int to, int from) {
+  NearestVal retVal = {val, to, from};
+  return retVal;
+}
+
 int findMinInd(int A[], int M, int N);
-int findMinArr(int in[], int M, int N, int out, int L);
-int graph_prims(int **graph, int M, int N, int startVal, int *arr, int *L) {
+int findMinArr(int **graph, int M, int N, int *nearest, int L);
+int sumOfArr(int A[], int L);
+
+int graphs_prims(int **graph, int M, int N, int startVal, int *arr, int *L) {
   if (graph == NULL) {
     fflush(stdout);
     fprintf(stderr, "Error: null ptr in graphs_DFS\n");
@@ -99,14 +113,67 @@ int graph_prims(int **graph, int M, int N, int startVal, int *arr, int *L) {
   int minVal = 0;
   int minInd = 0;
 
+  unsigned long inArray = 0x0;
+
   int *nearest = malloc(sizeof(int) * M);
 
   arr[0] = startVal;
   arr[1] = findMinInd(graph[startVal], 1, N);
 
-  for (int i = 1; i < N; i++) {
+  inArray |= 1 << arr[0];
+  inArray |= 1 << arr[1];
+
+  for (int i = 1; i < M; i++) {
+    if (i == arr[0] || i == arr[1]) {
+      nearest[i] = 0; // makeNearestVal(0, 0, 0);
+      continue;
+    }
+
+    int minInd = 0;
+
+    for (int j = 1; j < M; j++) {
+      if (((1 << j) & inArray) == 0)
+        continue;
+
+      if (graph[i][j] <= graph[i][minInd])
+        minInd = j;
+    }
+    nearest[i] = minInd;
   }
 
+  int x = findMinArr(graph, M, N, nearest, M);
+
+  arr[2] = x;
+  arr[3] = nearest[x];
+  *L = 4;
+
+  inArray |= 1 << x;
+  nearest[x] = 0;
+
+  while (sumOfArr(nearest, M)) {
+    for (int i = 1; i < M; i++) {
+      if (nearest[i] == 0) {
+        continue;
+      }
+
+      int minInd = nearest[i];
+
+      for (int j = 1; j < M; j++) {
+        if (((1 << j) & inArray) == 0)
+          continue;
+
+        if (graph[i][j] < graph[i][minInd])
+          minInd = j;
+      }
+      nearest[i] = minInd;
+    }
+
+    x = findMinArr(graph, M, N, nearest, M);
+    arr[(*L)++] = x;
+    arr[(*L)++] = nearest[x];
+    inArray |= 1 << x;
+    nearest[x] = 0;
+  }
   free(nearest);
   return 0;
 }
@@ -126,4 +193,20 @@ int findMinInd(int A[], int M, int N) {
   return minInd;
 }
 
-int findMinArr(int in[], int M, int N, int out, int L) {}
+int findMinArr(int **graph, int M, int N, int *nearest, int L) {
+  int minInd = 0;
+
+  for (int i = 1; i < L; i++) {
+    if (graph[nearest[i]][i] < graph[nearest[minInd]][minInd])
+      minInd = i;
+  }
+
+  return minInd;
+}
+
+int sumOfArr(int A[], int L) {
+  int retVal = 0;
+  for (int i = 0; i < L; i++)
+    retVal += A[i];
+  return retVal;
+}
