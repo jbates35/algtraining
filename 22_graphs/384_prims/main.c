@@ -19,9 +19,12 @@ int main(int argc, char *argv[]) {
   graphs_prims(graph, 8, 8, 1, A, &L);
 
   printf("Prims minimum spanning tree for starting value 1 is: \n");
-  for (int i = 0; i < L; i++)
+  for (int i = 0; i < L; i++) {
+    if (i % 2 == 0)
+      printf("Link: ");
     printf("%d ", A[i]);
-  printf("\n");
-
+    if (i % 2 == 1)
+      printf("\n");
+  }
   return 0;
 }

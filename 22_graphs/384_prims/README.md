@@ -17,7 +17,12 @@ $ ./prims
 This should give you:
 ```
 Prims minimum spanning tree for starting value 1 is: 
-1 6 5 6 4 5 3 4 2 3 7 2 
+Link: 1 6 
+Link: 5 6 
+Link: 4 5 
+Link: 3 4 
+Link: 2 3 
+Link: 7 2 
 ```
 If interested, the functions of note are located in src/graphs.c:
 ```c
