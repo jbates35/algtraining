@@ -5,6 +5,7 @@ project(graphs)
 add_subdirectory(377_breadthFS)
 add_subdirectory(379_depthFS)
 add_subdirectory(384_prims)
+add_subdirectory(388_kruskals)
 
 # Specify the include directories
 include_directories(include)

@@ -210,3 +210,46 @@ int sumOfArr(int A[], int L) {
     retVal += A[i];
   return retVal;
 }
+
+// Start of Kruskal's Algorithm
+void setUnion(int subset[], int ind1, int ind2);
+int setFind(int subset[], int i);
+
+int graphs_kruskal(int **graph, int M, int N, int *arr, int *L) {
+  if (graph == NULL) {
+    fflush(stdout);
+    fprintf(stderr, "Error: null ptr in graphs_kruskal\n");
+    return -1;
+  }
+
+  int A[] = {0, -1, -1, -4, -3, 3, -1, 4, 4, 3, 4};
+  int length = sizeof(A) / sizeof(int);
+
+  printf("\n");
+  for (int i = 0; i < length; i++)
+    printf("%d: %d\n", i, A[i]);
+
+  setUnion(A, 3, 4);
+
+  printf("\n");
+  for (int i = 0; i < length; i++)
+    printf("%d: %d\n", i, A[i]);
+
+  printf("Finding parent for ind 5: %d\n", setFind(A, 5));
+
+  return 0;
+}
+
+void setUnion(int subset[], int ind1, int ind2) {
+  int parent = subset[ind1] < subset[ind2] ? ind1 : ind2;
+  int child = subset[ind1] < subset[ind2] ? ind2 : ind1;
+
+  subset[parent] = subset[ind1] + subset[ind2];
+  subset[child] = parent;
+}
+
+int setFind(int subset[], int i) {
+  while (subset[i] >= 0)
+    i = subset[i];
+  return i;
+}
