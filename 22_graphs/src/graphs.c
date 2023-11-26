@@ -1,8 +1,10 @@
 #include "graphs.h"
+#include "heap.h"
 #include "queueCircular.h"
 #include "stackarr.h"
 
 #include <bits/pthreadtypes.h>
+#include <memory.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -212,44 +214,65 @@ int sumOfArr(int A[], int L) {
 }
 
 // Start of Kruskal's Algorithm
-void setUnion(int subset[], int ind1, int ind2);
+int setUnion(int subset[], int ind1, int ind2);
 int setFind(int subset[], int i);
+int allVisited(int A[], int M, int N);
 
-int graphs_kruskal(int **graph, int M, int N, int *arr, int *L) {
-  if (graph == NULL) {
+int graphs_kruskal(Edge *edges, int edgeLen, int nodeCnt, Edge *arr,
+                   int *arrLen) {
+  if (edges == NULL) {
     fflush(stdout);
     fprintf(stderr, "Error: null ptr in graphs_kruskal\n");
     return -1;
   }
 
-  int A[] = {0, -1, -1, -4, -3, 3, -1, 4, 4, 3, 4};
-  int length = sizeof(A) / sizeof(int);
+  // Create heap from edges to sort as we go
+  heap_create(edges, edgeLen);
 
-  printf("\n");
-  for (int i = 0; i < length; i++)
-    printf("%d: %d\n", i, A[i]);
+  int *graphSet = malloc(sizeof(int) * (nodeCnt + 1));
+  memset(graphSet, -1, sizeof(int) * (nodeCnt + 1));
 
-  setUnion(A, 3, 4);
+  // Take first edge and store it to the visited array
+  Edge e = heap_delete(edges, &edgeLen);
+  setUnion(graphSet, e.p1, e.p2);
+  arr[(*arrLen)++] = e;
 
-  printf("\n");
-  for (int i = 0; i < length; i++)
-    printf("%d: %d\n", i, A[i]);
-
-  printf("Finding parent for ind 5: %d\n", setFind(A, 5));
+  while (edgeLen > 1) {
+    Edge e = heap_delete(edges, &edgeLen);
+    if (!setUnion(graphSet, e.p1, e.p2))
+      continue;
+    arr[(*arrLen)++] = e;
+  }
+  free(graphSet);
 
   return 0;
 }
 
-void setUnion(int subset[], int ind1, int ind2) {
-  int parent = subset[ind1] < subset[ind2] ? ind1 : ind2;
-  int child = subset[ind1] < subset[ind2] ? ind2 : ind1;
+int setUnion(int subset[], int ind1, int ind2) {
+  int pInd1 = setFind(subset, ind1);
+  int pInd2 = setFind(subset, ind2);
 
-  subset[parent] = subset[ind1] + subset[ind2];
+  if (pInd1 == pInd2)
+    return 0;
+
+  int parent = subset[pInd1] < subset[pInd2] ? pInd1 : pInd2;
+  int child = subset[pInd1] < subset[pInd2] ? pInd2 : pInd1;
+
+  subset[parent] = subset[pInd1] + subset[pInd2];
   subset[child] = parent;
+
+  return 1;
 }
 
 int setFind(int subset[], int i) {
   while (subset[i] >= 0)
     i = subset[i];
   return i;
+}
+int allVisited(int A[], int M, int N) {
+  for (int i = M; i < N; i++) {
+    if (A[i] != 1)
+      return 0;
+  }
+  return 1;
 }

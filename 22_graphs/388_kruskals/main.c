@@ -4,27 +4,19 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-  int tempGraph[8][8] = {
-      {F, F, F, F, F, F, F, F},    {F, F, 25, F, F, F, 5, F},
-      {F, 25, F, 12, F, F, F, 10}, {F, F, 12, F, 8, F, F, F},
-      {F, F, F, 8, F, 16, F, 14},  {F, F, F, F, 16, F, 20, 18},
-      {F, 5, F, F, F, 20, F, F},   {F, F, 10, F, 14, 18, F, F}};
-  int *graph[8];
-  for (int i = 0; i < sizeof(tempGraph) / sizeof(tempGraph[0]); i++)
-    graph[i] = tempGraph[i];
+  Edge edges[] = {{1, 2, 25}, {1, 6, 5},  {2, 3, 12}, {2, 6, 14},
+                  {2, 7, 10}, {3, 4, 8},  {3, 6, 15}, {4, 5, 16},
+                  {4, 7, 14}, {5, 6, 20}, {5, 7, 18}};
+  int edgeLength = sizeof(edges) / sizeof(Edge);
 
-  int A[100];
+  Edge A[100];
   int L = 0;
 
-  graphs_kruskal(graph, 8, 8, A, &L);
-  //
-  // printf("Prims minimum spanning tree for starting value 1 is: \n");
-  // for (int i = 0; i < L; i++) {
-  //   if (i % 2 == 0)
-  //     printf("Link: ");
-  //   printf("%d ", A[i]);
-  //   if (i % 2 == 1)
-  //     printf("\n");
-  // }
+  graphs_kruskal(edges, edgeLength, 7, A, &L);
+
+  printf("Kruskal's minimum spanning tree for starting value 1 is: \n");
+  for (int i = 0; i < L; i++) {
+    printf("Link %d: Edge {%d, %d}: %d\n", i, A[i].p1, A[i].p2, A[i].weight);
+  }
   return 0;
 }

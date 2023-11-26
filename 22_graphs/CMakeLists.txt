@@ -11,4 +11,4 @@ add_subdirectory(388_kruskals)
 include_directories(include)
 
 # Add the utility files to a library
-add_library(utils src/queueCircular.c src/stackarr.c src/graphs.c)
+add_library(utils src/queueCircular.c src/stackarr.c src/graphs.c src/heap.c)

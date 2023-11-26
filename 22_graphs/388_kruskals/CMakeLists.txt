@@ -16,4 +16,4 @@ add_executable(kruskals main.c)
 target_include_directories(kruskals PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../include)
 
 # Add the source files to your target
-target_sources(kruskals PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/graphs.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/queueCircular.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/stackarr.c)
+target_sources(kruskals PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../src/graphs.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/queueCircular.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/stackarr.c ${CMAKE_CURRENT_SOURCE_DIR}/../src/heap.c)
