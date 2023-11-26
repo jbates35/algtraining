@@ -16,14 +16,14 @@ $ ./BFS
 ```
 This should give you:
 ```
-Breadth first search for starting value 5 is:
+Depth first search for starting value 5 is:
 From 5 to 3
-From 5 to 4
+From 3 to 1
+From 1 to 2
+From 1 to 4
 From 5 to 6
 From 5 to 7
-From 3 to 1
-From 3 to 2
-5 3 4 6 7 1 2 
+5 3 1 2 4 6 7 
 ```
 If interested, the functions of note are located in src/graphs.c:
 ```c

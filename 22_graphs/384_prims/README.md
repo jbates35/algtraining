@@ -1,5 +1,5 @@
 # Lesson 384 - Prims program
-## Creating depth first search from graph
+## Creating minimum cost spanning tree with prims
 ### Description:
 Prims program is a way of finding a minimum cost spanning tree
 ```shell
